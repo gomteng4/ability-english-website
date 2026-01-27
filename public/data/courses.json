@@ -1,0 +1,383 @@
+{
+    "courses": [
+        {
+            "id": "grammar-n",
+            "category": "문법",
+            "name": "그래머앤",
+            "nameEn": "Grammar N",
+            "description": "패턴 형식으로 구성된 문장 속에서 자연스럽게 문법을 학습하도록 구성",
+            "recommendedLevel": "Senior Level 2~8 / Regular Level 3~9",
+            "features": [
+                "195개 Unit으로 문법 기초부터 고급 단계까지 학습 가능",
+                "각 유닛별로 제시되는 핵심 패턴 문법 및 표현을 중심으로 반복적으로 쉽게 습득할 수 있도록 구성",
+                "의사소통이 가능한 영문법 학습 과정"
+            ],
+            "curriculum": [
+                "응용 및 사고 확장하기: 주어진 패턴을 활용한 영작 및 주제와 관련한 제시 질문 응답하기",
+                "Key Pattern & Expression: 문장에 녹여진 패턴 표현을 통해 자연스러운 문법을 문장을 통해 습득"
+            ]
+        },
+        {
+            "id": "grammar-points",
+            "category": "문법",
+            "name": "그래머포인츠",
+            "nameEn": "Grammar Points",
+            "description": "기초 문법에 대한 개념 정리 및 반복 연습을 통한 이해도 상승과 기본 문장 영작 실력을 향상 시킬 수 있는 과정",
+            "recommendedLevel": "Senior Level 1-2~2 / Regular Level 1-2~2",
+            "features": [
+                "예시 문장과 이미지를 활용한 문장 속에서의 기초 문법 습득이 가능하도록 구성",
+                "총 8개 Unit 구성 (I/You/She/It, am/is/are, like/have/want, was/were/did/will, can/may/should, There is/There are, on/at/in, why/when/where/what/who)"
+            ],
+            "curriculum": [
+                "Activity 3: 반복적인 문법 개념에 대한 이해 와 기초 문장 영작 연습",
+                "개념이해하기: 각 유닛별로 학습할 문법에 대한 인지 및 기초 이해",
+                "Activity 1: 이미지를 활용한 학습 주요 개념 학습",
+                "Activity 2: 학습한 문법적 개념의 문장 속에서의 역할 및 구조에 대해 학습"
+            ]
+        },
+        {
+            "id": "cbe",
+            "category": "비즈니스",
+            "name": "CBE",
+            "nameEn": "CBE",
+            "description": "빠르게 변화하는 국제 비즈니스 상황에 맞는 의사소통 능력 향상을 위한 과정",
+            "recommendedLevel": "Senior Level 4~7",
+            "features": [
+                "전화, 서면, 프레젠테이션, 미팅, 협상, 관계 등 포괄적인 비즈니스 상황에 대한 학습 가능",
+                "가상 회의 및 계약 재협상 등 다양한 주제로 구성",
+                "수강생의 배경지식을 활성화할 수 있도록 토론 중심의 문제 수록"
+            ],
+            "curriculum": []
+        },
+        {
+            "id": "momentum-c",
+            "category": "비즈니스",
+            "name": "모멘텀C",
+            "nameEn": "Momentum C",
+            "description": "영어 면접에 필요한 기술을 익히고 논리력을 향상시키는 과정 (C-1) / 현대 사회에 통용되는 비즈니스 영어 학습 과정 (C-2)",
+            "recommendedLevel": "Senior Level 6~8",
+            "features": [
+                "다양한 면접상황을 체험하며 인터뷰 기술을 익히고 본인의 의사를 표현 할 수 있도록 구성",
+                "일반 회사, IT, 예술(패션, 미디어 등), 교육, 기타(인턴, 법률 등) 관련 영어 면접 준비",
+                "전화, 서신, 비즈니스 미팅, 출장, 협상 등 다양한 업무 환경에서 논리적이고 설득력 있는 영어 구사"
+            ],
+            "curriculum": [
+                "Tips: 다양한 실전 면접 활용 팁",
+                "Vocabulary: 핵심 어휘 및 표현 학습",
+                "Situation: 인터뷰 참여자 정보 제시",
+                "Sample Questions and Answers: 예시 질문과 답안 학습",
+                "Your Turn: 본인 스스로 답안 제시하기",
+                "Review: 수업 내용에 대한 이해도 높이기",
+                "Dialogue A and B: 상황별 실전 영어 말하기 연습",
+                "Activity: 제시된 정보를 활용한 영어 말하기 연습"
+            ]
+        },
+        {
+            "id": "momentum-b",
+            "category": "시험준비",
+            "name": "모멘텀B",
+            "nameEn": "Momentum B",
+            "description": "질의 응답을 바탕으로 논리적 말하기 시험 준비 과정",
+            "recommendedLevel": "Senior Level 4~5",
+            "features": [
+                "토익스피킹과 오픽 시험을 대비할 수 있는 주제와 표현들 수록",
+                "일상, 학교, 회사, 취미, 전문 분야 상황에서의 의사 표현하기 연습"
+            ],
+            "curriculum": [
+                "Preview: 수업 주제에 대한 간단한 대화",
+                "Picture Description: 사진 묘사하기",
+                "Respond to the Question: 본인의 의견 영작 말하기",
+                "Solution & Opinion: 해결방안 제시하기",
+                "Reading: 주제와 관련한 지문 읽기"
+            ]
+        },
+        {
+            "id": "ntimes",
+            "category": "시사&역사",
+            "name": "앤타임즈",
+            "nameEn": "N Times",
+            "description": "사회, 경제, 문화 전반에 걸친 다양한 주제의 토론 수업을 통해 어휘 및 배경지식 습득, 논리적 영어실력 향상",
+            "recommendedLevel": "Senior Level 3~8 / Regular Level 6~9",
+            "features": [
+                "시사적인 흐름 반영",
+                "이슈에 대한 찬반 토론 및 논리적 말하기 연습",
+                "신문 기사 학습을 통한 고급 어휘 및 문장 구성력 획득"
+            ],
+            "curriculum": [
+                "Discussion Questions: 기사와 관련된 확장 질문 토론",
+                "Reading: 뉴스 기사 학습",
+                "Voca and Questions: 신규 어휘 및 기사 내용 이해 문제풀이"
+            ]
+        },
+        {
+            "id": "k-history",
+            "category": "시사&역사",
+            "name": "케이히스토리",
+            "nameEn": "K-History",
+            "description": "한국사를 영어로 재미있는 이야기로 풀어 상상력, 창의력, 표현력을 키우는 과정",
+            "recommendedLevel": "Junior Level 3~6",
+            "features": [
+                "교과 과정에 맞춘 한국사 영어 학습",
+                "친숙한 캐릭터와 그림 활용",
+                "문제풀이를 통한 역사 심화 이해"
+            ],
+            "curriculum": [
+                "Review: 리뷰 학습",
+                "Word List: 어휘 학습",
+                "Reading: 역사 스토리 읽기",
+                "Reading Comprehension: 내용 확인 문제 풀이",
+                "Exercise 1: 단어 응용 학습",
+                "Exercise 2: 퍼즐 풀기 (어휘 이해도 확장)",
+                "Let's think: 주제에 대한 의견 묻고 답하기"
+            ]
+        },
+        {
+            "id": "opic",
+            "category": "시험준비",
+            "name": "오픽",
+            "nameEn": "OPIc",
+            "description": "실제 출제되는 문제로만 구성된 교재",
+            "recommendedLevel": "Senior Level 5~8",
+            "features": [
+                "키워드를 통한 문제 유형 분석",
+                "주제별 기출 문제 및 예시/모범 답안 제공",
+                "질문 키워드별 답변 키워드 제공"
+            ],
+            "curriculum": []
+        },
+        {
+            "id": "toeic-beginner",
+            "category": "시험준비",
+            "name": "토익스피킹 비기너",
+            "nameEn": "TOEIC Speaking Beginner",
+            "description": "시험의 각 문항에 대해 점층적 학습이 가능하도록 구성",
+            "recommendedLevel": "Senior Level 3~5",
+            "features": [
+                "문장 구성 및 영작 연습",
+                "다양한 유형의 문제 접근",
+                "Unit 구성: 문장 읽기, 사진 묘사, 듣고 답하기, 정보 활용 답하기, 의견 제시하기 등"
+            ],
+            "curriculum": [
+                "Part 1~5 (Reading, Describe Picture, Q&A, Respond, Express opinion)",
+                "Warm up"
+            ]
+        },
+        {
+            "id": "toeic",
+            "category": "시험준비",
+            "name": "토익스피킹",
+            "nameEn": "TOEIC Speaking",
+            "description": "최신 경향을 완벽 반영한 교재 (2021 개정 반영)",
+            "recommendedLevel": "Senior Level 5~7",
+            "features": [
+                "각 파트별 시험 진행 순서 및 핵심 패턴 구성",
+                "빈출 문제, 예시 답변, 고득점 전략, 꿀팁 제공"
+            ],
+            "curriculum": [
+                "모범 답안 및 꿀팁",
+                "파트별 진행 순서",
+                "주요 핵심 패턴",
+                "실전 문제"
+            ]
+        },
+        {
+            "id": "nvoca",
+            "category": "어휘",
+            "name": "앤보카",
+            "nameEn": "N Voca",
+            "description": "기초 필수 어휘부터 공인 인증 시험 대비까지 가능한 어휘력 및 영작능력 향상 집중 과정",
+            "recommendedLevel": "Senior Level 2~4 / Regular Level 3~7",
+            "features": [
+                "1000 Basic Words: 초·중등 필수 어휘 1000여 개, 7회 반복 학습",
+                "2000 Core Words: 중학교 핵심 어휘 2000여 개, 테마별 구성",
+                "4000 Essential Words: TOEFL, TOEIC 등 공인 시험 및 수능/외고 대비 핵심 어휘 4000여 개"
+            ],
+            "curriculum": [
+                "Part 1: 어휘 학습 (강세, 발음, 역할)",
+                "Part 2: 문제 풀이 (게임 활용)",
+                "Part 3: 읽기 학습 및 문제 풀이 (맥락 파악, 실용문)",
+                "Part 4: 질의응답 및 글쓰기 (문단 내 역할, 교정/요약)"
+            ]
+        },
+        {
+            "id": "funfun-trip",
+            "category": "여행영어",
+            "name": "펀펀트립",
+            "nameEn": "Fun Fun Trip",
+            "description": "여행지 실전 영어, 현지 상호교류 목적",
+            "recommendedLevel": "Senior Level 2~4 / Regular Level 3~7",
+            "features": [
+                "패턴 중심 상황별 말하기 (예약, 변경, 길 찾기 등)",
+                "실전 응용 파트 구성"
+            ],
+            "curriculum": [
+                "Expand your expression: 응용 영작 및 회화",
+                "Vocabulary: 빈도 높은 어휘",
+                "Dialogue: 상황별 실전 대화 (제스처, 억양 포함)"
+            ]
+        },
+        {
+            "id": "immersion",
+            "category": "정규통합과정",
+            "name": "이머전",
+            "nameEn": "Immersion",
+            "description": "영어 첫걸음부터 수준 높은 토론까지, 주제 기반 통합형 학습",
+            "recommendedLevel": "Senior Level 1-7 / Regular Level 1-9",
+            "features": [
+                "Level 1: 초보자용, 파닉스/읽기 기초 (Jungle Phonics, SuperEasyReading 등)",
+                "Level 2: 파닉스 연계 짧은 문장, 반복 학습",
+                "Level 3: 친근한 주제, 듣기/쓰기 반복 확장",
+                "Level 4: 유익한 논픽션, 말하기 강화",
+                "Level 5: 미국 교과서 특징, 픽션/논픽션, 배경지식 확대",
+                "Level 6: 5개 유형 WH 문제, 논리적 사고, 요약",
+                "Level 7: 다양한 주제 어휘력 확대, 활용 중심",
+                "Level 8: 4 Skills 통합 강화, 깊이 있는 독해",
+                "Level 9: 사회 주요 쟁점(과학, 예술, 역사 등), 심화 학습"
+            ],
+            "curriculum": [
+                "문맥 학습",
+                "철자별 소리",
+                "놀이",
+                "쓰기/말하기",
+                "단어/지문",
+                "독해",
+                "질의응답",
+                "토론"
+            ]
+        },
+        {
+            "id": "senior",
+            "category": "정규통합과정",
+            "name": "앤시니어",
+            "nameEn": "N Senior",
+            "description": "성인 학습자를 위한 단계별 실력 향상 및 균형 잡힌 학습",
+            "recommendedLevel": "Senior Level 1~8",
+            "features": [
+                "Level 3~4: 실생활 밀접 상황, 어휘/문법/문장 학습, 과학/비즈니스 독해, TED Talks",
+                "Level 5~6: 말하기 시험 대비 및 실제 회화 강화, 영어권 문화, 프리토킹, 고급 회화",
+                "Level 7~8: 비즈니스 및 세계적 이슈, 전문가 영어, 비판적/창의적 사고(분석, 평가, 추론)"
+            ],
+            "curriculum": [
+                "Part 1~2: 어휘 및 질의응답",
+                "Part 3~4: 서술형 질의응답 및 다이얼로그",
+                "Part 5~6: 부가학습 및 쓰기와 말하기",
+                "Lesson A: 독해학습 및 비판적 사고",
+                "Lesson B: TED Talks, 학습능력향상(분석/요약), 비판적 사고"
+            ]
+        },
+        {
+            "id": "hangout",
+            "category": "정규통합과정",
+            "name": "행아웃",
+            "nameEn": "Hang Out",
+            "description": "재미있는 이야기와 노래를 통한 7단계 주니어 코스북",
+            "recommendedLevel": "Junior Level 1-2 ~ 4",
+            "features": [
+                "4 Skills 통합",
+                "생생한 캐릭터",
+                "만화/노래/묘사 등 다양한 액티비티"
+            ],
+            "curriculum": [
+                "주제 파악하기",
+                "송 앤 리딩 (Song & Reading)",
+                "스피킹 (Speaking)",
+                "스토리 (Story - 롤플레잉)",
+                "확장 학습 (Expand - 어휘/문장)",
+                "관련 학습 (Connect - 추가 읽기)",
+                "파닉스(Starter~4) / 쓰기(Starter~6)"
+            ]
+        },
+        {
+            "id": "eea",
+            "category": "회화",
+            "name": "EEA",
+            "nameEn": "English for Everyday Activities",
+            "description": "일상 생활 영어 활동 (낭독편, 서바이벌편, 이디엄편)",
+            "recommendedLevel": "Senior Level 2-5",
+            "features": [
+                "낭독편: 일상 생활 24시, 동작/상태 삽화",
+                "서바이벌편: 50가지 일상/여행 스토리, 롤플레잉",
+                "이디엄편: 실생활 활용도 높은 관용구, 문맥 활용"
+            ],
+            "curriculum": []
+        },
+        {
+            "id": "daily",
+            "category": "회화",
+            "name": "데일리앤보임",
+            "nameEn": "Daily Nvoim",
+            "description": "효과적인 회화 학습을 위한 다양한 패턴 활용",
+            "recommendedLevel": "Senior Level 3~5 / Regular Level 4 이상",
+            "features": [
+                "따라 하기 쉬운 문장",
+                "실생활 표현",
+                "관용 표현"
+            ],
+            "curriculum": [
+                "다이얼로그 및 문장 만들기",
+                "핵심 패턴과 예시 문장 학습"
+            ]
+        },
+        {
+            "id": "momentum-a",
+            "category": "회화",
+            "name": "모멘텀A",
+            "nameEn": "Momentum A",
+            "description": "상황별 실전 회화 능력 향상",
+            "recommendedLevel": "Senior Level 2~3",
+            "features": [
+                "일상/회사/학교 주제 (소개, 감정, 여행, 쇼핑, 건강 등)",
+                "롤플레이 위주"
+            ],
+            "curriculum": [
+                "Activity",
+                "Review",
+                "Vocabulary",
+                "Dialogue",
+                "Key Expressions",
+                "Let's Practice"
+            ]
+        },
+        {
+            "id": "icantalk",
+            "category": "회화",
+            "name": "아이캔톡",
+            "nameEn": "I Can Talk",
+            "description": "왕초보 실버세대 맞춤 일상회화",
+            "recommendedLevel": "Senior Level 1 ~ 1-2",
+            "features": [
+                "필수 입문 어휘/패턴",
+                "한글 발음 가이드 제공",
+                "예문 중심"
+            ],
+            "curriculum": []
+        },
+        {
+            "id": "nlife",
+            "category": "회화",
+            "name": "앤라이프",
+            "nameEn": "N Life",
+            "description": "상황별 패턴 및 미묘한 뉘앙스 관용구 학습",
+            "recommendedLevel": "Senior Level 4~8 / Regular Level 6~9",
+            "features": [
+                "폭넓은 주제 (일반~특정 주제)",
+                "중급 이상 실전 말하기"
+            ],
+            "curriculum": []
+        },
+        {
+            "id": "topic-talk",
+            "category": "회화",
+            "name": "토픽톡",
+            "nameEn": "Topic Talk",
+            "description": "일상 주제에 대한 풍부한 표현력 습득 (회화 입문)",
+            "recommendedLevel": "Senior Level 3-6 / Regular Level 3-9",
+            "features": [
+                "빈도 높은 패턴",
+                "수강생 성향/경험 연계 대화",
+                "세분화된 주제"
+            ],
+            "curriculum": []
+        }
+    ]
+}

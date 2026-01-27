@@ -1,0 +1,6 @@
+This is a placeholder text file. Replace with actual Excel file.
+
+Example structure for prices.xlsx:
+과정명 | 주당횟수 | 시간(분) | 1개월_가격 | 3개월_가격
+이머전 | 주2회 | 25분 | 240000 | 648000
+이머전 | 주3회 | 25분 | 360000 | 972000

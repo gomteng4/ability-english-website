@@ -1,0 +1,2278 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>어빌리티 잉글리시 - 화상영어의 새로운 기준</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 5px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        .hidden-layout {
+            display: none !important;
+        }
+
+        /* Sidebar Transitions */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.open {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .nav-active {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .sidebar-active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border-right: 3px solid #2563eb;
+        }
+
+        .gnb-active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hide Scrollbar but keep functionality */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        /* Smooth scrolling */
+        .sub-gnb-container {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Global Navigation Bar (GNB) -->
+    <header class="sticky top-0 z-50 w-full bg-white shadow-sm h-16 md:h-20 flex-none">
+        <div class="container mx-auto px-3 md:px-4 h-full flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home"
+                class="text-xl md:text-2xl font-extrabold text-blue-600 tracking-tight flex items-center gap-1 md:gap-2">
+                <i data-lucide="layers" class="w-6 h-6 md:w-8 md:h-8"></i>
+                <span class="hidden sm:inline">어빌리티 잉글리시</span>
+                <span class="sm:hidden">AE</span>
+            </a>
+
+            <!-- Desktop Main Menu -->
+            <nav class="hidden lg:flex gap-6 xl:gap-8">
+                <a href="#intro/about"
+                    class="gnb-item text-base xl:text-lg font-medium text-gray-600 hover:text-blue-600 py-6 transition flex items-center gap-2"
+                    data-menu="intro">어빌리티 잉글리시 소개</a>
+                <a href="#courses/map"
+                    class="gnb-item text-base xl:text-lg font-medium text-gray-600 hover:text-blue-600 py-6 transition flex items-center gap-2"
+                    data-menu="courses">과정소개</a>
+                <a href="#leveltest/guide"
+                    class="gnb-item text-base xl:text-lg font-medium text-gray-600 hover:text-blue-600 py-6 transition flex items-center gap-2"
+                    data-menu="leveltest">레벨테스트</a>
+                <a href="#square/daily"
+                    class="gnb-item text-base xl:text-lg font-medium text-gray-600 hover:text-blue-600 py-6 transition flex items-center gap-2"
+                    data-menu="square">영어광장</a>
+                <a href="#cs/faq"
+                    class="gnb-item text-base xl:text-lg font-medium text-gray-600 hover:text-blue-600 py-6 transition flex items-center gap-2"
+                    data-menu="cs">고객센터</a>
+            </nav>
+
+            <!-- Desktop Action Buttons -->
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="#" class="text-gray-500 hover:text-blue-600 text-sm font-medium">로그인</a>
+                <a href="#" class="text-gray-500 hover:text-blue-600 text-sm font-medium">회원가입</a>
+                <a href="#leveltest/apply"
+                    class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 transition font-bold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <span>무료 체험 신청</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Mobile: CTA + Hamburger Menu -->
+            <div class="flex lg:hidden items-center gap-2">
+                <a href="#leveltest/apply"
+                    class="bg-blue-600 text-white px-3 md:px-4 py-2 rounded-full hover:bg-blue-700 transition font-bold shadow-md text-sm min-h-[44px] flex items-center">
+                    <span class="hidden sm:inline">체험 신청</span>
+                    <span class="sm:hidden">신청</span>
+                </a>
+                <button id="mobile-menu-btn"
+                    class="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition min-h-[44px] min-w-[44px] flex items-center justify-center">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden lg:hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform translate-x-full transition-transform duration-300"
+            id="mobile-menu-panel">
+            <!-- Mobile Menu Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <span class="text-xl font-bold text-blue-600 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                    Menu
+                </span>
+                <button id="mobile-menu-close"
+                    class="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition min-h-[44px] min-w-[44px] flex items-center justify-center">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Content -->
+            <nav class="p-4 space-y-2 overflow-y-auto h-[calc(100vh-80px)]">
+                <a href="#intro/about"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition font-medium text-gray-700 min-h-[52px]">
+                    <i data-lucide="info" class="w-5 h-5"></i>
+                    <span>어빌리티 잉글리시 소개</span>
+                </a>
+                <a href="#courses/map"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition font-medium text-gray-700 min-h-[52px]">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span>과정소개</span>
+                </a>
+                <a href="#leveltest/guide"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition font-medium text-gray-700 min-h-[52px]">
+                    <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+                    <span>레벨테스트</span>
+                </a>
+                <a href="#square/daily"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition font-medium text-gray-700 min-h-[52px]">
+                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    <span>영어광장</span>
+                </a>
+                <a href="#cs/faq"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition font-medium text-gray-700 min-h-[52px]">
+                    <i data-lucide="help-circle" class="w-5 h-5"></i>
+                    <span>고객센터</span>
+                </a>
+
+                <div class="border-t border-gray-200 my-4"></div>
+
+                <a href="#"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-gray-100 transition font-medium text-gray-600 min-h-[52px]">
+                    <i data-lucide="log-in" class="w-5 h-5"></i>
+                    <span>로그인</span>
+                </a>
+                <a href="#"
+                    class="mobile-menu-item flex items-center gap-3 p-4 rounded-lg hover:bg-gray-100 transition font-medium text-gray-600 min-h-[52px]">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                    <span>회원가입</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="main-container" class="flex-1 flex flex-col container mx-auto px-4 py-8">
+        <!-- Dynamic Content will be loaded here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 border-b border-slate-700 pb-8">
+                <div>
+                    <h5 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5"></i> 어빌리티 잉글리시
+                    </h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#intro/about" class="hover:text-white">회사소개</a></li>
+                        <li><a href="#intro/teachers" class="hover:text-white">강사소개</a></li>
+                        <li><a href="#courses/map" class="hover:text-white">전체 과정</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-lg mb-4">고객지원</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#cs/faq" class="hover:text-white">자주 묻는 질문</a></li>
+                        <li><a href="#cs/qna" class="hover:text-white">1:1 문의</a></li>
+                        <li><a href="#" class="hover:text-white">원격지원</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2">
+                    <h5 class="text-white font-bold text-lg mb-4">Contact Us</h5>
+                    <p class="mb-2 flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> 고객센터: 1600-0000
+                        (평일 09:00 ~ 18:00)</p>
+                    <p class="text-sm text-slate-400 flex items-center gap-2"><i data-lucide="map-pin"
+                            class="w-4 h-4"></i> 서울특별시 강남구 테헤란로 123 어빌리티타워 5층</p>
+                </div>
+            </div>
+            <div class="text-center text-sm text-slate-500">
+                &copy; 2026 Ability English. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates -->
+
+    <!-- 1. Layout: Sidebar (For Courses) -->
+    <template id="layout-sidebar">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="w-full lg:w-64 flex-none">
+                <div class="sticky top-24 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="bg-blue-600 text-white px-6 py-4 flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                        <h2 class="font-bold text-lg">과정소개</h2>
+                    </div>
+                    <nav class="max-h-[calc(100vh-12rem)] overflow-y-auto custom-scroll p-2 sidebar-menu-container">
+                        <!-- Sidebar items injected here -->
+                    </nav>
+                </div>
+            </aside>
+            <main
+                class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 p-8 min-h-[600px] content-area fade-in">
+                <!-- Course Content -->
+            </main>
+        </div>
+    </template>
+
+    <!-- 2. Layout: Full (For Others) -->
+    <template id="layout-full">
+        <div>
+            <!-- Banner Image Section -->
+            <div class="hero-banner w-full h-48 md:h-64 rounded-2xl overflow-hidden mb-8 shadow-md relative">
+                <img src="" alt="Banner" class="w-full h-full object-cover hero-image">
+                <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight hero-title">Title</h1>
+                </div>
+            </div>
+
+            <!-- Sub GNB -->
+            <div class="bg-white border-b mb-8 sticky top-16 md:top-20 z-40 shadow-sm rounded-lg overflow-hidden">
+                <div class="container mx-auto">
+                    <nav
+                        class="flex overflow-x-auto sub-gnb-container scrollbar-hide gap-2 md:gap-4 px-2 md:px-4 md:justify-center py-2">
+                        <!-- Sub menu items injected here -->
+                    </nav>
+                </div>
+            </div>
+            <main
+                class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 min-h-[600px] content-area max-w-5xl mx-auto fade-in">
+                <!-- General Content -->
+            </main>
+        </div>
+    </template>
+
+    <!-- Data & Scripts -->
+    <script>
+        // --- 1. Data Definitions ---
+
+        const menuStructure = {
+            "intro": {
+                name: "어빌리티 잉글리시 소개",
+                layout: "full",
+                heroImage: "images/hero_intro.png",
+                items: [
+                    { id: "about", name: "About Ability English" },
+                    { id: "teachers", name: "강사 소개" },
+
+                    { id: "rules", name: "수강규정" },
+                    { id: "guide", name: "학습 가이드" },
+                    { id: "planner", name: "플래너" },
+                    { id: "premium-course", name: "프리미엄 코스" }
+                ]
+            },
+            "courses": {
+                name: "과정소개",
+                layout: "sidebar",
+                heroImage: "images/hero_main.png", // Not used in sidebar layout but good to have
+                categories: [
+                    { id: "map", name: "전체 과정맵", type: "link", icon: "map" },
+                    {
+                        name: "정규통합과정", type: "category",
+                        items: ["immersion", "senior", "hangout"]
+                    },
+                    {
+                        name: "회화", type: "category",
+                        items: ["momentum-a", "nlife", "icantalk", "daily", "eea"]
+                    },
+                    {
+                        name: "비즈니스", type: "category",
+                        items: ["momentum-c", "cbe"]
+                    },
+                    {
+                        name: "시험준비", type: "category",
+                        items: ["toeic-beginner", "toeic", "opic", "momentum-b"]
+                    },
+                    {
+                        name: "시사&역사", type: "category",
+                        items: ["ntimes", "k-history"]
+                    },
+                    {
+                        name: "문법", type: "category",
+                        items: ["grammar-n", "grammar-points"]
+                    },
+                    {
+                        name: "어휘", type: "category",
+                        items: ["nvoca"]
+                    },
+                    {
+                        name: "여행영어", type: "category",
+                        items: ["funfun-trip"]
+                    }
+                ]
+            },
+            "leveltest": {
+                name: "레벨테스트",
+                layout: "full",
+                heroImage: "images/hero_leveltest.png",
+                items: [
+                    { id: "guide", name: "레벨테스트 안내" },
+                    { id: "apply", name: "레벨테스트 신청" },
+                    { id: "ai-test", name: "AI 레벨테스트" }
+                ]
+            },
+            "square": {
+                name: "러닝 랩 (Learning Lab)",
+                layout: "full",
+                heroImage: "images/hero_square.png",
+                items: [
+                    { id: "daily", name: "매일 영어 루틴" },
+                    { id: "business", name: "커리어 & 비즈니스" },
+                    { id: "bigbox", name: "무제한 영어 도서관" }
+                ]
+            },
+            "cs": {
+                name: "고객센터",
+                layout: "full",
+                heroImage: "images/hero_cs.png",
+                items: [
+                    { id: "faq", name: "자주 묻는 질문" },
+                    { id: "notice", name: "공지사항" },
+                    { id: "qna", name: "1:1 문의" }
+                ]
+            }
+        };
+
+        const coursesData = {
+            "courses": [
+                { "id": "grammar-n", "category": "문법", "name": "그래머앤", "nameEn": "Grammar N", "description": "패턴 형식으로 구성된 문장 속에서 자연스럽게 문법을 학습하도록 구성", "recommendedLevel": "Senior Level 2~8 / Regular Level 3~9", "features": ["195개 Unit으로 문법 기초부터 고급 단계까지 학습 가능", "각 유닛별로 제시되는 핵심 패턴 문법 및 표현을 중심으로 반복적으로 쉽게 습득할 수 있도록 구성", "의사소통이 가능한 영문법 학습 과정"], "curriculum": ["응용 및 사고 확장하기: 주어진 패턴을 활용한 영작 및 주제와 관련한 제시 질문 응답하기", "Key Pattern & Expression: 문장에 녹여진 패턴 표현을 통해 자연스러운 문법을 문장을 통해 습득"] },
+                { "id": "grammar-points", "category": "문법", "name": "그래머포인츠", "nameEn": "Grammar Points", "description": "기초 문법에 대한 개념 정리 및 반복 연습을 통한 이해도 상승과 기본 문장 영작 실력을 향상 시킬 수 있는 과정", "recommendedLevel": "Senior Level 1-2~2 / Regular Level 1-2~2", "features": ["예시 문장과 이미지를 활용한 문장 속에서의 기초 문법 습득이 가능하도록 구성", "총 8개 Unit 구성 (I/You/She/It, am/is/are, like/have/want, was/were/did/will, can/may/should, There is/There are, on/at/in, why/when/where/what/who)"], "curriculum": ["Activity 3: 반복적인 문법 개념에 대한 이해 와 기초 문장 영작 연습", "개념이해하기: 각 유닛별로 학습할 문법에 대한 인지 및 기초 이해", "Activity 1: 이미지를 활용한 학습 주요 개념 학습", "Activity 2: 학습한 문법적 개념의 문장 속에서의 역할 및 구조에 대해 학습"] },
+                { "id": "cbe", "category": "비즈니스", "name": "CBE", "nameEn": "CBE", "description": "빠르게 변화하는 국제 비즈니스 상황에 맞는 의사소통 능력 향상을 위한 과정", "recommendedLevel": "Senior Level 4~7", "features": ["전화, 서면, 프레젠테이션, 미팅, 협상, 관계 등 포괄적인 비즈니스 상황에 대한 학습 가능", "가상 회의 및 계약 재협상 등 다양한 주제로 구성", "수강생의 배경지식을 활성화할 수 있도록 토론 중심의 문제 수록"], "curriculum": [] },
+                { "id": "momentum-c", "category": "비즈니스", "name": "모멘텀C", "nameEn": "Momentum C", "description": "영어 면접에 필요한 기술을 익히고 논리력을 향상시키는 과정 (C-1) / 현대 사회에 통용되는 비즈니스 영어 학습 과정 (C-2)", "recommendedLevel": "Senior Level 6~8", "features": ["다양한 면접상황을 체험하며 인터뷰 기술을 익히고 본인의 의사를 표현 할 수 있도록 구성", "일반 회사, IT, 예술(패션, 미디어 등), 교육, 기타(인턴, 법률 등) 관련 영어 면접 준비", "전화, 서신, 비즈니스 미팅, 출장, 협상 등 다양한 업무 환경에서 논리적이고 설득력 있는 영어 구사"], "curriculum": ["Tips: 다양한 실전 면접 활용 팁", "Vocabulary: 핵심 어휘 및 표현 학습", "Situation: 인터뷰 참여자 정보 제시", "Sample Questions and Answers: 예시 질문과 답안 학습", "Your Turn: 본인 스스로 답안 제시하기", "Review: 수업 내용에 대한 이해도 높이기", "Dialogue A and B: 상황별 실전 영어 말하기 연습", "Activity: 제시된 정보를 활용한 영어 말하기 연습"] },
+                { "id": "momentum-b", "category": "시험준비", "name": "모멘텀B", "nameEn": "Momentum B", "description": "질의 응답을 바탕으로 논리적 말하기 시험 준비 과정", "recommendedLevel": "Senior Level 4~5", "features": ["토익스피킹과 오픽 시험을 대비할 수 있는 주제와 표현들 수록", "일상, 학교, 회사, 취미, 전문 분야 상황에서의 의사 표현하기 연습"], "curriculum": ["Preview: 수업 주제에 대한 간단한 대화", "Picture Description: 사진 묘사하기", "Respond to the Question: 본인의 의견 영작 말하기", "Solution & Opinion: 해결방안 제시하기", "Reading: 주제와 관련한 지문 읽기"] },
+                { "id": "ntimes", "category": "시사&역사", "name": "앤타임즈", "nameEn": "N Times", "description": "사회, 경제, 문화 전반에 걸친 다양한 주제의 토론 수업을 통해 어휘 및 배경지식 습득, 논리적 영어실력 향상", "recommendedLevel": "Senior Level 3~8 / Regular Level 6~9", "features": ["시사적인 흐름 반영", "이슈에 대한 찬반 토론 및 논리적 말하기 연습", "신문 기사 학습을 통한 고급 어휘 및 문장 구성력 획득"], "curriculum": ["Discussion Questions: 기사와 관련된 확장 질문 토론", "Reading: 뉴스 기사 학습", "Voca and Questions: 신규 어휘 및 기사 내용 이해 문제풀이"] },
+                { "id": "k-history", "category": "시사&역사", "name": "케이히스토리", "nameEn": "K-History", "description": "한국사를 영어로 재미있는 이야기로 풀어 상상력, 창의력, 표현력을 키우는 과정", "recommendedLevel": "Junior Level 3~6", "features": ["교과 과정에 맞춘 한국사 영어 학습", "친숙한 캐릭터와 그림 활용", "문제풀이를 통한 역사 심화 이해"], "curriculum": ["Review: 리뷰 학습", "Word List: 어휘 학습", "Reading: 역사 스토리 읽기", "Reading Comprehension: 내용 확인 문제 풀이", "Exercise 1: 단어 응용 학습", "Exercise 2: 퍼즐 풀기 (어휘 이해도 확장)", "Let's think: 주제에 대한 의견 묻고 답하기"] },
+                { "id": "opic", "category": "시험준비", "name": "오픽", "nameEn": "OPIc", "description": "실제 출제되는 문제로만 구성된 교재", "recommendedLevel": "Senior Level 5~8", "features": ["키워드를 통한 문제 유형 분석", "주제별 기출 문제 및 예시/모범 답안 제공", "질문 키워드별 답변 키워드 제공"], "curriculum": [] },
+                { "id": "toeic-beginner", "category": "시험준비", "name": "토익스피킹 비기너", "nameEn": "TOEIC Speaking Beginner", "description": "시험의 각 문항에 대해 점층적 학습이 가능하도록 구성", "recommendedLevel": "Senior Level 3~5", "features": ["문장 구성 및 영작 연습", "다양한 유형의 문제 접근", "Unit 구성: 문장 읽기, 사진 묘사, 듣고 답하기, 정보 활용 답하기, 의견 제시하기 등"], "curriculum": ["Part 1~5 (Reading, Describe Picture, Q&A, Respond, Express opinion)", "Warm up"] },
+                { "id": "toeic", "category": "시험준비", "name": "토익스피킹", "nameEn": "TOEIC Speaking", "description": "최신 경향을 완벽 반영한 교재 (2021 개정 반영)", "recommendedLevel": "Senior Level 5~7", "features": ["각 파트별 시험 진행 순서 및 핵심 패턴 구성", "빈출 문제, 예시 답변, 고득점 전략, 꿀팁 제공"], "curriculum": ["모범 답안 및 꿀팁", "파트별 진행 순서", "주요 핵심 패턴", "실전 문제"] },
+                { "id": "nvoca", "category": "어휘", "name": "앤보카", "nameEn": "N Voca", "description": "기초 필수 어휘부터 공인 인증 시험 대비까지 가능한 어휘력 및 영작능력 향상 집중 과정", "recommendedLevel": "Senior Level 2~4 / Regular Level 3~7", "features": ["1000 Basic Words: 초·중등 필수 어휘 1000여 개, 7회 반복 학습", "2000 Core Words: 중학교 핵심 어휘 2000여 개, 테마별 구성", "4000 Essential Words: TOEFL, TOEIC 등 공인 시험 및 수능/외고 대비 핵심 어휘 4000여 개"], "curriculum": ["Part 1: 어휘 학습 (강세, 발음, 역할)", "Part 2: 문제 풀이 (게임 활용)", "Part 3: 읽기 학습 및 문제 풀이 (맥락 파악, 실용문)", "Part 4: 질의응답 및 글쓰기 (문단 내 역할, 교정/요약)"] },
+                { "id": "funfun-trip", "category": "여행영어", "name": "펀펀트립", "nameEn": "Fun Fun Trip", "description": "여행지 실전 영어, 현지 상호교류 목적", "recommendedLevel": "Senior Level 2~4 / Regular Level 3~7", "features": ["패턴 중심 상황별 말하기 (예약, 변경, 길 찾기 등)", "실전 응용 파트 구성"], "curriculum": ["Expand your expression: 응용 영작 및 회화", "Vocabulary: 빈도 높은 어휘", "Dialogue: 상황별 실전 대화 (제스처, 억양 포함)"] },
+                { "id": "immersion", "category": "정규통합과정", "name": "이머전", "nameEn": "Immersion", "description": "영어 첫걸음부터 수준 높은 토론까지, 주제 기반 통합형 학습", "recommendedLevel": "Senior Level 1-7 / Regular Level 1-9", "features": ["Level 1: 초보자용, 파닉스/읽기 기초", "Level 2: 파닉스 연계 짧은 문장, 반복 학습", "Level 3: 친근한 주제, 듣기/쓰기 반복 확장", "Level 4: 유익한 논픽션, 말하기 강화", "Level 5: 미국 교과서 특징, 픽션/논픽션, 배경지식 확대", "Level 6: 5개 유형 WH 문제, 논리적 사고, 요약", "Level 7: 다양한 주제 어휘력 확대, 활용 중심", "Level 8: 4 Skills 통합 강화, 깊이 있는 독해", "Level 9: 사회 주요 쟁점(과학, 예술, 역사 등), 심화 학습"], "curriculum": ["문맥 학습", "철자별 소리", "놀이", "쓰기/말하기", "단어/지문", "독해", "질의응답", "토론"] },
+                { "id": "senior", "category": "정규통합과정", "name": "앤시니어", "nameEn": "N Senior", "description": "성인 학습자를 위한 단계별 실력 향상 및 균형 잡힌 학습", "recommendedLevel": "Senior Level 1~8", "features": ["Level 3~4: 실생활 밀접 상황, 어휘/문법/문장 학습, 과학/비즈니스 독해, TED Talks", "Level 5~6: 말하기 시험 대비 및 실제 회화 강화, 영어권 문화, 프리토킹, 고급 회화", "Level 7~8: 비즈니스 및 세계적 이슈, 전문가 영어, 비판적/창의적 사고(분석, 평가, 추론)"], "curriculum": ["Part 1~2: 어휘 및 질의응답", "Part 3~4: 서술형 질의응답 및 다이얼로그", "Part 5~6: 부가학습 및 쓰기와 말하기", "Lesson A: 독해학습 및 비판적 사고", "Lesson B: TED Talks, 학습능력향상(분석/요약), 비판적 사고"] },
+                { "id": "hangout", "category": "정규통합과정", "name": "행아웃", "nameEn": "Hang Out", "description": "재미있는 이야기와 노래를 통한 7단계 주니어 코스북", "recommendedLevel": "Junior Level 1-2 ~ 4", "features": ["4 Skills 통합", "생생한 캐릭터", "만화/노래/묘사 등 다양한 액티비티"], "curriculum": ["주제 파악하기", "송 앤 리딩 (Song & Reading)", "스피킹 (Speaking)", "스토리 (Story - 롤플레잉)", "확장 학습 (Expand - 어휘/문장)", "관련 학습 (Connect - 추가 읽기)", "파닉스(Starter~4) / 쓰기(Starter~6)"] },
+                { "id": "eea", "category": "회화", "name": "EEA", "nameEn": "English for Everyday Activities", "description": "일상 생활 영어 활동 (낭독편, 서바이벌편, 이디엄편)", "recommendedLevel": "Senior Level 2-5", "features": ["낭독편: 일상 생활 24시, 동작/상태 삽화", "서바이벌편: 50가지 일상/여행 스토리, 롤플레잉", "이디엄편: 실생활 활용도 높은 관용구, 문맥 활용"], "curriculum": [] },
+                { "id": "daily", "category": "회화", "name": "데일리앤보임", "nameEn": "Daily Nvoim", "description": "효과적인 회화 학습을 위한 다양한 패턴 활용", "recommendedLevel": "Senior Level 3~5 / Regular Level 4 이상", "features": ["따라 하기 쉬운 문장", "실생활 표현", "관용 표현"], "curriculum": ["다이얼로그 및 문장 만들기", "핵심 패턴과 예시 문장 학습"] },
+                { "id": "momentum-a", "category": "회화", "name": "모멘텀A", "nameEn": "Momentum A", "description": "상황별 실전 회화 능력 향상", "recommendedLevel": "Senior Level 2~3", "features": ["일상/회사/학교 주제 (소개, 감정, 여행, 쇼핑, 건강 등)", "롤플레이 위주"], "curriculum": ["Activity", "Review", "Vocabulary", "Dialogue", "Key Expressions", "Let's Practice"] },
+                { "id": "icantalk", "category": "회화", "name": "아이캔톡", "nameEn": "I Can Talk", "description": "왕초보 실버세대 맞춤 일상회화", "recommendedLevel": "Senior Level 1 ~ 1-2", "features": ["필수 입문 어휘/패턴", "한글 발음 가이드 제공", "예문 중심"], "curriculum": [] },
+                { "id": "nlife", "category": "회화", "name": "앤라이프", "nameEn": "N Life", "description": "상황별 패턴 및 미묘한 뉘앙스 관용구 학습", "recommendedLevel": "Senior Level 4~8 / Regular Level 6~9", "features": ["폭넓은 주제 (일반~특정 주제)", "중급 이상 실전 말하기"], "curriculum": [] }
+            ]
+        };
+
+        const categoryColors = {
+            "문법": "from-purple-400 to-purple-600",
+            "비즈니스": "from-gray-600 to-gray-800",
+            "시험준비": "from-red-400 to-red-600",
+            "시사&역사": "from-green-400 to-green-600",
+            "어휘": "from-yellow-400 to-yellow-600",
+            "여행영어": "from-pink-400 to-pink-600",
+            "정규통합과정": "from-blue-400 to-blue-600",
+            "회화": "from-orange-400 to-orange-600",
+            "기본": "from-slate-400 to-slate-600"
+        };
+
+        // --- 2. Core Logic ---
+
+        function init() {
+            window.addEventListener('hashchange', handleHash);
+            handleHash();
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+            const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+
+            function openMobileMenu() {
+                mobileMenu.classList.remove('hidden');
+                // Force reflow for animation
+                mobileMenu.offsetHeight;
+                mobileMenu.classList.remove('opacity-0');
+                mobileMenuPanel.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scroll
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.add('opacity-0');
+                mobileMenuPanel.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore scroll
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300); // Match transition duration
+            }
+
+            mobileMenuBtn.addEventListener('click', openMobileMenu);
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+            // Close menu when clicking overlay
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close menu when clicking menu items
+            mobileMenuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+        }
+
+        function handleHash() {
+            const hash = window.location.hash.slice(1);
+            if (!hash) {
+                renderHome();
+                return;
+            }
+
+            const [menu, submenu] = hash.split('/');
+            if (!menuStructure[menu]) {
+                renderHome();
+                return;
+            }
+
+            renderLayout(menu, submenu);
+            // Re-run lucide icons
+            lucide.createIcons();
+        }
+
+        function renderHome() {
+            const container = document.getElementById('main-container');
+            container.innerHTML = `
+                <div class="flex-1 grid md:grid-cols-2 gap-12 items-center fade-in">
+                    <!-- Text Content -->
+                    <div class="order-2 md:order-1 space-y-8">
+                         <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-800 leading-tight">
+                            Global English<br /><span class="text-blue-600">Upgrade</span> Your Life
+                        </h1>
+                         <p class="text-xl text-slate-500 leading-relaxed">
+                            어빌리티 잉글리시만의 1:1 맞춤형 화상 수업.<br>
+                            검증된 원어민 강사진과 함께 시작하세요.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#courses/map" class="px-8 py-4 bg-blue-600 text-white rounded-xl text-lg font-bold hover:bg-blue-700 transition shadow-lg flex items-center justify-center gap-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i> 전체 과정 보기
+                            </a>
+                            <a href="#leveltest/guide" class="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-xl text-lg font-bold hover:bg-blue-50 transition shadow-lg flex items-center justify-center gap-2">
+                                <i data-lucide="check-circle" class="w-5 h-5"></i>무료 레벨테스트
+                            </a>
+                        </div>
+                        <div class="pt-8 flex gap-8 text-gray-400">
+                             <div class="flex items-center gap-2"><i data-lucide="monitor" class="w-5 h-5"></i> PC/Mobile 완벽지원</div>
+                             <div class="flex items-center gap-2"><i data-lucide="users" class="w-5 h-5"></i> 전문 강사진</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Image -->
+                    <div class="order-1 md:order-2 relative">
+                         <img src="images/hero_main.png" alt="Hero Image" class="rounded-3xl shadow-2xl w-full transform hover:scale-[1.02] transition duration-500">
+                         <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl hidden lg:block">
+                              <div class="flex items-center gap-4">
+                                  <div class="bg-green-100 p-3 rounded-full text-green-600">
+                                      <i data-lucide="trending-up" class="w-8 h-8"></i>
+                                  </div>
+                                  <div>
+                                      <p class="text-sm text-gray-500">수강생 만족도</p>
+                                      <p class="text-2xl font-bold text-gray-800">98.5%</p>
+                                  </div>
+                              </div>
+                         </div>
+                    </div>
+                </div>
+            `;
+            updateActiveGNB('');
+            lucide.createIcons();
+        }
+
+        function renderLayout(menu, submenu) {
+            const container = document.getElementById('main-container');
+            const config = menuStructure[menu];
+
+            // 1. GNB Active
+            updateActiveGNB(menu);
+
+            // 2. Select Template
+            let templateId = config.layout === "sidebar" ? "layout-sidebar" : "layout-full";
+            const template = document.getElementById(templateId).content.cloneNode(true);
+
+            // 3. Render Navigation (Sidebar or Sub-GNB)
+            if (config.layout === "sidebar") {
+                renderSidebar(template, menu, submenu);
+            } else {
+                renderSubGNB(template, menu, submenu);
+                // Set Hero Image for Full Layout
+                if (config.heroImage) {
+                    const heroImg = template.querySelector('.hero-image');
+                    const heroTitle = template.querySelector('.hero-title');
+                    if (heroImg) heroImg.src = config.heroImage;
+                    if (heroTitle) heroTitle.textContent = config.name;
+                }
+            }
+
+            // 4. Render Content
+            renderContent(template, menu, submenu);
+
+            // 5. Mount
+            container.innerHTML = '';
+            container.appendChild(template);
+
+            // Post-mount scripts (sidebar toggle)
+            if (config.layout === "sidebar" && submenu) {
+                const currentCourse = coursesData.courses.find(c => c.id === submenu);
+                if (currentCourse) {
+                    // Expand logic
+                    const catId = `cat-${currentCourse.category}`;
+                    const submenuEl = document.getElementById(catId);
+                    if (submenuEl) submenuEl.classList.add('open');
+                }
+            }
+        }
+
+        function updateActiveGNB(menu) {
+            document.querySelectorAll('.gnb-item').forEach(el => {
+                if (el.dataset.menu === menu) el.classList.add('gnb-active');
+                else el.classList.remove('gnb-active');
+            });
+        }
+
+        function renderSidebar(template, menu, submenu) {
+            const container = template.querySelector('.sidebar-menu-container');
+            const items = menuStructure[menu].categories;
+
+            let html = '<div class="space-y-1 py-4">';
+
+            items.forEach(cat => {
+                if (cat.type === 'link') {
+                    const activeClass = submenu === cat.id ? 'sidebar-active' : 'hover:bg-gray-50 text-gray-600';
+                    html += `
+                        <a href="#${menu}/${cat.id}" class="block px-6 py-3 font-medium transition ${activeClass} flex items-center justify-between">
+                            ${cat.name}
+                            <i data-lucide="chevron-right" class="w-4 h-4 opacity-50"></i>
+                        </a>`;
+                } else if (cat.type === 'category') {
+                    const isOpen = coursesData.courses.some(c => c.category === cat.name && c.id === submenu);
+                    const baseCourse = coursesData.courses.find(c => c.category === cat.name);
+
+                    if (baseCourse && cat.items && cat.items.length > 0) {
+                        html += `
+                            <div>
+                                <button onclick="toggleSidebarCategory('${cat.name}')" class="w-full text-left px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50 flex justify-between items-center transition">
+                                    ${cat.name}
+                                    <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
+                                </button>
+                                <div id="cat-${cat.name}" class="submenu bg-gray-50 ${isOpen ? 'open' : ''}">
+                                    ${cat.items.map(courseId => {
+                            const c = coursesData.courses.find(cd => cd.id === courseId);
+                            if (!c) return '';
+
+                            const isActive = submenu === courseId;
+                            const activeClass = isActive ? 'text-blue-600 font-bold bg-blue-50 border-r-4 border-blue-600' : 'text-gray-500 hover:text-blue-600';
+
+                            return `<a href="#${menu}/${courseId}" class="block pl-10 pr-4 py-2 text-sm transition ${activeClass}">• ${c.name}</a>`;
+                        }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        window.toggleSidebarCategory = function (catName) {
+            const el = document.getElementById(`cat-${catName}`);
+            if (el.classList.contains('open')) el.classList.remove('open');
+            else el.classList.add('open');
+        };
+
+        function renderSubGNB(template, menu, submenu) {
+            const container = template.querySelector('.sub-gnb-container');
+            const items = menuStructure[menu].items;
+
+            let html = '<div class="flex gap-4 px-4 py-2">';
+            items.forEach(item => {
+                const isActive = submenu === item.id;
+                const activeClass = isActive ? 'text-blue-600 bg-blue-50 font-bold' : 'text-gray-500 hover:text-blue-600';
+                html += `
+                    <a href="#${menu}/${item.id}" class="whitespace-nowrap px-4 py-2 rounded-lg text-sm transition ${activeClass}">
+                        ${item.name}
+                    </a>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderContent(template, menu, submenu) {
+            const container = template.querySelector('.content-area');
+            const menuName = menuStructure[menu].name;
+            const menuConfig = menuStructure[menu];
+
+            // 1. Courses Logic
+            if (menu === 'courses') {
+                if (submenu === 'map') {
+                    renderCourseMap(container);
+                    return;
+                }
+
+                const course = coursesData.courses.find(c => c.id === submenu);
+                if (course) {
+                    renderCourseDetail(container, course);
+                } else {
+                    container.innerHTML = `<p class="text-center text-gray-500 py-20">과정을 찾을 수 없습니다.</p>`;
+                }
+                return;
+            }
+
+            // 2. Rules Page Logic
+            if (menu === 'intro' && submenu === 'rules') {
+                renderRulesContent(container);
+                return;
+            }
+
+            // 3. Guide Page Logic
+            if (menu === 'intro' && submenu === 'guide') {
+                renderGuideContent(container);
+                return;
+            }
+
+            // 4. Planner Page Logic
+            if (menu === 'intro' && submenu === 'planner') {
+                renderPlannerContent(container);
+                return;
+            }
+
+            // 5. Premium Course Page Logic
+            if (menu === 'intro' && submenu === 'premium-course') {
+                renderPremiumCourseContent(container);
+                return;
+            }
+
+            // 0. About Page Logic (Added)
+            if (menu === 'intro' && submenu === 'about') {
+                renderAboutContent(container);
+                return;
+            }
+
+            // 6. Teacher List Logic
+            if (menu === 'intro' && submenu === 'teachers') {
+                renderTeachersContent(container);
+                return;
+            }
+
+            // 7. Learning Lab (Square) Logic (Added)
+            if (menu === 'square') {
+                if (submenu === 'daily') {
+                    renderDailyRoutine(container);
+                    return;
+                }
+                if (submenu === 'business') {
+                    renderBusinessContent(container);
+                    return;
+                }
+                if (submenu === 'bigbox') {
+                    renderBigboxContent(container);
+                    return;
+                }
+            }
+
+            // 8. Level Test Logic (Added)
+            if (menu === 'leveltest') {
+                if (submenu === 'guide') {
+                    renderLevelTestGuide(container);
+                    return;
+                }
+                if (submenu === 'apply') {
+                    renderLevelTestApply(container);
+                    return;
+                }
+            }
+
+            // 7. Default Skeleton Logic
+            const item = menuConfig.items.find(i => i.id === submenu);
+            const title = item ? item.name : menuName;
+
+            container.innerHTML = `
+                <div class="animate-fade-in text-center py-12">
+                   <div class="max-w-md mx-auto">
+                        <img src="images/placeholder_coming_soon.png" alt="Coming Soon" class="w-full rounded-2xl shadow-sm mb-8 opacity-90 mx-auto">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-4">${title}</h2>
+                        <p class="text-slate-500 mb-8">
+                            현재 페이지는 준비 중입니다.<br>
+                            더 나은 서비스를 위해 컨텐츠를 제작하고 있습니다.
+                        </p>
+                        <a href="#home" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline">
+                            <i data-lucide="home" class="w-4 h-4"></i> 홈으로 돌아가기
+                        </a>
+                   </div>
+                </div>
+            `;
+        }
+
+        // --- Render Helpers ---
+
+        function renderLevelTestGuide(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in w-full space-y-12 pb-20">
+                    
+                    <!-- 1. Hero Title -->
+                    <div class="text-center space-y-6 py-12 bg-gradient-to-b from-blue-50 to-white rounded-3xl border border-blue-100 shadow-sm">
+                        <span class="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-2">Free Level Test</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800">
+                            딱, <span class="text-blue-600">8분!</span>
+                        </h2>
+                        <p class="text-xl text-slate-600">
+                            레벨테스트로 앤보임을 먼저 만나보세요.
+                        </p>
+                    </div>
+
+                    <!-- 2. Process Steps -->
+                    <div class="max-w-5xl mx-auto">
+                        <h3 class="text-xl md:text-2xl font-bold text-center mb-10">레벨테스트 진행과정</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+                            <!-- Step 1 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                                    <i data-lucide="mouse-pointer-click" class="w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-800 mb-1">STEP 01</strong>
+                                <span class="text-sm text-slate-500">레벨테스트 신청</span>
+                            </div>
+                            <!-- Arrow (Desktop only) -->
+                            <div class="hidden md:flex items-center justify-center text-slate-300 absolute top-1/2 left-[18%] -translate-y-1/2">
+                                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-3">
+                                    <i data-lucide="download" class="w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-800 mb-1">STEP 02</strong>
+                                <span class="text-sm text-slate-500">프로그램 설치</span>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-3">
+                                    <i data-lucide="video" class="w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-800 mb-1">STEP 03</strong>
+                                <span class="text-sm text-slate-500">레벨테스트 진행</span>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mb-3">
+                                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-800 mb-1">STEP 04</strong>
+                                <span class="text-sm text-slate-500">결과 확인</span>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-white rounded-xl shadow-sm border hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-3">
+                                    <i data-lucide="user-check" class="w-6 h-6"></i>
+                                </div>
+                                <strong class="block text-slate-800 mb-1">STEP 05</strong>
+                                <span class="text-sm text-slate-500">플래너 학습 설계</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Key Points -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <!-- Point 1 -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-8 shadow-lg flex flex-col justify-between overflow-hidden relative group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition"></div>
+                            <div class="relative z-10">
+                                <span class="text-blue-400 font-bold tracking-wider text-sm mb-2 block">POINT 01</span>
+                                <h3 class="text-2xl font-bold mb-4">원어민 강사님과<br>생생한 화상 영어</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                    단순한 평가가 아닌, 원어민 선생님과<br>
+                                    직접 대화하며 나의 실력을 점검해보세요.
+                                </p>
+                            </div>
+                            <div class="relative z-10 bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/10">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                                    <span class="text-xs font-mono">LIVE RECORDING...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Point 2 (Radar Chart) -->
+                        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-lg transition">
+                             <span class="text-purple-600 font-bold tracking-wider text-sm mb-2 block">POINT 02</span>
+                             <h3 class="text-2xl font-bold mb-6 text-slate-800">5가지 영역 정밀 분석</h3>
+                             
+                             <!-- CSS Radar Chart Visualization -->
+                             <div class="relative w-64 h-64 mx-auto">
+                                <!-- Background Pentagon -->
+                                <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-xl overflow-visible">
+                                    <!-- Grid Levels -->
+                                    <polygon points="50,5 95,35 80,90 20,90 5,35" fill="none" stroke="#e2e8f0" stroke-width="0.5"></polygon>
+                                    <polygon points="50,20 85,42 74,80 26,80 15,42" fill="none" stroke="#e2e8f0" stroke-width="0.5"></polygon>
+                                    
+                                    <!-- Axes -->
+                                    <line x1="50" y1="50" x2="50" y2="5" stroke="#e2e8f0" stroke-width="0.5"></line>
+                                    <line x1="50" y1="50" x2="95" y2="35" stroke="#e2e8f0" stroke-width="0.5"></line>
+                                    <line x1="50" y1="50" x2="80" y2="90" stroke="#e2e8f0" stroke-width="0.5"></line>
+                                    <line x1="50" y1="50" x2="20" y2="90" stroke="#e2e8f0" stroke-width="0.5"></line>
+                                    <line x1="50" y1="50" x2="5" y2="35" stroke="#e2e8f0" stroke-width="0.5"></line>
+
+                                    <!-- Data Shape (Example) -->
+                                    <polygon points="50,15 85,45 70,80 30,75 15,40" fill="rgba(124, 58, 237, 0.2)" stroke="#7c3aed" stroke-width="2"></polygon>
+                                    
+                                    <!-- Dots -->
+                                    <circle cx="50" cy="15" r="2" fill="#7c3aed"></circle>
+                                    <circle cx="85" cy="45" r="2" fill="#7c3aed"></circle>
+                                    <circle cx="70" cy="80" r="2" fill="#7c3aed"></circle>
+                                    <circle cx="30" cy="75" r="2" fill="#7c3aed"></circle>
+                                    <circle cx="15" cy="40" r="2" fill="#7c3aed"></circle>
+                                </svg>
+                                
+                                <!-- Labels -->
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 text-xs font-bold text-slate-600">말하기</div>
+                                <div class="absolute top-[30%] right-[-10px] text-xs font-bold text-slate-600">듣기</div>
+                                <div class="absolute bottom-[10%] right-[0px] text-xs font-bold text-slate-600">발음</div>
+                                <div class="absolute bottom-[10%] left-[0px] text-xs font-bold text-slate-600">문법</div>
+                                <div class="absolute top-[30%] left-[-15px] text-xs font-bold text-slate-600">어휘</div>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom CTA -->
+                    <div class="text-center pt-12">
+                        <a href="#leveltest/apply" class="inline-flex items-center justify-center px-10 py-5 bg-blue-600 text-white text-xl font-bold rounded-full shadow-lg hover:bg-blue-700 hover:-translate-y-1 transition transform">
+                            무료 레벨테스트 신청하기
+                            <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+                        </a>
+                    </div>
+
+                </div>
+             `;
+
+            // Initialize icons for the newly added content
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function renderLevelTestApply(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in w-full max-w-5xl mx-auto pb-20">
+                    
+                    <!-- Unified Container -->
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+                        
+                        <!-- Compact Header -->
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6 text-white">
+                            <h1 class="text-2xl md:text-3xl font-bold text-center mb-2">1:1 원어민 레벨테스트 신청</h1>
+                            <p class="text-center text-blue-100 text-sm">
+                                정확한 실력 진단을 위해 아래 양식을 작성해 주세요. 
+                                담당 플래너가 배정되면 연락처로 테스트 예약 확정 및 접속 안내 연락을 드립니다.
+                            </p>
+                        </div>
+
+                        <!-- Notice - Integrated as Sticky Top Bar -->
+                        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-b-2 border-amber-200 px-6 py-4">
+                            <div class="flex items-start gap-3 max-w-4xl mx-auto">
+                                <i data-lucide="info" class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5"></i>
+                                <p class="text-amber-900 text-sm flex-1">
+                                    <strong class="font-semibold">유의사항:</strong> 
+                                    예약 상황에 따라 일정 조율이 필요할 수 있으며, 
+                                    <span class="font-bold text-amber-700">당일 신청 당일 테스트는 스케줄상 진행이 어려울 수 있습니다.</span> 
+                                    여유 있게 신청해 주시면 최대한 희망 일정에 맞춰 배정해 드리겠습니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Google Form Embed -->
+                        <div class="bg-slate-50">
+                            <iframe 
+                                src="https://docs.google.com/forms/d/e/1FAIpQLSfq3Wm8cbdJz8vL0u3NupKNdJz0t9xb7cRRw94zfUnWALnTmw/viewform?embedded=true" 
+                                class="w-full border-0"
+                                style="height: 2400px;"
+                                marginheight="0" 
+                                marginwidth="0">
+                                로드 중…
+                            </iframe>
+                        </div>
+
+                        <!-- Footer Help -->
+                        <div class="bg-slate-100 border-t border-slate-200 px-6 py-4 text-center">
+                            <p class="text-slate-600 text-sm flex items-center justify-center gap-2">
+                                <i data-lucide="headset" class="w-4 h-4"></i>
+                                궁금하신 사항은 고객센터 <strong class="text-blue-600">1600-0000</strong>으로 문의해 주세요.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+            // Initialize icons
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // --- Learning Lab Pages ---
+
+        // A. Daily Routine (매일 영어 루틴)
+        function renderDailyRoutine(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-5xl mx-auto space-y-20 pb-20">
+                    <div class="text-center space-y-6 pt-10">
+                        <span class="px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">Premium Daily Content</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                            오늘의 영어 한 문장,<br>
+                            <span class="text-blue-600">놓치지 말고 챙겨가세요.</span>
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                            매일 업데이트되는 회화 패턴과 원어민 MP3 음성.<br>
+                            어빌리티 잉글리시가 당신의 영어 루틴을 만들어 드립니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 opacity-60"></div>
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="space-y-8">
+                                <div>
+                                    <div class="inline-flex items-center gap-2 text-blue-600 font-bold mb-2">
+                                        <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                        <span>Today's Expression</span>
+                                    </div>
+                                    <h2 class="text-4xl font-extrabold text-slate-900 mb-4">I'm ready to...</h2>
+                                    <p class="text-2xl text-slate-500 font-medium mb-6">~할 준비가 되었어요.</p>
+                                    <p class="text-slate-600 leading-relaxed text-lg bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                        "어떠한 상황을 맞이할 준비가 되었을 때 사용하는 표현입니다.
+                                        강한 의지보다는 '~하려고 해요' 정도로 가볍게 표현할 때 사용하기 좋습니다."
+                                    </p>
+                                </div>
+                                <div class="bg-slate-900 rounded-2xl p-6 text-white shadow-lg">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center animate-pulse">
+                                                <i data-lucide="headphones" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-sm">Native Speaker Audio</p>
+                                                <p class="text-xs text-slate-400">정확한 발음과 억양을 들어보세요</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <audio controls class="w-full h-8 accent-blue-500" style="filter: invert(1);">
+                                        <source src="images/daily메뉴용/1 음성.mp3" type="audio/mpeg">
+                                        브라우저가 오디오 재생을 지원하지 않습니다.
+                                    </audio>
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <div class="absolute inset-0 bg-black/5 rounded-[2rem] transform translate-x-4 translate-y-4"></div>
+                                <img src="images/daily메뉴용/1 문장.jpg" alt="Daily English Pattern" class="relative z-10 w-full rounded-[2rem] shadow-2xl border-4 border-white transform transition duration-500 group-hover:-translate-y-2">
+                                <div class="absolute -top-4 -right-4 z-20 bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold shadow-lg transform rotate-12">Daily Update!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-10 text-white shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-4">매일 아침, 영어 실력이 쌓이는 소리</h3>
+                        <p class="text-slate-300 mb-8">어빌리티 잉글리시 수강생이 되어<br>이 모든 자료를 매일 무료로 받아보세요.</p>
+                        <a href="#leveltest/apply" class="inline-flex items-center justify-center px-10 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-blue-50 transition transform hover:-translate-y-1">
+                            무료 레벨테스트 신청하기 <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>`;
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // B. Business (비즈니스 & 커리어)
+        function renderBusinessContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-5xl mx-auto space-y-20 pb-20">
+                    <div class="text-center space-y-6 pt-10">
+                        <span class="px-4 py-1 bg-gray-800 text-gray-200 rounded-full text-sm font-bold">Business & Career High</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                            "그 말, 영어로 어떻게 하더라?"<br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800">회의실에서 당황하지 마세요.</span>
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            미팅, 협상, 프레젠테이션. <br>
+                            상황별 핵심 패턴 학습부터 <strong>AI 영문 교정</strong>까지, 당신의 커리어를 업그레이드합니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl">
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                            <div class="flex-1 space-y-6">
+                                <div class="inline-flex items-center gap-2 text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-lg">
+                                    <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                    <span>Business Meeting & Conference</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-800">원어민이 쓰는 '진짜' 비즈니스 패턴</h3>
+                                <p class="text-slate-600 leading-relaxed">교과서 영어가 아닙니다. 실제 비즈니스 현장에서 가장 빈번하게 사용되는 핵심 패턴을 엄선했습니다.</p>
+                                <div class="rounded-xl overflow-hidden shadow-md border border-slate-100 group">
+                                    <img src="images/Business 메뉴용/1.png" alt="Business Pattern Example" class="w-full hover:scale-105 transition duration-500" onerror="this.src='images/placeholder_coming_soon.png'">
+                                </div>
+                            </div>
+                            <div class="flex-1 space-y-6">
+                                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 h-full">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="font-bold text-slate-800 flex items-center gap-2">
+                                            <i data-lucide="message-square" class="w-5 h-5 text-blue-600"></i>
+                                            실전 대화 (Dialogue)
+                                        </h4>
+                                        <span class="text-xs text-slate-400 bg-white px-2 py-1 rounded border">MP3 제공</span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <audio controls class="w-full mb-2">
+                                            <source src="images/Business 메뉴용/Business Nvoim_20.06.08_email_1.mp3" type="audio/mpeg">
+                                            브라우저가 오디오 재생을 지원하지 않습니다.
+                                        </audio>
+                                    </div>
+                                    <p class="text-sm text-slate-500 leading-relaxed">
+                                        단순히 문장만 외우지 마세요. <br>
+                                        <strong>Mr. Gates, Fatima, Sam</strong>의 대화를 통해 실제 회의 흐름 속에서 언제, 어떻게 말해야 하는지 문맥(Context)을 익힐 수 있습니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-slate-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden shadow-2xl">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[100px] opacity-20"></div>
+                        <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                            <div class="space-y-6">
+                                <div class="inline-flex items-center gap-2 text-green-400 font-bold border border-green-400/30 px-3 py-1 rounded-full"><i data-lucide="sparkles" class="w-4 h-4"></i><span>Premium Feature</span></div>
+                                <h2 class="text-3xl md:text-4xl font-bold leading-tight">AI가 당신의 영작을<br><span class="text-blue-400">즉시 교정해 드립니다.</span></h2>
+                                <p class="text-slate-300 leading-relaxed">배운 패턴을 활용해 직접 문장을 만들어보세요.<br>작성 후 <strong>'AI 영문교정'</strong> 버튼만 누르면, 문법 오류부터 더 자연스러운 비즈니스 표현까지 실시간으로 피드백을 받을 수 있습니다.</p>
+                                <ul class="space-y-3 text-sm text-slate-400">
+                                    <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><i data-lucide="check" class="w-3 h-3"></i></div><span>패턴 활용 응용 영작 연습</span></li>
+                                    <li class="flex items-center gap-3"><div class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400"><i data-lucide="check" class="w-3 h-3"></i></div><span>수강생 전용 1:1 맞춤 피드백 제공</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl p-2 shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500">
+                                <div class="bg-gray-50 border-b p-3 flex items-center gap-2 rounded-t-lg">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                    <span class="text-xs text-gray-400 ml-2">My Composition (AI Correction)</span>
+                                </div>
+                                <div class="p-6 bg-white">
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">영작 연습하기</label>
+                                        <textarea class="w-full h-24 p-3 border border-gray-300 rounded-lg resize-none text-sm" placeholder="배운 패턴을 활용해 문장을 작성해보세요..."></textarea>
+                                    </div>
+                                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">AI 영문교정 받기</button>
+                                </div>
+                                <div class="p-4 space-y-2">
+                                    <div class="flex items-center gap-2 text-xs font-bold text-blue-600"><i data-lucide="bot" class="w-4 h-4"></i> AI Analyzing...</div>
+                                    <div class="h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-blue-500 w-2/3 animate-pulse"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center bg-gray-50 rounded-2xl p-10 border border-gray-200">
+                        <p class="text-lg text-slate-700 mb-6 font-medium">비즈니스 영어, 혼자 고민하지 마세요.<br><strong>어빌리티 잉글리시</strong>가 든든한 파트너가 되어드립니다.</p>
+                        <a href="#leveltest/apply" class="inline-block px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition shadow-lg">무료 레벨테스트 신청하기</a>
+                    </div>
+                </div>`;
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // C. Bigbox (무제한 도서관)
+        function renderBigboxContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-6xl mx-auto space-y-20 pb-20">
+                    <div class="text-center space-y-6 pt-10">
+                        <span class="px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">Premium Content Library</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                            읽을거리, 즐길 거리, 놀 거리, 볼거리!<br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">영어의 모든 즐거움이 여기에</span>
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            PC와 모바일로 언제 어디서나.<br>
+                            영상 7,000편, 원서 1,800권, 단어 게임까지 <strong>어빌리티 빅박스</strong> 하나면 충분합니다.
+                        </p>
+                    </div>
+
+                    <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl bg-purple-50 p-8">
+                         <div class="text-center mb-4">
+                             <h3 class="text-2xl font-bold text-purple-900 mb-2">Bigbox World</h3>
+                             <p class="text-purple-700">영어 학습의 모든 것이 한 곳에</p>
+                         </div>
+                         <div class="bg-white rounded-2xl p-8 text-center">
+                             <i data-lucide="package" class="w-24 h-24 mx-auto text-purple-500 mb-4"></i>
+                             <p class="text-gray-600">빅박스 메인 이미지 준비 중</p>
+                         </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl hover:-translate-y-1 transition group">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Bigbox TV</h3>
+                            <p class="text-sm font-bold text-purple-600 mb-4">7,000여 편의 영어 영상 도서관</p>
+                            <div class="w-full h-48 bg-purple-50 rounded-xl mb-4 flex items-center justify-center border border-purple-200">
+                                <div class="text-center">
+                                    <i data-lucide="tv" class="w-16 h-16 mx-auto text-purple-400 mb-2"></i>
+                                    <p class="text-sm text-purple-600">이미지 준비 중</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-sm">인기 애니메이션부터 다큐멘터리까지! 수강생의 관심사와 레벨에 딱 맞는 영상을 추천해 드립니다. 퀘스트를 통해 동기부여를 받으며 학습하세요.</p>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl hover:-translate-y-1 transition group">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Reading Oceans</h3>
+                            <p class="text-sm font-bold text-blue-600 mb-4">1,800여 권의 체계적인 다독 프로그램</p>
+                            <div class="w-full h-48 bg-blue-50 rounded-xl mb-4 flex items-center justify-center border border-blue-200">
+                                <div class="text-center">
+                                    <i data-lucide="book-open" class="w-16 h-16 mx-auto text-blue-400 mb-2"></i>
+                                    <p class="text-sm text-blue-600">이미지 준비 중</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-sm">세계 명작, 과학, 사회 등 다양한 주제의 원서를 레벨별로 제공합니다. 읽기만 하고 끝나는 게 아니라 독후 활동(Activity)까지 연결됩니다.</p>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl hover:-translate-y-1 transition group">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Word Kingdom</h3>
+                            <p class="text-sm font-bold text-yellow-600 mb-4">게임으로 즐기는 3,000 필수 어휘</p>
+                            <div class="w-full h-48 bg-yellow-50 rounded-xl mb-4 flex items-center justify-center border border-yellow-200">
+                                <div class="text-center">
+                                    <i data-lucide="gamepad-2" class="w-16 h-16 mx-auto text-yellow-400 mb-2"></i>
+                                    <p class="text-sm text-yellow-600">이미지 준비 중</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-sm">Word Rush, Word Beat 등 신나는 게임을 하다 보면 필수 영단어가 머릿속에 쏙쏙! 고빈도 어휘를 우선순위로 학습합니다.</p>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl hover:-translate-y-1 transition group">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Class Booster</h3>
+                            <p class="text-sm font-bold text-red-600 mb-4">수업 효과 200% 향상 예·복습</p>
+                            <div class="w-full h-48 bg-red-50 rounded-xl mb-4 flex items-center justify-center border border-red-200">
+                                <div class="text-center">
+                                    <i data-lucide="rocket" class="w-16 h-16 mx-auto text-red-400 mb-2"></i>
+                                    <p class="text-sm text-red-600">이미지 준비 중</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-sm">교재 내용을 미리 예습하고 복습할 수 있는 부스터 기능으로 화상영어 수업의 효율을 극대화하세요. Unit별 맞춤 액티비티가 제공됩니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center bg-slate-900 rounded-3xl p-12 shadow-2xl">
+                        <h2 class="text-3xl font-bold text-white mb-4">이 모든 콘텐츠가<br><span class="text-yellow-400">어빌리티 수강생이라면 무제한 무료</span></h2>
+                        <a href="#leveltest/apply" class="inline-block mt-4 px-10 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-100 transition shadow-lg">무료체험 신청하기</a>
+                    </div>
+                </div>`;
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // --- Render Helpers ---
+
+        function renderAboutContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-6xl mx-auto space-y-16 pb-20">
+                    
+                    <!-- Hero Section -->
+                    <div class="text-center space-y-6 pt-10">
+                        <span class="px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">About Ability English</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                            왜 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">어빌리티 잉글리시</span>일까요?
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            혼자 공부하는 영어는 이제 그만! <br>
+                            앤보임플래너와 함께 특별한 학습 경험을 만나보세요.
+                        </p>
+                    </div>
+
+                    <!-- Feature 1: Planner Support -->
+                    <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-xl">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="space-y-6">
+                                <div class="inline-flex items-center gap-2 text-purple-600 font-bold bg-purple-50 px-3 py-1 rounded-lg">
+                                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                                    <span>Personal Mentor</span>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900">
+                                    작심삼일은 이제 <span class="text-purple-600">그만!</span>
+                                </h2>
+                                <p class="text-slate-600 leading-relaxed text-lg">
+                                    혼자 공부한다고 걱정하지 마세요. <br>
+                                    <strong class="text-blue-600">업계 최초 영어 Mentor 앤보임플래너</strong>가 <br>
+                                    시작부터 종료까지 든든하게 서포트합니다.
+                                </p>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
+                                    <div class="flex items-start gap-3">
+                                        <i data-lucide="bell" class="w-5 h-5 text-blue-600 mt-0.5"></i>
+                                        <div>
+                                            <p class="font-bold text-blue-900 mb-1">다양한 SMS 알림 서비스</p>
+                                            <p class="text-sm text-blue-700">수업 30분 전 / 지각 / 결석 알림으로 참여 독려</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center">
+                                <img src="images/intro/planner_icon.png" alt="Planner Support" class="w-full max-w-md rounded-2xl shadow-lg hover:scale-105 transition duration-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Flexible Booking -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 md:p-12 border border-green-200 shadow-lg">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="order-2 md:order-1 flex justify-center">
+                                <img src="images/intro/booking_icon.png" alt="Flexible Booking" class="w-full max-w-md rounded-2xl shadow-lg hover:rotate-2 transition duration-500">
+                            </div>
+                            <div class="order-1 md:order-2 space-y-6">
+                                <div class="inline-flex items-center gap-2 text-green-700 font-bold bg-white px-3 py-1 rounded-lg">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>Flexible Schedule</span>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900">
+                                    매일 같은 시간 수업이 <br><span class="text-green-600">부담스러우신가요?</span>
+                                </h2>
+                                <p class="text-slate-700 leading-relaxed text-lg">
+                                    지금부터 한 시간 이후 수업이 가능한 <br>
+                                    <strong class="text-xl text-slate-900">자유예약시스템</strong>
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3 text-slate-700">
+                                        <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                        </div>
+                                        <span>언제 어디서든 PC, 태블릿, 모바일 접속</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-slate-700">
+                                        <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                        </div>
+                                        <span>요일, 공간 제약 없는 자유로운 수업</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Perfect Match Teachers -->
+                    <div class="text-center space-y-8">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                                나와 딱 맞는 강사님을 <br class="md:hidden">
+                                <span class="text-purple-600">만날 수 있을까?</span>
+                            </h2>
+                            <p class="text-xl text-slate-600">
+                                나에게 맞는 강사님을 찾을 때까지 <br>
+                                <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-lg font-semibold">수업 요일, 시간, 강사 모두 무제한 변경 가능!</span>
+                            </p>
+                        </div>
+                        
+                        <div class="relative max-w-3xl mx-auto">
+                            <div class="absolute inset-0 bg-purple-100 blur-3xl rounded-full opacity-30"></div>
+                            <img src="images/intro/teachers_group.png" alt="Teachers" class="relative z-10 w-full rounded-2xl shadow-2xl">
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-8 rounded-2xl border border-slate-200 shadow-lg hover:shadow-xl transition max-w-4xl mx-auto">
+                            <div class="flex justify-center">
+                                <img src="images/intro/puzzle.png" alt="Custom Learning" class="w-48 h-48 object-contain">
+                            </div>
+                            <div class="text-left space-y-4">
+                                <h3 class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                                    <i data-lucide="puzzle" class="w-6 h-6"></i>
+                                    1:1 커스터마이징 수업
+                                </h3>
+                                <p class="text-slate-700 leading-relaxed">
+                                    '수강 요청 사항' 메뉴를 통해 <br>
+                                    강사의 말 속도, 프리토킹 비율, 수업 분위기까지 <br>
+                                    <strong class="text-slate-900">나에게 딱 맞춰 조절하세요.</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4: All-in-One Learning -->
+                    <div class="relative bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-10 md:p-16 text-white overflow-hidden shadow-2xl">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl opacity-10"></div>
+                        <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                            <div class="space-y-6">
+                                <h2 class="text-3xl md:text-4xl font-bold leading-tight">
+                                    화상영어로 <br>
+                                    <span class="text-indigo-200">말하기·듣기·읽기·쓰기</span> <br>
+                                    모두 가능할까요?
+                                </h2>
+                                <div class="bg-white text-indigo-900 font-extrabold text-lg px-6 py-3 rounded-xl inline-block transform -rotate-1 shadow-lg">
+                                    당연히 앤보임에서는 가능합니다! 🙆‍♀️
+                                </div>
+                                <p class="text-indigo-100 leading-relaxed text-lg">
+                                    원어민 강사님과 즐겁게 수업하며 스피킹, 리스닝은 기본! <br>
+                                    영어일기 첨삭으로 라이팅 실력까지 쑥쑥 키워보세요.
+                                </p>
+                            </div>
+                            <div class="flex justify-center">
+                                <img src="images/intro/device_learn.png" alt="Smart Device" class="w-full max-w-sm animate-pulse-slow">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5: Premium Contents -->
+                    <div class="space-y-8">
+                        <h2 class="text-3xl font-bold text-center text-slate-900">
+                            <span class="text-blue-600">프리미엄 콘텐츠</span>로 영어 실력 Complete!
+                        </h2>
+                        
+                        <div class="flex justify-center mb-8">
+                            <img src="images/intro/content_icons.png" alt="Content Icons" class="w-full max-w-3xl rounded-2xl shadow-lg">
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-white p-6 rounded-2xl border border-green-200 hover:shadow-lg transition text-center group">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-green-500 group-hover:text-white transition">
+                                    <i data-lucide="package" class="w-6 h-6 text-green-600 group-hover:text-white transition"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 mb-1">BigBox</h3>
+                                <p class="text-sm text-slate-600">영어 원서 읽기</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition text-center group">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-500 group-hover:text-white transition">
+                                    <i data-lucide="sun" class="w-6 h-6 text-blue-600 group-hover:text-white transition"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 mb-1">Daily Nvoim</h3>
+                                <p class="text-sm text-slate-600">패턴 학습</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-purple-200 hover:shadow-lg transition text-center group">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-500 group-hover:text-white transition">
+                                    <i data-lucide="book-open" class="w-6 h-6 text-purple-600 group-hover:text-white transition"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 mb-1">Grammar</h3>
+                                <p class="text-sm text-slate-600">문법 특강</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-orange-200 hover:shadow-lg transition text-center group">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-500 group-hover:text-white transition">
+                                    <i data-lucide="briefcase" class="w-6 h-6 text-orange-600 group-hover:text-white transition"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 mb-1">Business</h3>
+                                <p class="text-sm text-slate-600">1:1 첨삭</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="bg-slate-900 rounded-3xl p-12 text-center shadow-2xl">
+                        <div class="max-w-3xl mx-auto space-y-6">
+                            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                                어빌리티 잉글리시와 함께 <br>
+                                <span class="text-blue-400">영어 실력을 성장</span>시키세요.
+                            </h2>
+                            <p class="text-lg text-slate-300">
+                                매 수업 제공되는 피드백과 녹화 영상으로 <br>
+                                언제 어디서든 완벽하게 복습할 수 있습니다.
+                            </p>
+                            
+                            <div class="py-6">
+                                <img src="images/intro/success_chart.png" alt="Success Chart" class="w-64 md:w-80 mx-auto">
+                            </div>
+
+                            <a href="#leveltest/apply" class="inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xl font-bold rounded-full shadow-xl hover:shadow-blue-500/50 hover:-translate-y-1 transition transform">
+                                무료 레벨테스트 신청하기
+                                <i data-lucide="arrow-right" class="ml-2 w-6 h-6"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function renderPremiumCourseContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Premium Course</h1>
+                        <p class="text-lg text-slate-600">
+                            상위 1%를 위한 프리미엄 1:1 맞춤 관리형 화상영어
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center bg-white shadow-lg rounded-2xl overflow-hidden">
+                        <!-- Image Sequence -->
+                        <img src="images/premium/premium_01.jpg" alt="Premium 01" class="w-full h-auto block">
+                        <img src="images/premium/premium_02_1.jpg" alt="Premium 02" class="w-full h-auto block">
+                        <img src="images/premium/premium_03.jpg" alt="Premium 03" class="w-full h-auto block">
+                        <img src="images/premium/premium_04.jpg" alt="Premium 04" class="w-full h-auto block">
+                        <img src="images/premium/premium_05_1.jpg" alt="Premium 05" class="w-full h-auto block">
+                        <img src="images/premium/premium_06_01.jpg" alt="Premium 06" class="w-full h-auto block">
+                        <img src="images/premium/premium_09.jpg" alt="Premium 09" class="w-full h-auto block">
+                        <img src="images/premium/premium_hu_under.jpg" alt="Premium Footer" class="w-full h-auto block">
+                    </div>
+                    
+                    <div class="text-center mt-12 pb-12">
+                        <a href="#leveltest/apply" class="inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xl font-bold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition transform">
+                            프리미엄 코스 상담 신청하기
+                            <i data-lucide="arrow-right" class="ml-2 w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function renderTeachersContent(container) {
+            // 1. Setup Shell
+            container.innerHTML = `
+                <div class="animate-fade-in space-y-12 max-w-6xl mx-auto">
+                     <div class="text-center">
+                        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">강사 소개</h1>
+                        <p class="text-lg text-slate-600">
+                            어빌리티 잉글리시만의 엄선된 최고의 강사진을 만나보세요.
+                        </p>
+                    </div>
+
+                    <!-- Search & Filter -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row gap-4 items-center justify-between">
+                         <div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
+                             <button class="px-4 py-2 bg-slate-900 text-white rounded-full text-sm font-bold whitespace-nowrap">전체</button>
+                             <button class="px-4 py-2 bg-white border hover:bg-slate-50 text-slate-600 rounded-full text-sm font-medium whitespace-nowrap transition">주니어 전문</button>
+                             <button class="px-4 py-2 bg-white border hover:bg-slate-50 text-slate-600 rounded-full text-sm font-medium whitespace-nowrap transition">성인회화</button>
+                             <button class="px-4 py-2 bg-white border hover:bg-slate-50 text-slate-600 rounded-full text-sm font-medium whitespace-nowrap transition">비즈니스</button>
+                         </div>
+                         <div class="relative w-full md:w-80">
+                             <input type="text" placeholder="강사명 또는 태그 검색" class="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                             <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                         </div>
+                    </div>
+
+                    <!-- Teacher Grid -->
+                    <div id="teacher-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Loading State -->
+                        <div class="col-span-full py-20 text-center text-gray-500">
+                            <div class="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                            <p>강사 리스트를 불러오는 중입니다...</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const grid = document.getElementById('teacher-grid');
+            let teachers = [];
+
+            // 2. Try Fetching Data
+            try {
+                // Try fetching JSON 
+                const response = await fetch('data/teachers.json');
+                if (response.ok) {
+                    teachers = await response.json();
+                } else {
+                    throw new Error("JSON fetch failed");
+                }
+            } catch (e) {
+                console.warn("Using Mock Data due to fetch error:", e);
+                // Mock Data
+                teachers = [
+                    { name: "Teacher Joy", img_src: "images/placeholder_user.png", description: "밝고 명랑한 에너지의 키즈 전문 강사", tags: ["#키즈", "#초급", "#발음교정"] },
+                    { name: "Teacher Mark", img_src: "images/placeholder_user.png", description: "비즈니스 영어와 면접 대비 전문", tags: ["#비즈니스", "#고급", "#면접"] },
+                    { name: "Teacher Sarah", img_src: "images/placeholder_user.png", description: "꼼꼼한 피드백과 문법 교정", tags: ["#문법", "#중급", "#라이팅"] },
+                    { name: "Teacher David", img_src: "images/placeholder_user.png", description: "친구처럼 편안한 프리토킹", tags: ["#회화", "#여행", "#성인"] },
+                    { name: "Teacher Emma", img_src: "images/placeholder_user.png", description: "아이들의 눈높이에 맞춘 수업", tags: ["#키즈", "#파닉스", "#놀이"] },
+                    { name: "Teacher Ryan", img_src: "images/placeholder_user.png", description: "정확한 발음과 인토네이션 코칭", tags: ["#발음", "#뉴스", "#토론"] }
+                ];
+            }
+
+            // 3. Render Items
+            if (teachers && teachers.length > 0) {
+                grid.innerHTML = teachers.map(t => {
+                    const imgSrc = t.local_image ? t.local_image : (t.img_src || 'images/placeholder_user.png');
+                    const tagsHtml = (t.tags && t.tags.length > 0)
+                        ? t.tags.slice(0, 3).map(tag => `<span class="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">${tag}</span>`).join('')
+                        : '<span class="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded">#BEST강사</span>';
+
+                    return `
+                        <div class="group bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 duration-300">
+                            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                                <img src="${imgSrc}" alt="${t.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                                     onerror="this.src='images/placeholder_user.png'">
+                                ${t.video_id ? `
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                                    <button class="bg-white/20 backdrop-blur-md border border-white/50 text-white rounded-full p-3 hover:scale-110 transition">
+                                        <i data-lucide="play" class="w-8 h-8 fill-current"></i>
+                                    </button>
+                                </div>
+                                ` : ''}
+                            </div>
+                            <div class="p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-lg text-slate-900 line-clamp-1">${t.name}</h3>
+                                    <div class="flex text-yellow-400">
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 line-clamp-2 mb-4 h-8">
+                                    ${t.description || '학생 맞춤형 수업을 진행하는 열정적인 강사님입니다.'}
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4 h-6 overflow-hidden">
+                                    ${tagsHtml}
+                                </div>
+                                <a href="#leveltest/apply" class="block w-full text-center py-2 border border-blue-600 text-blue-600 rounded-lg font-bold hover:bg-blue-600 hover:text-white transition text-sm">
+                                    수업 신청하기
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                if (window.lucide) window.lucide.createIcons();
+            } else {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">등록된 강사가 없습니다.</div>`;
+            }
+
+
+        }
+
+        function renderPlannerContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in space-y-20 max-w-5xl mx-auto">
+                    
+                    <!-- 1. Emotional Intro -->
+                    <div class="relative bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-10 md:p-16 text-center text-white overflow-hidden shadow-xl">
+                        <div class="absolute inset-0 bg-[url('images/hero_cs.png')] opacity-20 bg-cover bg-center"></div>
+                        <div class="relative z-10 space-y-6">
+                            <h2 class="text-2xl md:text-4xl font-light leading-relaxed opacity-90">
+                                혼자 하는 영어 공부, <br class="md:hidden">지치셨나요? <b class="font-bold">걱정마세요.</b>
+                            </h2>
+                            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+                                영어 멘토, <span class="text-yellow-300">앤보임 플래너</span>
+                            </h1>
+                            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed pt-4">
+                                아직 노는 게 좋은 아이도, 작심삼일인 게으른 사람도,<br>
+                                바쁜 직장인도 모두!<br>
+                                <strong>오직 나를 위한 앤보임 플래너</strong>가 함께 합니다.
+                            </p>
+                        </div>
+                        
+                        <!-- Decoration circles -->
+                        <div class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+                        <div class="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+
+                    <!-- 2. Triangular Diagram (The Planner System) -->
+                    <section class="py-8">
+                        <h2 class="text-3xl font-bold text-center text-slate-900 mb-16">3-Way Care System</h2>
+                        
+                        <div class="relative max-w-2xl mx-auto h-[500px] md:h-[600px] flex items-center justify-center">
+                            
+                            <!-- Connecting Circle Background -->
+                            <div class="absolute inset-0 m-auto w-[350px] h-[350px] md:w-[450px] md:h-[450px] rounded-full border-2 border-purple-200 border-dashed z-0 animate-spin-slow"></div>
+                            <div class="absolute inset-0 m-auto w-[350px] h-[350px] md:w-[450px] md:h-[450px] rounded-full border border-purple-100 z-0"></div>
+
+                            <!-- Center Logo -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
+                                <div class="font-black text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-tighter">ABILITY</div>
+                                <div class="text-sm font-bold text-gray-400 mt-1">ENGLISH</div>
+                            </div>
+
+                            <!-- Top: Learner -->
+                            <div class="absolute top-4 md:top-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 w-48">
+                                <div class="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white border-4 border-purple-500 shadow-xl flex items-center justify-center mb-4 transform hover:scale-105 transition relative group">
+                                    <div class="absolute -inset-2 bg-purple-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition"></div>
+                                    <i data-lucide="graduation-cap" class="w-12 h-12 md:w-14 md:h-14 text-purple-600"></i>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-bold text-purple-600 bg-white px-2">학습자</h3>
+                            </div>
+
+                            <!-- Bottom Left: Instructor -->
+                            <div class="absolute bottom-10 md:bottom-20 left-0 md:-left-4 flex flex-col items-center z-10 w-48">
+                                <div class="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white border-4 border-blue-500 shadow-xl flex items-center justify-center mb-4 transform hover:scale-105 transition relative group">
+                                     <div class="absolute -inset-2 bg-blue-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition"></div>
+                                    <div class="text-center">
+                                         <div class="text-xl md:text-2xl font-black text-blue-500">ABC</div>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-bold text-blue-600 bg-white px-2">원어민 강사</h3>
+                            </div>
+
+                            <!-- Bottom Right: Planner -->
+                            <div class="absolute bottom-10 md:bottom-20 right-0 md:-right-4 flex flex-col items-center z-10 w-48">
+                                <div class="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white border-4 border-orange-500 shadow-xl flex items-center justify-center mb-4 transform hover:scale-105 transition relative group">
+                                     <div class="absolute -inset-2 bg-orange-100 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition"></div>
+                                    <i data-lucide="user-check" class="w-12 h-12 md:w-14 md:h-14 text-orange-500"></i>
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-bold text-orange-500 bg-white px-2">앤보임 플래너</h3>
+                            </div>
+                            
+                            <!-- Connecting Texts -->
+                            <div class="absolute top-[35%] left-4 md:left-10 text-center z-10">
+                                <span class="bg-blue-50 p-3 rounded-tr-2xl rounded-bl-2xl shadow-sm border border-blue-100 text-xs md:text-sm font-bold text-blue-800 block transform -rotate-6 hover:scale-110 transition cursor-default">
+                                    수강생 맞춤형<br>1:1 커스터마이징
+                                </span>
+                            </div>
+                            <div class="absolute top-[35%] right-4 md:right-10 text-center z-10">
+                                <span class="bg-orange-50 p-3 rounded-tl-2xl rounded-br-2xl shadow-sm border border-orange-100 text-xs md:text-sm font-bold text-orange-800 block transform rotate-6 hover:scale-110 transition cursor-default">
+                                    목표 달성을 위한<br>1:1 밀착 멘토링
+                                </span>
+                            </div>
+                            
+                            <!-- Bottom Connection Text -->
+                             <div class="absolute bottom-20 left-1/2 -translate-x-1/2 translate-y-full text-center z-10">
+                                <span class="bg-purple-50 px-4 py-2 rounded-full shadow-sm border border-purple-100 text-xs md:text-sm font-bold text-purple-800 block hover:scale-110 transition cursor-default">
+                                    Perfect Mate
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. Features -->
+                    <section class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition text-center group">
+                            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+                                <i data-lucide="credit-card" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">간편한 결제 및 등록</h3>
+                            <p class="text-gray-500">
+                                복잡한 절차 없이 플래너를 통해<br>학습 시작을 도와드립니다.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition text-center group">
+                            <div class="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-600 group-hover:text-white transition">
+                                <i data-lucide="map" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">맞춤형 학습 설계</h3>
+                            <p class="text-gray-500">
+                                나의 레벨과 목표에 딱 맞는<br>최적의 커리큘럼을 설계해 드립니다.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition text-center group">
+                            <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+                                <i data-lucide="heart" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-3">동기부여 케어</h3>
+                            <p class="text-gray-500">
+                                지치지 않고 목표를 달성할 수 있도록<br>끊임없는 응원과 관리를 제공합니다.
+                            </p>
+                        </div>
+                    </section>
+
+                </div>
+            `;
+        }
+
+        function renderGuideContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in space-y-20 max-w-5xl mx-auto text-gray-700">
+                    
+                    <!-- 1. Intro -->
+                    <div class="text-center space-y-6">
+                        <h1 class="text-4xl font-extrabold text-slate-900">학습가이드</h1>
+                        <p class="text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto">
+                            어빌리티 잉글리시는 <span class="text-blue-600 font-bold">영어 실력 향상</span>을 위한 모든 것이 준비되어 있습니다.<br>
+                            원어민 강사와의 즐거운 수업은 물론, 수강생이라면 누구나 학습할 수 있는<br>
+                            다양한 컨텐츠를 활용해 보세요.
+                        </p>
+                    </div>
+
+                    <!-- 2. 수강절차 (Process Flow) -->
+                    <section>
+                         <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">수강절차</h2>
+                         <div class="relative">
+                             <!-- Connecting Line (Desktop) -->
+                             <div class="absolute top-1/2 left-0 w-full h-1 bg-blue-100 -translate-y-1/2 hidden md:block z-0"></div>
+                             
+                             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 relative z-10">
+                                 ${['회원가입', '프로그램 설치', '레벨테스트', '학습계획', '학습권 등록', '수강신청', '수업시작'].map((step, idx) => `
+                                     <div class="flex flex-col items-center group">
+                                         <div class="w-20 h-20 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 z-10 relative">
+                                             <div class="bg-blue-600 rounded-full w-16 h-16 flex items-center justify-center text-white">
+                                                 <span class="font-bold text-xl">${idx + 1}</span>
+                                             </div>
+                                         </div>
+                                         <p class="mt-4 font-bold text-slate-800 text-sm md:text-base text-center break-keep border-blue-100 bg-white px-2 rounded">${step}</p>
+                                     </div>
+                                 `).join('')}
+                             </div>
+                         </div>
+                    </section>
+
+                    <!-- 3. 학습절차 (Learning Steps) -->
+                    <section>
+                        <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">학습절차</h2>
+                        <div class="space-y-6">
+                            <!-- Step 1 -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-indigo-100 hover:shadow-md transition">
+                                <div class="flex-none w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600">
+                                    <i data-lucide="book-open" class="w-10 h-10"></i>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                                        <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold">STEP 1</span>
+                                        <h3 class="text-xl font-bold text-slate-800">교재 학습</h3>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        앤보임 교재는 기초부터 고급 레벨까지 단계별 맞춤 학습이 가능하며, 주제의 다양성을 통해 학습자의 흥미를 유도하여 학습효과를 높일 수 있도록 구성하였습니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-purple-100 hover:shadow-md transition">
+                                <div class="flex-none w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                                    <i data-lucide="play-circle" class="w-10 h-10"></i>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                                        <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">STEP 2</span>
+                                        <h3 class="text-xl font-bold text-slate-800">예습 동영상 강의</h3>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        원어민 강사와의 수업 전 학습 어휘 및 기본 문법을 익히고, 학습 내용을 미리 예습함으로써 본 수업에 쉽게 접근할 수 있도록 하였습니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-blue-100 hover:shadow-md transition">
+                                <div class="flex-none w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                                    <i data-lucide="monitor" class="w-10 h-10"></i>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold">STEP 3</span>
+                                        <h3 class="text-xl font-bold text-slate-800">실시간 1:1 화상수업</h3>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        원어민 강사와 1대1 수업을 통해 보고 듣고 말하면서 생동감 있는 수업이 진행됩니다. 이를 통해 영어의 두려움을 없애고 자신감이 생깁니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-green-100 hover:shadow-md transition">
+                                <div class="flex-none w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                    <i data-lucide="message-square" class="w-10 h-10"></i>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                                        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">STEP 4</span>
+                                        <h3 class="text-xl font-bold text-slate-800">수업 피드백 및 다시보기</h3>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        원어민 선생님이 직접 작성해 주시는 피드백과 수업 녹화영상을 보면서 잘못된 표현을 바로 잡고 다시 한 번 점검하게 합니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-orange-100 hover:shadow-md transition">
+                                <div class="flex-none w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
+                                    <i data-lucide="edit-3" class="w-10 h-10"></i>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                                        <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">STEP 5</span>
+                                        <h3 class="text-xl font-bold text-slate-800">영어 일기쓰기</h3>
+                                    </div>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        어렵게만 느껴지는 영작을 영어 일기로 쉽게 접근하여 영작 실력을 향상시켜주고, 담당 강사님의 응원 댓글로 더욱 자신감을 높여줍니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. 부가 컨텐츠 -->
+                    <section class="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+                        <h2 class="text-3xl font-bold text-center text-slate-900 mb-8">부가 컨텐츠</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Card 1 -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                                <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                    <i data-lucide="box" class="text-blue-500"></i> 앤보임 빅박스
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    다양한 영어 영상과 원서, 게임형 액티비티를 통해 영어에 흥미를 갖게 하고 영어 실력을 향상시킬 수 있는 자기주도형 학습 컨텐츠입니다.
+                                </p>
+                            </div>
+                             <!-- Card 2 -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                                <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                    <i data-lucide="pen-tool" class="text-pink-500"></i> 영어첨삭
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    빅박스 내 영어 원서 학습 및 독서 후 작성한 Book Report를 강사가 교정해주고 수업을 진행하는 특화 서비스입니다.<br>
+                                    <span class="text-xs text-red-500 mt-1 block">* 주5일 수강자에게만 제공</span>
+                                </p>
+                            </div>
+                             <!-- Card 3 -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                                <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                    <i data-lucide="sun" class="text-orange-500"></i> Daily Nvoim
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    매일 다양한 영어 회화 패턴을 공부할 수 있습니다. 제시된 패턴으로 문장을 만드는 꾸준한 연습을 통해 풍부한 대화를 나눠보세요.
+                                </p>
+                            </div>
+                             <!-- Card 4 -->
+                            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                                <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                                    <i data-lucide="briefcase" class="text-slate-600"></i> Business Nvoim
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    다양한 비즈니스 영어회화 패턴을 공부할 수 있습니다. 패턴을 활용해 영작을 진행하고 원어민 강사님의 첨삭을 받아보세요.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            `;
+        }
+
+        function renderRulesContent(container) {
+            container.innerHTML = `
+                <div class="animate-fade-in max-w-4xl mx-auto space-y-12 text-gray-700">
+                    <div class="text-center border-b pb-8">
+                        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">수강규정</h1>
+                        <p class="text-lg text-slate-500">어빌리티 잉글리시의 수강 규정을 안내해 드립니다.</p>
+                    </div>
+
+                    <!-- 1. 회원가입 & 수강권 -->
+                    <section class="space-y-6">
+                        <h3 class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                            <i data-lucide="user-plus" class="text-blue-600"></i> 회원가입 및 수강권
+                        </h3>
+                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 space-y-4">
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-2">회원가입</h4>
+                                <ul class="list-disc list-inside text-sm space-y-1 text-gray-600">
+                                    <li>1인 1 ID 사용 (한 ID로 두 명 수강 불가)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-2">수강권 종류</h4>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    1회 25분 / 4회 20분·25분 / 8회 20분·25분 / 12회 20분·25분<br>
+                                    20회 20분·25분 / 24회 20분·25분 / 36회 20분·25분
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- 2. 수강등록 -->
+                    <section class="space-y-6">
+                        <h3 class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                            <i data-lucide="calendar-check" class="text-blue-600"></i> 수강등록
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-600 bg-white p-4 border rounded-xl">
+                            <li>최대 일주일 이내 시작 수강 등록 가능</li>
+                            <li>당일 수강 등록은 시작 2시간 전까지 가능</li>
+                            <li><strong>수강권 별 횟수 일괄 등록</strong> (예: 25분 36회권 신청 시 36회 일괄 등록)</li>
+                            <li>1회 수강권은 자유예약으로만 신청 가능</li>
+                        </ul>
+                        
+                        <div class="overflow-hidden border rounded-xl shadow-sm">
+                            <table class="min-w-full text-sm text-left">
+                                <thead class="bg-blue-50 text-blue-900">
+                                    <tr>
+                                        <th class="px-6 py-3 font-bold">수강 요일 타입</th>
+                                        <th class="px-6 py-3 font-bold">상세 내용</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100 bg-white">
+                                    <tr>
+                                        <td class="px-6 py-3 font-medium">주 1회</td>
+                                        <td class="px-6 py-3">월 / 화 / 수 / 목 / 금 / 토</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-3 font-medium">주 2회</td>
+                                        <td class="px-6 py-3">화, 목 / 토요 집중(40분, 50분)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-3 font-medium">주 3회</td>
+                                        <td class="px-6 py-3">월, 수, 금 / 화, 목, 토</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-3 font-medium">주 5회</td>
+                                        <td class="px-6 py-3">월 ~ 금</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 3. 수강 변경 및 중지 -->
+                    <section class="space-y-6">
+                         <h3 class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                            <i data-lucide="refresh-cw" class="text-blue-600"></i> 변경 및 중지
+                        </h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- 변경 -->
+                            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                                <h4 class="font-bold text-blue-900 mb-3 text-lg">수강 변경</h4>
+                                <ul class="list-disc list-inside text-sm space-y-2 text-blue-800">
+                                    <li>당일 수강 2시간 전까지 가능</li>
+                                    <li>시간, 요일, 담당 강사, 과정 변경 가능</li>
+                                    <li>변경 일자 이전까지는 기존 수강 진행</li>
+                                    <li>진행 예정인 수강/연기가 있을 경우 불가</li>
+                                    <li>변경 후 취소 불가</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 중지 -->
+                            <div class="bg-red-50 p-6 rounded-xl border border-red-100">
+                                <h4 class="font-bold text-red-900 mb-3 text-lg">수강 중지</h4>
+                                <ul class="list-disc list-inside text-sm space-y-2 text-red-800">
+                                    <li>2주 이상 수강 진행 불가 시 신청</li>
+                                    <li>수강시간 2시간 전까지 가능</li>
+                                    <li>중지 후 2주 이내 재등록 불가</li>
+                                    <li>중지 후 6개월 이내 재등록 필수 (미등록 시 소멸)</li>
+                                </ul>
+                                <div class="mt-4 bg-white p-3 rounded-lg text-xs text-gray-500 border border-red-100">
+                                    <strong>가능 횟수:</strong><br>
+                                    - 1회권: 불가<br>
+                                    - 4~24회권: 1회<br>
+                                    - 36회권: 3회
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. 연기 (일반/보강) -->
+                    <section class="space-y-6">
+                         <h3 class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                            <i data-lucide="clock" class="text-blue-600"></i> 수강 연기
+                        </h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full text-sm text-center border rounded-xl overflow-hidden mb-6">
+                                <thead class="bg-gray-100 text-gray-700">
+                                    <tr>
+                                        <th class="px-4 py-2 border">수강권</th>
+                                        <th class="px-4 py-2 border">1회</th>
+                                        <th class="px-4 py-2 border">4회/8회</th>
+                                        <th class="px-4 py-2 border">12회</th>
+                                        <th class="px-4 py-2 border">20회/24회</th>
+                                        <th class="px-4 py-2 border">36회</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-2 font-bold border">가능 횟수</td>
+                                        <td class="px-4 py-2 border text-gray-400">불가</td>
+                                        <td class="px-4 py-2 border">1회</td>
+                                        <td class="px-4 py-2 border">2회</td>
+                                        <td class="px-4 py-2 border">3회</td>
+                                        <td class="px-4 py-2 border">6회</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-500 pl-4 py-2 bg-gray-50">
+                                <h4 class="font-bold text-gray-900">일반 연기</h4>
+                                <p class="text-sm text-gray-600 mt-1">마지막 수강 일자가 뒤로 밀리는 방식 (하루 전 자정까지 신청)</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-4 py-2 bg-gray-50">
+                                <h4 class="font-bold text-gray-900">보강 연기</h4>
+                                <p class="text-sm text-gray-600 mt-1">
+                                    다른 시간/요일로 당겨서 수강 (수강 1시간 전까지 신청)<br>
+                                    등록된 수강일 포함 2일 이내 조정 가능
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. 기타 규정 (자유예약 등) -->
+                    <section class="space-y-6">
+                         <h3 class="flex items-center gap-2 text-2xl font-bold text-slate-800">
+                            <i data-lucide="file-text" class="text-blue-600"></i> 기타 규정
+                        </h3>
+                        <div class="grid gap-4 md:grid-cols-2">
+                             <div class="bg-white border rounded-xl p-5 shadow-sm">
+                                 <h4 class="font-bold text-gray-800 mb-2 border-b pb-2">자유예약</h4>
+                                 <ul class="text-xs text-gray-600 space-y-1 list-disc list-inside">
+                                     <li>사용기간 30일 (미소진 시 소멸)</li>
+                                     <li>연기, 중지, 취소 불가</li>
+                                     <li>수강 1시간 전까지 신청 (2일 이내 예약 가능)</li>
+                                 </ul>
+                             </div>
+                             <div class="bg-white border rounded-xl p-5 shadow-sm">
+                                 <h4 class="font-bold text-gray-800 mb-2 border-b pb-2">연장 등록</h4>
+                                 <ul class="text-xs text-gray-600 space-y-1 list-disc list-inside">
+                                     <li>기존 동일 수강 자동 연장</li>
+                                     <li>종료 전일까지 결제 필요</li>
+                                     <li>원치 않을 경우 고객센터 요청</li>
+                                 </ul>
+                             </div>
+                             <div class="bg-white border rounded-xl p-5 shadow-sm">
+                                 <h4 class="font-bold text-gray-800 mb-2 border-b pb-2">휴강일</h4>
+                                 <ul class="text-xs text-gray-600 space-y-1 list-disc list-inside">
+                                     <li>한국 공휴일 휴강</li>
+                                     <li>필리핀 공휴일: 부활절(2일), 연말(12/31)</li>
+                                 </ul>
+                             </div>
+                              <div class="bg-white border rounded-xl p-5 shadow-sm">
+                                 <h4 class="font-bold text-gray-800 mb-2 border-b pb-2">수강권 사용/양도</h4>
+                                 <ul class="text-xs text-gray-600 space-y-1 list-disc list-inside">
+                                     <li>유효기간: 구매년도로부터 2년</li>
+                                     <li>양도: 상호 협의 하에 수강권 단위 가능</li>
+                                 </ul>
+                             </div>
+                        </div>
+                    </section>
+
+                    <!-- 6. 프리미엄 등 -->
+                    <section class="bg-slate-800 text-slate-300 rounded-2xl p-8">
+                         <h3 class="flex items-center gap-2 text-xl font-bold text-white mb-4">
+                            <i data-lucide="star" class="text-yellow-400"></i> 프리미엄 앤보임 규정
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-8 text-sm">
+                            <ul class="space-y-2 list-disc list-inside">
+                                <li><strong>수강등록</strong>: 고객센터 전용 (평일+토요 동시 시작)</li>
+                                <li><strong>교재</strong>: 구매 필수</li>
+                                <li><strong>변경</strong>: 당일 불가</li>
+                            </ul>
+                            <div class="bg-slate-700 p-4 rounded-lg">
+                                <p class="font-bold text-white mb-2">연기/중지 횟수</p>
+                                <table class="w-full text-center text-xs">
+                                     <thead>
+                                         <tr class="text-slate-400 border-b border-slate-600">
+                                             <th class="pb-1">횟수</th>
+                                             <th class="pb-1">연기</th>
+                                             <th class="pb-1">중지</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody class="divide-y divide-slate-600">
+                                         <tr><td class="py-1">4/8회</td><td>1회</td><td>1회</td></tr>
+                                         <tr><td class="py-1">12회</td><td>2회</td><td>1회</td></tr>
+                                         <tr><td class="py-1">20/24회</td><td>3회</td><td>1회</td></tr>
+                                         <tr><td class="py-1">36회</td><td>6회</td><td>3회</td></tr>
+                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderCourseMap(container) {
+            let html = `
+                <div class="mb-8 border-b pb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">전체 과정맵</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            `;
+
+            const cats = ["정규통합과정", "회화", "비즈니스", "시험준비", "시사&역사", "문법", "어휘", "여행영어"];
+            cats.forEach(cat => {
+                const color = categoryColors[cat] || categoryColors['기본'];
+                const items = coursesData.courses.filter(c => c.category === cat);
+                if (items.length > 0) {
+                    html += `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition">
+                            <div class="bg-gradient-to-r ${color} px-6 py-4 flex justify-between items-center">
+                                <h3 class="font-bold text-white text-lg">${cat}</h3>
+                                <i data-lucide="grid" class="w-5 h-5 text-white opacity-70"></i>
+                            </div>
+                            <div class="p-6">
+                                <ul class="space-y-2">
+                                    ${items.map(c => `
+                                        <li><a href="#courses/${c.id}" class="block text-gray-600 hover:text-blue-600 hover:bg-blue-50 px-2 py-1 rounded transition flex items-center justify-between group">
+                                            <span>${c.name}</span>
+                                            <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition"></i>
+                                        </a></li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                     `;
+                }
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderCourseDetail(container, course) {
+            const color = categoryColors[course.category] || categoryColors['기본'];
+
+            container.innerHTML = `
+                <div class="animate-fade-in">
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gradient-to-r ${color} text-white rounded-full text-xs font-bold">${course.category}</span>
+                        </div>
+                        <h1 class="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-2">${course.name}</h1>
+                        <p class="text-xl text-gray-500 font-medium">${course.nameEn}</p>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 gap-10">
+                        <!-- Left Info -->
+                        <div class="xl:col-span-2 space-y-8">
+                            <!-- Image Placeholder -->
+                            <div class="rounded-2xl overflow-hidden bg-gradient-to-br ${color} aspect-video flex items-center justify-center shadow-lg">
+                                <div class="text-center text-white">
+                                    <div class="flex justify-center mb-4"><i data-lucide="book" class="w-16 h-16 opacity-80"></i></div>
+                                    <p class="text-3xl font-bold">${course.name}</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Description -->
+                            <section>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i> 과정 소개
+                                </h3>
+                                <p class="text-lg text-gray-600 leading-relaxed bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                    ${course.description}
+                                </p>
+                            </section>
+
+                            <!-- Features -->
+                            ${course.features.length > 0 ? `
+                            <section>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <i data-lucide="star" class="w-6 h-6 text-blue-600"></i> 주요 특징
+                                </h3>
+                                <ul class="grid md:grid-cols-1 gap-3">
+                                    ${course.features.map(f => `
+                                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                                            <i data-lucide="check" class="w-5 h-5 text-blue-500 mr-3 shrink-0"></i>
+                                            <span class="text-gray-700 font-medium">${f}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </section>
+                            ` : ''}
+                        </div>
+
+                        <!-- Right Sidebar (Sticky) -->
+                        <div class="xl:col-span-1">
+                            <div class="sticky top-24 space-y-6">
+                                <div class="bg-white p-6 rounded-2xl border border-blue-100 shadow-lg">
+                                    <h4 class="font-bold text-gray-900 text-lg mb-4 border-b pb-2">과정 요약</h4>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">카테고리</p>
+                                            <p class="font-semibold text-gray-800">${course.category}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">추천 레벨</p>
+                                            <p class="font-semibold text-blue-600">${course.recommendedLevel}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 mb-1">교재 구성</p>
+                                            <p class="font-semibold text-gray-800">${course.curriculum.length > 0 ? course.curriculum.length + '개 항목' : '별도 문의'}</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8">
+                                        <a href="#leveltest/apply" class="block w-full py-4 bg-blue-600 text-white text-center rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-md hover:shadow-xl transform active:scale-95">
+                                            수강 신청하기
+                                        </a>
+                                        <p class="text-xs text-center text-gray-400 mt-3 flex items-center justify-center gap-1">
+                                            <i data-lucide="info" class="w-3 h-3"></i> 무료 레벨테스트 후 수강신청 가능
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                ${course.curriculum.length > 0 ? `
+                                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                                    <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                        <i data-lucide="list" class="w-4 h-4"></i> 커리큘럼 상세
+                                    </h4>
+                                    <div class="text-sm text-gray-600 space-y-2 max-h-60 overflow-y-auto custom-scroll pr-2">
+                                        ${course.curriculum.map(c => `
+                                            <div class="pb-2 border-b border-gray-200 last:border-0 hover:text-blue-600 transition cursor-default">
+                                                ${c}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        // Initialize
+        init();
+
+    </script>
+</body>
+
+</html>
