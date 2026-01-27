@@ -1487,6 +1487,16 @@
         }
 
         async function renderTeachersContent(container) {
+            // Safety check: if container is undefined, try to find it
+            if (!container) {
+                console.warn('Container is undefined, attempting to find .content-area element');
+                container = document.querySelector('.content-area');
+                if (!container) {
+                    console.error('Could not find .content-area element');
+                    return;
+                }
+            }
+
             // 1. Setup Shell
             container.innerHTML = `
                 <div class="animate-fade-in space-y-12 max-w-6xl mx-auto">
