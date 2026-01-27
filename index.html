@@ -1529,11 +1529,16 @@
                             <p>강사 리스트를 불러오는 중입니다...</p>
                         </div>
                     </div>
+                    
+                    <!-- Pagination Container -->
+                    <div id="pagination-container"></div>
                 </div>
             `;
 
             const grid = document.getElementById('teacher-grid');
             let teachers = [];
+            const ITEMS_PER_PAGE = 10;
+            let currentPage = 1;
 
             // 2. Try Fetching Data
             try {
@@ -1557,15 +1562,21 @@
                 ];
             }
 
-            // 3. Render Items
-            if (teachers && teachers.length > 0) {
-                grid.innerHTML = teachers.map(t => {
-                    const imgSrc = t.local_image ? t.local_image : (t.img_src || 'images/placeholder_user.png');
-                    const tagsHtml = (t.tags && t.tags.length > 0)
-                        ? t.tags.slice(0, 3).map(tag => `<span class="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">${tag}</span>`).join('')
-                        : '<span class="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded">#BEST강사</span>';
+            // 3. Render Items  with Pagination
+            function renderPage(page) {
+                const totalPages = Math.ceil(teachers.length / ITEMS_PER_PAGE);
+                const startIndex = (page - 1) * ITEMS_PER_PAGE;
+                const endIndex = startIndex + ITEMS_PER_PAGE;
+                const pageTeachers = teachers.slice(startIndex, endIndex);
 
-                    return `
+                if (pageTeachers.length > 0) {
+                    grid.innerHTML = pageTeachers.map(t => {
+                        const imgSrc = t.local_image ? t.local_image : (t.img_src || 'images/placeholder_user.png');
+                        const tagsHtml = (t.tags && t.tags.length > 0)
+                            ? t.tags.slice(0, 3).map(tag => `<span class="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">${tag}</span>`).join('')
+                            : '<span class="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded">#BEST강사</span>';
+
+                        return `
                         <div class="group bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1 duration-300">
                             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
                                 <img src="${imgSrc}" alt="${t.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
@@ -1601,9 +1612,71 @@
                             </div>
                         </div>
                     `;
-                }).join('');
+                    }).join('');
 
-                if (window.lucide) window.lucide.createIcons();
+                    if (window.lucide) window.lucide.createIcons();
+                } else {
+                    grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">페이지에 표시할 강사가 없습니다.</div>`;
+                }
+
+                // Render Pagination Controls
+                const paginationContainer = document.getElementById('pagination-container');
+                if (paginationContainer && totalPages > 1) {
+                    let buttonsHTML = '';
+
+                    buttonsHTML += `
+                        <button onclick="window.teacherChangePage(${page - 1})" 
+                                ${page === 1 ? 'disabled' : ''}
+                                class="px-4 py-2 rounded-lg border ${page === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600'} transition font-medium">
+                            이전
+                        </button>
+                    `;
+
+                    const maxButtons = 5;
+                    let startPage = Math.max(1, page - Math.floor(maxButtons / 2));
+                    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+                    if (endPage - startPage < maxButtons - 1) {
+                        startPage = Math.max(1, endPage - maxButtons + 1);
+                    }
+
+                    for (let i = startPage; i <= endPage; i++) {
+                        buttonsHTML += `
+                            <button onclick="window.teacherChangePage(${i})"
+                                    class="px-4 py-2 rounded-lg border transition font-medium ${i === page ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600'}">
+                                ${i}
+                            </button>
+                        `;
+                    }
+
+                    buttonsHTML += `
+                        <button onclick="window.teacherChangePage(${page + 1})" 
+                                ${page === totalPages ? 'disabled' : ''}
+                                class="px-4 py-2 rounded-lg border ${page === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-600'} transition font-medium">
+                            다음
+                        </button>
+                    `;
+
+                    paginationContainer.innerHTML = `
+                        <div class="flex items-center justify-center gap-2 mt-8">
+                            ${buttonsHTML}
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-4">
+                            전체 ${teachers.length}명 중 ${(page - 1) * ITEMS_PER_PAGE + 1}-${Math.min(page * ITEMS_PER_PAGE, teachers.length)}명 표시
+                        </p>
+                    `;
+                }
+            }
+
+            window.teacherChangePage = function (page) {
+                const totalPages = Math.ceil(teachers.length / ITEMS_PER_PAGE);
+                if (page < 1 || page > totalPages) return;
+                currentPage = page;
+                renderPage(currentPage);
+                document.getElementById('teacher-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            if (teachers && teachers.length > 0) {
+                renderPage(1);
             } else {
                 grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">등록된 강사가 없습니다.</div>`;
             }
