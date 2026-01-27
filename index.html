@@ -1536,31 +1536,1992 @@
             `;
 
             const grid = document.getElementById('teacher-grid');
-            let teachers = [];
             const ITEMS_PER_PAGE = 10;
             let currentPage = 1;
 
-            // 2. Try Fetching Data
-            try {
-                // Try fetching JSON 
-                const response = await fetch('data/teachers.json');
-                if (response.ok) {
-                    teachers = await response.json();
-                } else {
-                    throw new Error("JSON fetch failed");
-                }
-            } catch (e) {
-                console.warn("Using Mock Data due to fetch error:", e);
-                // Mock Data
-                teachers = [
-                    { name: "Teacher Joy", img_src: "images/placeholder_user.png", description: "밝고 명랑한 에너지의 키즈 전문 강사", tags: ["#키즈", "#초급", "#발음교정"] },
-                    { name: "Teacher Mark", img_src: "images/placeholder_user.png", description: "비즈니스 영어와 면접 대비 전문", tags: ["#비즈니스", "#고급", "#면접"] },
-                    { name: "Teacher Sarah", img_src: "images/placeholder_user.png", description: "꼼꼼한 피드백과 문법 교정", tags: ["#문법", "#중급", "#라이팅"] },
-                    { name: "Teacher David", img_src: "images/placeholder_user.png", description: "친구처럼 편안한 프리토킹", tags: ["#회화", "#여행", "#성인"] },
-                    { name: "Teacher Emma", img_src: "images/placeholder_user.png", description: "아이들의 눈높이에 맞춘 수업", tags: ["#키즈", "#파닉스", "#놀이"] },
-                    { name: "Teacher Ryan", img_src: "images/placeholder_user.png", description: "정확한 발음과 인토네이션 코칭", tags: ["#발음", "#뉴스", "#토론"] }
-                ];
-            }
+                        // Inline teacher data (no fetch needed!)
+            const teachers = [
+  {
+    "name": "Agnes",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1312%20Agnes.JPG",
+    "description": "Hello there! I am Agnes. I took up Bachelor of Science major in Biology at Cebu Normal University. Learning is a process and studying her in NVOIM in a fun and easy way is more effective for students who want to enhance their English skill. So come and join me in class. See you!",
+    "video_id": "797215969",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Science Major in Biology"
+    ],
+    "local_image": "images/teachers/Agnes_1769431807.jpg"
+  },
+  {
+    "name": "Ai",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1954%20Ai.JPG",
+    "description": "Hi! I am your ever passionate and enthusiastic teacher, Teacher Ai. I am a graduate from the University of Cebu Lapu Lapu and Mandaue with a degree of Bachelor of Elementary Education. English is one of the main languages which is widely used all over the world. However, for some students,the process of learning the language is not that smooth compared with what they have learnt. Nvoim teachers would make that process easier and fun. I would help you gain your confidence, improve your speaking,reading,listening and writing skills. Thank you and see you in my class.",
+    "video_id": "796474985",
+    "tags": [
+      "Cebu",
+      "University of Cebu Lapu Lapu Mandau",
+      "Elementary Education major in General Education"
+    ],
+    "local_image": "images/teachers/Ai_1769431807.jpg"
+  },
+  {
+    "name": "Aizelle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT780%20AIZELLE.png",
+    "description": "Hi! I am teacher Aizelle. I am a jolly and energetic person. I enjoy singing, dancing, cooking and watching movies. I graduated with a degree of Bachelor of Secondary Education. With this, I was able to develop my patience and most especially, I have found my passion for teaching. Seeing my students achieve and reach their goals in life makes me feel glad to be part of their journey towards success. I would be very happy to be your English Teacher so I hope to see you in my class. Bye Bye!",
+    "video_id": "795499182",
+    "tags": [
+      "Manila",
+      "Rizal System-Cainta campus",
+      "Secondary Education Major in Livelihood Education"
+    ],
+    "local_image": "images/teachers/Aizelle_1769431807.jpg"
+  },
+  {
+    "name": "Alexis",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2094%20Alexis%20(3).JPG",
+    "description": "Hello! Learners. My name is teacher Alexis. I like dancing, watching movies, taking pictures of flowers and I love being in beaches, enjoying my time and watching the sunset. I graduated at University of Cebu Main Campus with the degree of Bachelor of Secondary Education Major in General Science. I have a varied experience in ESL teaching and I have worked with diverse learners. I enjoy teaching and exploring the vast world of the English language. I hope to share it with you! See you in my class.",
+    "video_id": "799363650",
+    "tags": [
+      "Cebu",
+      "University of Cebu",
+      "Bachelor of Secondary Education in General Science"
+    ],
+    "local_image": "images/teachers/Alexis_1769431807.jpg"
+  },
+  {
+    "name": "Alexza",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Alexza(2).jpg",
+    "description": "Hello! Iam teacher Alexa, a graduate of Bohol Island State University with a degree in Bachelo or Secondary Education, majoring in Social Studies. As an organized, innovative, and passionate educator, I believe language skills are key to global connections. Join NVOIM and discover English in an engaging, creative and interactive way. I look forward to seeing you in my class",
+    "video_id": "1032998750",
+    "tags": [
+      "Cebu",
+      "Bohol Island State University",
+      "Bachelor of Secondary Education Major in Social Studies"
+    ],
+    "local_image": "images/teachers/Alexza_1769431807.jpg"
+  },
+  {
+    "name": "Aly",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT818%20ALY.png",
+    "description": "Hello everyone! I am teacher Aly! Do you know that you can learn while having fun? Yes. Of course. I have been teaching for almost a year now, and I could say that I really love teaching kids and adults like you. So what are you waiting for? Enroll now and be my student here at NVOIM. Teacher Aly is waiting for you. See you!",
+    "video_id": "799385619",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Secondary Education Major in T.L,E"
+    ],
+    "local_image": "images/teachers/Aly_1769431807.jpg"
+  },
+  {
+    "name": "Amor(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1666%20Amor.JPG",
+    "description": "Hi! I am Teacher Amor. The role of a teacher is to inspire, motivate, and educate learners. I have been working in this field for 4 years now. I am used to engaging with various students and letting them feel appreciated upon doing their tasks for I know it will help them show their confidence and passion in learning. Learn more and have fun while learning. Join NVOIM now!",
+    "video_id": "770555259",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Secondary Eduction Major in Math"
+    ],
+    "local_image": "images/teachers/Amor(P)_1769431808.jpg"
+  },
+  {
+    "name": "Andi",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/andi%20new.jpg",
+    "description": "Hello lovely students! I am Andi and I ve been handling diverse learners with different levels for many years. Throughout my career, I ve proven my passion and dedication in teaching. It s always been a great achievement for me whenever I see my students improve their skills and explore the world of English. I am so excited to study and have fun with you in my class. See yah!",
+    "video_id": "799700960",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "BSED Major in English"
+    ],
+    "local_image": "images/teachers/Andi_1769431808.jpg"
+  },
+  {
+    "name": "Angel(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Angel..jpg",
+    "description": "Hi! I am Angel. I graduated with a Bachelor of Science in Home Technology Education. I am a licensed teacher, and I also have more than 5 years of experience. Teaching has always been my passion. I enjoy working with students of all levels, helping and guiding them to become confident and competent users of the English language. I make sure that my classes are interactive and informative. So let us learn English in a fun and easy way.",
+    "video_id": "1104985979",
+    "tags": [
+      "Cebu",
+      "Palompon Institute of Technology-Tabango Campus",
+      "Bachelor of Science in Home Technology Education"
+    ],
+    "local_image": "images/teachers/Angel(P)_1769431808.jpg"
+  },
+  {
+    "name": "Anna",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt841%20Anna_2026.jpg",
+    "description": "Hi! I am teacher Ana. I took up bachelor of Science in tourism management. I had an experience teaching kids and adults with other nationalities and I can say that it was really fun. I enjoy reading English books and watching educational shows. So if you want to learn and enhance your English speaking skills , come and join me in my class. See you!",
+    "video_id": "715093710",
+    "tags": [
+      "Manila",
+      "Bestlink College of the Philippines",
+      "BS in Tourism Management"
+    ],
+    "local_image": "images/teachers/Anna_1769431809.jpg"
+  },
+  {
+    "name": "Annabel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1694%20Annabel%20(2).JPG",
+    "description": "I am teacher Annabel. I graduated from the University of the Visayas-Mandaue and took up Bachelor of Elementary Education-General Education. I had worked as an ESL teacher at Glant Academy. I also worked as a developmental teacher in PH-907 Mt. Olives. I am active, cheerful, energetic, and kind with a pleasing personality. I am a committed and dedicated teacher and have a passion for teaching. Nowadays, English is the official global language. As a teacher, I am willing to help my students learn and know more about English to become globally competitive. I promise that I will do my best to help you achieve your goals in NVOIM.",
+    "video_id": "764827935",
+    "tags": [
+      "Cebu",
+      "University Of the Visayas-Mandaue",
+      "Bachelor of Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Annabel_1769431809.jpg"
+  },
+  {
+    "name": "Annie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Annie%201.png",
+    "description": "Hello there! I am teacher Annie. I have been an ESL teacher for 5 years both offline and online. I have a passion for teaching so I see to it that my class is always friendly, informative, and interesting. My interest is reading books. It helps me improve my knowledge and communication skills. I cannot wait to have a class with you at Nvoim. See you in my class!",
+    "video_id": "931862244",
+    "tags": [
+      "Manila",
+      "La consolation COllege",
+      "Business Management major in Computer Programming"
+    ],
+    "local_image": "images/teachers/Annie_1769431809.jpg"
+  },
+  {
+    "name": "Antonette",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1835%20Antonette%20(2).JPG",
+    "description": "Good day! My name is Antonnette. I graduated at Cebu Technological University wherein I took up Bachelor of Elementary Education. I am a positive person and very hardworking to achieve my goals. I am an easygoing person and friendly too. For me, teaching English is not just a job and passion, but it is about helping and motivating students to have courage in learning. Seeing my students improve their English skills is fulfilling. I can assure you that your speaking skills will enhance in just a short period of time, especially if there will be cooperation and involvement in your part. By having self confidence and dedication in studying English, you will be successful. What are you waiting for? Be part of our NVOIM Family! I will be glad to see you!",
+    "video_id": "767121189",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University - Carmen Campus",
+      "Bachelor of Science in Elementary Education"
+    ],
+    "local_image": "images/teachers/Antonette_1769431810.jpg"
+  },
+  {
+    "name": "Aubrey",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Aubrey..jpg",
+    "description": "Hi there! I am teacher Aubrey, an enthusiastic teacher with a passion for helping students unlock the joy of learning English. I am a licensed teacher with a degree in Bachelor of Elementary Education. I have been teaching English online for almost two years. I have taught learners of all ages and levels, and my lessons are always interactive and full of energy. Whether you want to improve your speaking skills, build confidence, or explore new cultures through language. I am here to guide you every step of the way. Come join me and we will make learning English an exciting adventure together!",
+    "video_id": "1104986389",
+    "tags": [
+      "Cebu",
+      "Cebu Technology Daan Bantayan-Tabogon Extension",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Aubrey_1769431810.jpg"
+  },
+  {
+    "name": "Autumn",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/IMG_3749.JPG",
+    "description": "Hi! I am Autumn. I have always been passionate about sharing my knowledge and inspiring young minds like yours. I believe that education is the key to unlocking your full potential and I am excited to embark on this learning journey with you. With passion and dedication, we can achieve incredible things with respect. So what are you waiting for? Join and study wth us.",
+    "video_id": "993869721",
+    "tags": [
+      "Cebu",
+      "Mater Dei College",
+      "Bachelor of Secondary Education Major in Values Education"
+    ],
+    "local_image": "images/teachers/Autumn_1769431810.jpg"
+  },
+  {
+    "name": "Aya",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT686%20AYA_2026-1.JPG",
+    "description": "Hi! I am Aya. I am fond of listening to music and watching movies. I also enjoy learning and teaching the language. I want both of us to have fun while learning and unlocking the world of the English Language and here at NVOIM, I and the rest of the teachers promise to make learning the language very fun and enjoyable thing to do. I am a friendly and a very funny teacher so I hope to see you all in my class.! Have a very nice day!",
+    "video_id": "795498365",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "Nutrition and Dietetics"
+    ],
+    "local_image": "images/teachers/Aya_1769431810.jpg"
+  },
+  {
+    "name": "Ayessa",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT924%20AYESSA.png",
+    "description": "Hello, my lovely students! I am Ayessa. I took up Bachelors in Secondary Education Major in English. I enjoy teaching kids and teenagers in our church, and talking to them is a good opportunity to practice my speaking skills. I believe that learning English is a process, and committing mistakes is part of it. So, do not worry because I am here to help you improve your English skills. We will have a fun and interactive class together! See you in my class!",
+    "video_id": "1092634239",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Ayessa_1769431810.jpg"
+  },
+  {
+    "name": "Belle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt777%20Belle_2026.jpg",
+    "description": "Hi, my name is Belle and I am a jolly person. I graduated with a degree of Bachelor of Secondary Education major in English. After that, I started working as a teacher and was able to handle Senior High Students. From that, I was able to improve my patience and found my passion in teaching. I really love teaching kids by seeing them achieving their goals and I am happy as I am one of the reasons of their success. Thank you and see you soon in my class. Bye!",
+    "video_id": "795500848",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Belle_1769431811.jpg"
+  },
+  {
+    "name": "Bernice",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1359%20Bernice.JPG",
+    "description": "Hello! I am teacher Bernice. I studied Interior Designing at University of San Carlos, but teaching is my passion since I was young. Im a Sunday school teacher and I love my students. I am not just your teacher, but a very good and loving friend, too. We can share secrets, interests, laughters and even sad moments. Just call me, and I ll be there right away! Learning and speaking English is totally fun! We will explore the English world and discover new things together! Welcome to NVOIM!",
+    "video_id": "774524058",
+    "tags": [
+      "Cebu",
+      "University of San Carlos - Talamban Campus",
+      "Bachelor of Fine Arts Major in Interior Design"
+    ],
+    "local_image": "images/teachers/Bernice_1769431811.jpg"
+  },
+  {
+    "name": "Betty(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2131%20Betty%20(2).JPG",
+    "description": "Good day to you! I am teacher Betty and I am pleased to meet you! I majored in Mathematics and graduated from Cebu Normal University. As for my teaching experiences, I have taught English for me nearly four years in total. I taught different kinds of learners from varied nationalities. For many, learning English could be challenging, however, it is also exciting. So, choose NVOIM to be part of your English journey!",
+    "video_id": "844830517",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Secondary Education Major in Mathematics"
+    ],
+    "local_image": "images/teachers/Betty(P)_1769431811.jpg"
+  },
+  {
+    "name": "Casey",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt921%20Casey_2026.jpg",
+    "description": "Hello! Im Casey. I hold a Bachelor of Science degree in Management and am a certified English as a Foreign Language (TEFL) teacher. Ive been teaching English for over ten years, working with students from diverse backgrounds and language levels. I take great pride in my students progress and am always honored to be part of their journey toward academic or professional success. Patience and encouragement are at the heart of my teaching style, and I strive to create a supportive environment where learning is both effective and enjoyable. Im looking forward to seeing you in class!",
+    "video_id": "1087943663",
+    "tags": [
+      "Manila",
+      "ST. LOUIS UNIVERSITY",
+      "BS COMMERCE MAJOR IN MANAGEMENT"
+    ],
+    "local_image": "images/teachers/Casey_1769431812.jpg"
+  },
+  {
+    "name": "Caster",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt908%20Caster_2026.jpg",
+    "description": "Hello! My name is Caster and I am an English teacher for 7 years. I love reading books, exploring history, and watching historical movies, which often inspire how I teach. Learning English is important because it opens doors to better opportunities, helps connect with people around the world and gives access to new and more diverse learning. As a teacher, my goal is to create a supportive and engaging environment for my students. I focus on improving their confidence in speaking, writing, and understanding English through practical exercises and meaningful conversations. I look forward to seeing my students progress, achieve their goals, and enjoy the process of learning. Let’s learn together and make this journey rewarding!",
+    "video_id": "1036257375",
+    "tags": [
+      "Manila",
+      "UNIVERSITY OF STO TOMAS",
+      "AB JOURNALISM"
+    ],
+    "local_image": "images/teachers/Caster_1769431812.jpg"
+  },
+  {
+    "name": "Cee",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/IMG_3186.JPG",
+    "description": "Do more, have more, in order to be more. I am Teacher Cee. I graduated from Surigao del Norte State University- Malimono Campus with the degree of Bachelor of Elementary Education major in General Content. I worked as a private tutor before and developed a love for teaching. Learning English opens the door to opportunities and discoveries of more things. So if you want to know more and unlock your full potential learning English will be your first step. I cannot wait to see you in class.",
+    "video_id": "970243536",
+    "tags": [
+      "Cebu",
+      "Surigao del Norte State University",
+      "Bachelor of Elementary Education Major in General Content"
+    ],
+    "local_image": "images/teachers/Cee_1769431812.jpg"
+  },
+  {
+    "name": "Chariss",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1736%20Chariss%20(2).JPG",
+    "description": "Greetings! I am Teacher Chariss. I took up Bachelor of Secondary Education - Major in English. I had an experience in teaching English in both local and foreign students. In my free time, I love to read English books, novels, literature and fan fictions. I always love reading because I want to keep learning something new. Because for me, learning is living. Learning English can be easy if you have hard work, dedication and ambition. Join us here in NVOIM and see it for yourself.",
+    "video_id": "769325982",
+    "tags": [
+      "Cebu",
+      "Consolacion Community College",
+      "Bachelor of Secondary Education - Major in English"
+    ],
+    "local_image": "images/teachers/Chariss_1769431812.jpg"
+  },
+  {
+    "name": "Charry",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Charry.jpg",
+    "description": "Knowing another language is like having another soul. Hello! I am Teacher Charry. I graduated from Cebu Technological University-Tuburan Campus with a degree in Bachelor of Elementary Education. I am a kind of teacher who is patient, caring, and creative. I believe English is a powerful tool that helps us connect with people, opens opportunities, and builds confidence. As your ESL teacher, I promise to make learning English simple, fun, and meaningful. Together, let us turn English into your key to a brighter future.",
+    "video_id": "1123445031",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Tuburan Campus",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Charry_1769431813.jpg"
+  },
+  {
+    "name": "Chaty",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1932%20Chaty.JPG",
+    "description": "Hello there! I am Teacher Chaty. I studied Bachelor of Secondary Education major in Technology and Livelihood Education at Cebu Technological University. Teaching is really my passion because I am happy to see my students learn from me and at the same time I also learn from them. So I am looking forward to seeing you in my class!",
+    "video_id": "780931743",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Secondary Education Major in Livelihood Education"
+    ],
+    "local_image": "images/teachers/Chaty_1769431814.jpg"
+  },
+  {
+    "name": "Chen",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Chen.JPG",
+    "description": "Hi! I am teacher Chen. I am a passionate teacher and I am willing to guide you in your English learning journey. I strive to make our class more interactive, fun, and informative. So come and join my class! Let us make English and enjoyable experience together. See you in class!",
+    "video_id": "1008322392",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University Pinamungajan Campus",
+      "Bachelor in Technology and Livelihood Education"
+    ],
+    "local_image": "images/teachers/Chen_1769431814.jpg"
+  },
+  {
+    "name": "Cherry",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2132%20Cherry%20(2).JPG",
+    "description": "Good day! I am teacher Cherry, a Cebu Normal Univeristy- Medellin Campus, elementary education graduate. I have been teaching students to develop their English skills at all levels, from beginner to advanced. If you want to improve and speak like a native speaker. I am here to help you be better at expressing yourself. I also love teaching children and I make sure that every class is fun and exciting. And the best part is, every students gets to speak English as much as they want. Because, I am here to help you understand English better. So, come and e a part of our growing family here at NVOIM.",
+    "video_id": "844830997",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University-Medellin Campus",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Cherry_1769431814.jpg"
+  },
+  {
+    "name": "Claire",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1652%20Claire.JPG",
+    "description": "Good day. This is teacher Claire from NVOIM. I have earned my degree in Bachelor of Secondary Education in 2017. Teaching has been my passion since I was young. I love teaching children. Imparting knowledge to my students has never been a problem. Hence, it has helped me grow as a person. I could never imagine life without my students. I have learned to cherish every second with them. Here in NVOIM, you do not only gain English skills but also a good relationship with diverse backgrounds. Thank you!",
+    "video_id": "770554425",
+    "tags": [
+      "Cebu",
+      "Mandaue City College",
+      "Bachelor of Secondary Education Major in Filipino"
+    ],
+    "local_image": "images/teachers/Claire_1769431814.jpg"
+  },
+  {
+    "name": "Daisy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT211%20DAISY_2026-1.JPG",
+    "description": "Hi! I am Teacher Daisy. I am a teacher by profession and Ive been teaching English for many years. I know that learning English is very challenging but I am here to guide and help you learn English in a fun, easy and interesting way. I hope see you in my class soon - bye!",
+    "video_id": "795485246",
+    "tags": [
+      "Manila",
+      "Pamantasan ng Lungsod ng Pasig",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Daisy_1769431814.jpg"
+  },
+  {
+    "name": "Danielle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT916%20DANIELLE_2026-1.JPG",
+    "description": "Hi lovely students! I am Danielle! I am a teacher by profession and my major is English. My hobbies are writing and reading English fiction stories. I also like watching English series and movies like supernatural. For me, learning English is a key to different doors and opportunities. It also prepares you for the modern world. I can help you polish your English skills by engaging in more fun and interactive lessons. I can also help you stimulate your curiosity in the language. I look forward to seeing you in my class. See you!",
+    "video_id": "1063450470",
+    "tags": [
+      "Manila",
+      "Jose Rizal University",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Danielle_1769431815.jpg"
+  },
+  {
+    "name": "Dell",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1582%20Dell%20(2).JPG",
+    "description": "Hi!!! I am Dell. How are you? I hope you are well. Let me tell you about myself. I am an ESL teacher for one year and nine months. I am hardworking and kind. When in terms of patience. I have great patience because teaching is my passion.",
+    "video_id": "769329436",
+    "tags": [
+      "Cebu",
+      "University of the Visayas- Mandaue",
+      "Bachelor of Science in Elementary Education"
+    ],
+    "local_image": "images/teachers/Dell_1769431815.jpg"
+  },
+  {
+    "name": "Drei",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2154%20Drei.JPG",
+    "description": "Hi! I am Teacher Drei. I graduated from Villaflores College. Teaching is my passion and I believe that teaching is a noble profession because it plays a crucial role in shaping the future of society. So what are you waiting for? Come and learn with us. See you soon!",
+    "video_id": "931863892",
+    "tags": [
+      "Cebu",
+      "Villaflores College",
+      "Bachelor of Elementary Education Major in General Content"
+    ],
+    "local_image": "images/teachers/Drei_1769431815.jpg"
+  },
+  {
+    "name": "Elfie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1828%20Elfie%20m1%20(2).JPG",
+    "description": "Hello, my name is Elfie, and I~m so excited to meet you! I am a willpower athlete, optimistic person, and I am hungry to learn more about English language too. I like to travel in different places and I love watch English and Korean movies. I believe that learning has no ending. It~s immeasurable. As what Gandhi said ~Live as if you were to die tomorrow. Learn as if you were to live forever~. Therefore, you can enjoy living in the moment, but remember that learning English will prepare you for the future. Teaching is one of my passion. In this way, I will be able to inspire other people with different culture to learn what I have learned from other people or on my previous job. I am ready to prepare you for your future only if you are ready enough? Are you ready? Looking forward to meet you soon.",
+    "video_id": "767119657",
+    "tags": [
+      "Cebu",
+      "University of Lapulapu- Mandaue",
+      "Bachelor of Science Major in Office Administration"
+    ],
+    "local_image": "images/teachers/Elfie_1769431815.jpg"
+  },
+  {
+    "name": "Ellie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Ellie.JPG",
+    "description": "Hi! I am Ellie! a graduate of Mater Dei College. My teaching experience while I was in University helped me a lot to become a patient and understanding teacher. With that, experience I can fully assure you that I will be able to help you every step of the way. Let us learn together and be friends as well. See you in class",
+    "video_id": "1008321894",
+    "tags": [
+      "Cebu",
+      "Mater Dei College",
+      "Bachelor of Elementary Education Major in Values Education"
+    ],
+    "local_image": "images/teachers/Ellie_1769431816.jpg"
+  },
+  {
+    "name": "Emerry",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Emerry.jpg",
+    "description": "Hi! I am Teacher Emerry! I graduated with a degree in Elementary Education major in general content. One of the things that you should know about me is that I am a licensed professional teacher with teaching experience in both community and private schools. With the experience I gained valuable knowledge, skills, and strategies in handling students with different backgrounds. Learning English for me is very important because it helps us to communicate better. Let us embark on this language journey together and unlock new possibilities",
+    "video_id": "1085942808",
+    "tags": [
+      "Cebu",
+      "Mandaue City College",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Emerry_1769431816.jpg"
+  },
+  {
+    "name": "Emily",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt659%20Emily_2026.jpg",
+    "description": "Hello! My name is EMILY. I love teaching because I want to help children achieve their best. I also love watching students discover new things and witnessing those moments when students start to understand the things they didnt know before. I hope to see you in my class. You will enjoy learning English with me!",
+    "video_id": "799387768",
+    "tags": [
+      "Manila",
+      "Eulogio Amang Rodriguez Institute",
+      "Fine Arts major in Interior Design"
+    ],
+    "local_image": "images/teachers/Emily_1769431817.jpg"
+  },
+  {
+    "name": "Eric(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt938%20Eric_2026.jpg",
+    "description": "Hello students! My name is Eric. I am an Engineering graduate and I worked as a Mechanical Engineer for over 20 years, and as a Sunday school teacher and tutor for the past three years. ‎During my free time, I like reading history books, watching comedy TV series, and historical documentaries. ‎ ‎We now live in a world where People from different countries and cultures can easily communicate with each other through technology. And English is acknowledged as THE global language. ‎ ‎As a teacher, I could help you learn English by creating a supportive, encouraging, and fun environment, where we would both enjoy our learning sessions. ‎ ‎I am looking forward to meeting you. And I am excited to see you progress in your English skills.",
+    "video_id": "1131529384",
+    "tags": [
+      "Manila",
+      "Don Bosco Technical College",
+      "BS Mechanical Engineering"
+    ],
+    "local_image": "images/teachers/Eric(M)_1769431817.jpg"
+  },
+  {
+    "name": "Eva",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt939%20Eva_2026.jpg",
+    "description": "Hi Im Eva! I find great pleasure in spending time at the park, and I have a deep appreciation for music. I also like exploring new food. I find fulfillment in helping students improve their English skills. I have had the privilege of guiding my students to speak English better for over 12 years, so, I can lead you to a whole new world of fun and learning experience. I am dedicated and passionate about helping students reach their language goals. I enjoy teaching conversational English, and I can help you do better in this area. If you are afraid to use English ,no worries..I am here to support and coach so you can be comfortable in taking risks to use English. I look forward to getting to know you. Let us study together!",
+    "video_id": "1131531212",
+    "tags": [
+      "Manila",
+      "UNIVERSITY OF STO TOMAS",
+      "BS TOURISM"
+    ],
+    "local_image": "images/teachers/Eva_1769431818.jpg"
+  },
+  {
+    "name": "Fatima",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Fatima%201.png",
+    "description": "Hello Students, I am Fatima, a graduate of Bachelor of Secondary Education and a Licensed Professional Teacher. Watching movies is one of my hobbies. I also love singing and especially teaching. Learning English is fun and interesting because you will ll learn a lot of words and useful expressions. So, I am here to help you enhance your writing, listening, speaking and communication skills using the English language. I am looking forward to seeing you in my class!",
+    "video_id": "991340964",
+    "tags": [
+      "Manila",
+      "Camarines Norte State College",
+      "Bachelor in Secondary Education"
+    ],
+    "local_image": "images/teachers/Fatima_1769431818.jpg"
+  },
+  {
+    "name": "Fay",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1476%20Fay%20(2).JPG",
+    "description": "Hi ! I am Fay. I took up BAchelor of Elementary Education. I do believe in this, \"Do not train children to learning by force and harshness, but direct them to it by what amuses their minds, so that you may be better able to discover with accuracy the peculiar bent of the genius of each.\" -Plato Here in NVOIM we do not just teach students but we nurture and encourage them to boost their self-confidence and be more successful by learning English in a fun way. :)",
+    "video_id": "769330695",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University(Main Campus)",
+      "Bachelor of Elementary Education Major in Home Economics and Livelihood Education"
+    ],
+    "local_image": "images/teachers/Fay_1769431818.jpg"
+  },
+  {
+    "name": "Flor",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt867%20Flor_2026.jpg",
+    "description": "Hi students! I am Flor, a licensed professional teacher. I have been in the teaching industry for almost 7 years. I like learning new skills and recently, I have been interested in exploring sign language for the deaf. Learning English makes our brain stronger and more versatile. It is not only useful, but it also gives a lot of satisfaction and making progress that will make you feel great. I am looking forward to seeing you here at NVOIM.",
+    "video_id": "845779548",
+    "tags": [
+      "Manila",
+      "Pamantasan ng Lungsod ng Pasig",
+      "Bachelor of Secondary Education major in Mathematics"
+    ],
+    "local_image": "images/teachers/Flor_1769431818.jpg"
+  },
+  {
+    "name": "Genevieve",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2030%20Genevieve%20(2).JPG",
+    "description": "Hello I am Teacher Genevieve. Teaching English is one of the things I enjoy the most. In my class, I work with enthusiasm and positivity. It gives me joy meeting learners around the world so I look forward to speaking with you soon.",
+    "video_id": "764825662",
+    "tags": [
+      "Cebu",
+      "University of Cebu Lapu-lapu and Mandaue",
+      "Bachelor of Secondary Education-Major in English"
+    ],
+    "local_image": "images/teachers/Genevieve_1769431819.jpg"
+  },
+  {
+    "name": "Gerda",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2102%20Gerda.JPG",
+    "description": "Hi! I am Teacher Gerda a graduate of Cebu Technological University-Carmen Campus with the Degree of Bachelor of Elementary Education. I am friendly and dedicated person. I love to teach and share my knowledge to my students. Learning English is a work in progress. It can help to communicate and build a relationship to others. Because I believe that in learning it can be fun and at the same time we learn.",
+    "video_id": "761285616",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Carmen Campus",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Gerda_1769431819.jpg"
+  },
+  {
+    "name": "Ghandi",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Ghnadi%201.png",
+    "description": "Hello, students! I am Teacher Ghandi, a graduate of the Bachelor of Secondary Education Major in Science. My hobbies include listening to English music and watching TV shows. Learning English increases career opportunities and helps connect with diverse people. I will help you improve your English skills by incorporating real-life conversations and continuously supporting you. I am excited to meet you all soon!",
+    "video_id": "1121377403",
+    "tags": [
+      "Manila",
+      "Rizal Technological University",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Ghandi_1769431820.jpg"
+  },
+  {
+    "name": "Gia",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt878%20Gia_2026.jpg",
+    "description": "Hello students! My name is Gia. I took up a Bachelor of Education Major in English. I I have been teaching ESL for quite a long time. I like watching English movies during my free time and I also like to listen to English songs. Learning English is hard but with the right approach and strategies in teaching, anyone can learn English easily. I am certain that I can help you learn and speak in English with confidence. So, I hope you will give me the opportunity to teach amazing students like you. Thank you and see you in my class!",
+    "video_id": "897795566",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Gia_1769431820.jpg"
+  },
+  {
+    "name": "Gie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Gie%20%201.png",
+    "description": "Hello there, I am Gie. A licensed professional teacher. I have been teaching for almost three years in one of the schools here in the Philippines. I taught diverse students. So seeing them learn, grow, and improve their English language makes me happy. So if you are interested, come and join me in my class. I will be happy to see and study with you soon.",
+    "video_id": "766308771",
+    "tags": [
+      "Manila",
+      "Central Bicol State University of Agriculture",
+      "Bachelor of Elementary Education"
+    ],
+    "local_image": "images/teachers/Gie_1769431820.jpg"
+  },
+  {
+    "name": "Grace",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT904%20GRACE_2026-1.JPG",
+    "description": "Hello, lovely students! My name is Grace. I took up a Bachelor of Secondary Education Major in English. One of my hobbies is reading webtoon because I love their stories and beautiful animations. For me, learning English opens up a world of opportunities for communication and personal growth making it an important skill in todays globalized society. As a teacher, I would implement interactive and immersive activities to enhance my students English skills while fostering a supportive and engaging class. Again, Im Grace, and Im looking forward to seeing you in my class.",
+    "video_id": "1015075606",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Grace_1769431820.jpg"
+  },
+  {
+    "name": "Grachelle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2136%20Grachelle%20(2).JPG",
+    "description": "Hi there! I am Grachelle, your English teacher. Learning a new language can be both exciting and challenging and I am here to make learning English fun and easy. I am here to guide you every step of the way on this journey. In my class, I make sure that the students feel heard and understood. I cannot wait to get to know each of you and help you achieve your language goals. Let us start this exciting journey together!",
+    "video_id": "866649699",
+    "tags": [
+      "Cebu",
+      "Northern Cebu Colleges Incorporated",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Grachelle_1769431822.jpg"
+  },
+  {
+    "name": "Han",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2121%20Han.JPG",
+    "description": "\"What we learn is part of who we are\"Hi there! I am teacher Han. I took up Bachelor in Industrial Technology major in computer. I assure you that with me you will learn English Language in a very exciting way, where learning is not just studying but making friends and having fun. So, see you.",
+    "video_id": "792813842",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor in industrial technology major in computer technology"
+    ],
+    "local_image": "images/teachers/Han_1769431822.jpg"
+  },
+  {
+    "name": "Hazey",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Hazey.JPG",
+    "description": "Hello! I am teacher Hazey! I was a grade school teacher who had the opportunity to teach various subjects. Acquiring proficiency in English provides numerous job opportunities and facilitates global communication. With that, I can assure you that I can be a big help toward your goal of learning English. I am excited to finally meet you in class.",
+    "video_id": "1008320624",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Hazey_1769431822.jpg"
+  },
+  {
+    "name": "Hyacinth(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/hyacinth.jpg",
+    "description": "Learning English is fun! Hi, my name is Hyacinth. I graduated with a degree of Bachelor of Secondary Education Major in English. I have experienced working as a teacher, and I was able to teach kids and adults. Do you want to improve your vocabulary and speak like a native English speaker while having fun? Come and enroll in my class. See you",
+    "video_id": "1090356957",
+    "tags": [
+      "Cebu",
+      "La Consolacion College-Liloan",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/Hyacinth(P)_1769431822.jpg"
+  },
+  {
+    "name": "Imee",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT716%20IMEE.png",
+    "description": "Hello! I am Imee! I graduated from the University of Pasig with a degree in Bachelor of Secondary Education Major in English. I received different academic awards in school like the Dean s Lister and President Lister. Before I graduated, I was blessed to receive the Outstanding Student Teacher award during my on-the-job training. I like teaching because it has been my dream ever since I was a little girl, and now I am slowly turning my dream into reality. Struggles and hardships may come along but it is a challenge to become the person you want to be. I am looking forward to meeting you and hope to see you soon in my class!",
+    "video_id": "799388789",
+    "tags": [
+      "Manila",
+      "Pamantasan ng Lungsod ng Pasig",
+      "BSED English"
+    ],
+    "local_image": "images/teachers/Imee_1769431823.jpg"
+  },
+  {
+    "name": "Irene",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1523%20Irene2.JPG",
+    "description": "Hello I am Teacher Irene! I know English can be difficult and boring, but I will do my best to make it as enjoyable as possible. I really love teaching and it is my passion to teach and help my students learn something in which he/she finds it difficult. We can talk about anything under the sun. I hope to see you in my class!",
+    "video_id": "797216587",
+    "tags": [
+      "Cebu",
+      "University of the Visayas-Mandaue",
+      "Bachelor of Elementary Education"
+    ],
+    "local_image": "images/teachers/Irene_1769431823.jpg"
+  },
+  {
+    "name": "Isabel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2097%20Isabel.JPG",
+    "description": "Hi! I am teacher Isabel a graduate from Cebu Technological University-Carmen Campus with the degree of Bachelor of Elementary Education Major in Content Education. I really love everything that I do in relation to teaching. I am always motivated and committed to helping students make progress and become confident and productive on their own. Teaching is not that easy, but I do believe that loving everything you do will make your work progressive and effective. So let us enjoy everything and have fun teaching and learning.",
+    "video_id": "761290919",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Educationmajor in content Education"
+    ],
+    "local_image": "images/teachers/Isabel_1769431824.jpg"
+  },
+  {
+    "name": "Isla",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Isla.JPG",
+    "description": "To learn a language is to have one more window from which to look at the world. Hi! I am Isla but you can call me teacher Isla. I am a fresh graduate from Cebu Normal University with a degree of Bachelor of Arts in Communication major in Broadcast Journalism. I believe that learning English is an open door that will allow us to communicate effectively with the people from all over the world.",
+    "video_id": "889724490",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Arts in Communication Major in Broadcast Journalism"
+    ],
+    "local_image": "images/teachers/Isla_1769431824.jpg"
+  },
+  {
+    "name": "Iya",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT611%20IYA_2026-1.JPG",
+    "description": "Hi there! Im Teacher Iya. I have been teaching English for a couple of years now. And, I do love to see my students learn English and enjoy my class at the same time. So come and join me as we explore the English Language and experience the fun and excitement of studying here at NVOIM. See you soon, students!",
+    "video_id": "795497721",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "Bachelor of Arts in English"
+    ],
+    "local_image": "images/teachers/Iya_1769431824.jpg"
+  },
+  {
+    "name": "Iyrra",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1842%20Iyrra%20(2).JPG",
+    "description": "Hi! I am teacher Iyrra. I graduated at the University of the Visayas with a degree of Bachelor of Secondary Education. Why did I choose this kind of path? it is simply because teaching is my passion. Teaching is really what I want to do and what I love to do. Teaching will be forever part of my life. As a teacher, I always make sure that my student will learn something. Learning while having fun is my goal. Therefore, I am a passionate and hardworking kind of teacher. I am looking forward to seeing you in my class. Thank you!",
+    "video_id": "770968659",
+    "tags": [
+      "Cebu",
+      "University of the Visayas",
+      "Bachelor of Secondary Education Major in Music, Arts, Physical Education, and Health"
+    ],
+    "local_image": "images/teachers/Iyrra_1769431824.jpg"
+  },
+  {
+    "name": "Jackie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Jackie%207.png",
+    "description": "Hello everyone! My name is Jackie! I have been teaching English for five years, and I hold a Bachelors degree in Elementary Education. Teaching has always been my passion, and one of my biggest interests is helping students communicate with confidence through English. I believe learning English is not just about grammar and vocabulary; it is about building confidence and using English in real life. That is why I teach my students based on the way they learn best, whether it’s through speaking, listening, or practice. So if you want to improve your English in a supportive and effective way, I would love to help you. Come and join my class. Let us learn together!",
+    "video_id": "1111146831",
+    "tags": [
+      "Manila",
+      "Trece Martires City College",
+      "Bachelor in Elementary Education"
+    ],
+    "local_image": "images/teachers/Jackie_1769431824.jpg"
+  },
+  {
+    "name": "Jacky",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Jacky.JPG",
+    "description": "Hi, there! I am Teacher Jacky. I graduated from Lapu-Lapu City College. I took up a Bachelor of Secondary Education major in Filipino. Learning English is difficult, but no worries. Let us learn English with ease and fun. If you have the determination in life everything will go smoothly. Just keep going and believe in yourself. Never stop learning because life never stops teaching. Book in my class. See you there!",
+    "video_id": "940649873",
+    "tags": [
+      "Cebu",
+      "Lapu Lapu City College",
+      "Bachelor of Secondary Education major in Filipino"
+    ],
+    "local_image": "images/teachers/Jacky_1769431824.jpg"
+  },
+  {
+    "name": "Jaezelle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt778%20Jaezelle_2026.jpg",
+    "description": "Hello! My name is Teacher Jaezelle. I am an education graduate and I have experienced handling diverse students with different ages and grade levels. I am very passionate in teaching because I love sharing my knowledge and helping my students in achieving their goals. I am very patient and considerate for I believe that teachers must empathize with students, respect them and believe that each one has something special that can be built upon. I am looking forward to celebrating your small and big progress. Hope to see you soon!",
+    "video_id": "797544648",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Jaezelle_1769431825.jpg"
+  },
+  {
+    "name": "Jai",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2057%20Jai%20(2).JPG",
+    "description": "Hi! I am teacher Jai. I believe that you should need to have objectives in every goal that you want to achieve. Life is full of opportunities so do not be afraid to learn new things like English. If you want to learn more, come and join in my class for I will do my best to help you. See you!!",
+    "video_id": "796476150",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Secondary Education Major in Livelihood Education"
+    ],
+    "local_image": "images/teachers/Jai_1769431825.jpg"
+  },
+  {
+    "name": "Jaima",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2024%20Jaima.JPG",
+    "description": "Hi! I am teacher Jaima. I graduated college from Royal Christian College with the degree of Bachelor in Elementary Education Major in General Content. I am a very patient teacher who believes that English takes effort to learn. See you in class!",
+    "video_id": "774525420",
+    "tags": [
+      "Cebu",
+      "Royal Christian College",
+      "Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Jaima_1769431826.jpg"
+  },
+  {
+    "name": "Jamaica",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1824%20Jamaica%20(3).JPG",
+    "description": "Hi! I am Teacher Jamaica. I studied at the University of Cebu-Main with a degree of Bachelor of Arts major in Psychology. For me, learning the English language is like riding a roller coaster. At first, you are afraid to ride it but when you get used to it, you will realize how fun it is. Just like learning the English language, at first you would be afraid to learn because you think you will just make a mistake but when you get used to it, it will be easier for you to learn it, understand it and make use of it in your daily life. As an NVOIM teacher, my goal is to help the students enhance their communication skills and also to understand what the students want. In NVOIM, you will learn a lot and of course. We will help you to be a better one. Again, this is teacher Jamaica. I hope to see you in my class. Have a nice day.",
+    "video_id": "306113345",
+    "tags": [
+      "Cebu",
+      "University of Cebu - Main Campus",
+      "Bachelor of Arts Major in Psychology"
+    ],
+    "local_image": "images/teachers/Jamaica_1769431826.jpg"
+  },
+  {
+    "name": "Janvee",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2035%20Janvee.JPG",
+    "description": "Hi, I am teacher Janvee. I am a friendly and passionate teacher. My dream is to help my students achieve their dreams into reality. I will help you gain your confidence in speaking, reading and listening. So what are you waiting for, come and join in my class and be a part of our NVOIM family.",
+    "video_id": "782781832",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Education Major in General Content"
+    ],
+    "local_image": "images/teachers/Janvee_1769431826.jpg"
+  },
+  {
+    "name": "Jas",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2140%20Jas%20e5.JPG",
+    "description": "Hi, Good day! My name is Jas. I am a graduate of Bachelor in Elementary Education at Sibonga Community College. I am a dedicated, optimistic, and goal-driven teacher. I have been teaching English to diverse learners since 2019. Being an English as a Second Language (ESL) teacher ensures students develop an understanding and gives students the practical ability to use the language.",
+    "video_id": "879640590",
+    "tags": [
+      "Cebu",
+      "Sibonga Community College",
+      "Bachelor of Elementary Education - Major in General Education"
+    ],
+    "local_image": "images/teachers/Jas_1769431826.jpg"
+  },
+  {
+    "name": "Jason(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt71%20Jason_2026.jpg",
+    "description": "Are you ready to improve your English confidence? Are you looking for a teacher who is warm, attentive, dynamic and passionate? Our classes together will be exciting, full of fun, and interesting! I am Jason, and I have been teaching English for over 10 years now. Let us start the fun! See you in my class^^",
+    "video_id": "795484470",
+    "tags": [
+      "Manila",
+      "Jesus Reigns Christian College",
+      "Bachelor of Arts in Psychology"
+    ],
+    "local_image": "images/teachers/Jason(M)_1769431827.jpg"
+  },
+  {
+    "name": "Jel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2068%20Jel%20(2).JPG",
+    "description": "Hi! I am teacher Jel! I love teaching with great passion and energy. I have been sharing my enthusiasm for English for more than a year now. I have taught English to young students and adults of different nationalities. Would you like to study English with me? I will be very glad to meet you soon in class.",
+    "video_id": "770556194",
+    "tags": [
+      "Cebu",
+      "Sibonga Community College",
+      "Bachelor of Elementary Education"
+    ],
+    "local_image": "images/teachers/Jel_1769431827.jpg"
+  },
+  {
+    "name": "Jelly",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1250%20Jelly%20e6.JPG",
+    "description": "I welcome you here in NVOIM. ^ ^ I am teacher Jelly. I graduated from the University of Cebu-LM, with a degree of Bachelor of Secondary Education major in English. I have been teaching English to Korean students for almost 7 years now. And I find it fun in teaching them. Let us have fun while learning English here in NVOIM... ^ ^",
+    "video_id": "780931784",
+    "tags": [
+      "Cebu",
+      "University of Cebu",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Jelly_1769431828.jpg"
+  },
+  {
+    "name": "Jenny",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt689%20Jenny_2026.jpg",
+    "description": "Hi, I am Jenny. I graduated from AMA Computer Learning Center major in Computer Graphics and Animation. I experienced teaching Koreans from other company with different levels of English communication skills. I know that English can be difficult but I assure you that it is very interesting and useful language. We can talk about anything and everything here at Nvoim. See you in my class.",
+    "video_id": "799388414",
+    "tags": [
+      "Manila",
+      "AMA Computer Learning Center",
+      "Computer Graphics and Animation"
+    ],
+    "local_image": "images/teachers/Jenny_1769431828.jpg"
+  },
+  {
+    "name": "Jerry",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2044%20Jerry.JPG",
+    "description": "Hi! I am Teacher Jerry, Education is the most powerful weapon which you can use to change the world. Let us learn the universal language which is English. Here in NVOIM English Corporation, we provide fun, interactive, and quality education. So, what are you waiting for? Come and Join Us!",
+    "video_id": "774920367",
+    "tags": [
+      "Cebu",
+      "Cebu Institute of Technology-University",
+      "Bachelor of Elementary Major in General Education"
+    ],
+    "local_image": "images/teachers/Jerry_1769431828.jpg"
+  },
+  {
+    "name": "Jesiel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2098%20Jesiel%20(2).JPG",
+    "description": "Hello! I am Teacher Jesiel and I graduated from Cebu Technological University- Main Campus with a degree of Bachelor of Technical Vocational Teacher Education Major in Food and Service Management. In teaching, I am passionate, kind and I always make sure that my students can feel comfort during classes. I taught grade schoolers before and it was an amazing experience. It makes me more eager to teach and help students. And here in NVoim, we teach English not just to help students learn but also to make them more inspire to study well and can feel the essence of belongingness.",
+    "video_id": "761289693",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University - Main Campus",
+      "Bachelor of Technical Vocational Teacher Education_ Major in Food and Service Management"
+    ],
+    "local_image": "images/teachers/Jesiel_1769431828.jpg"
+  },
+  {
+    "name": "Jewel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1971%20Jewel%20(2).JPG",
+    "description": "You are never too old to set another goal or to dream a new dream. Hi everyone! I am teacher Jewel. I graduated with a degree of Bachelor of Education major in General Education at Cordova Public College. I have been teaching ESL for a year and a half. Learning English is fun. You are not only going to learn it but also you will also understand why it is considered as the first language in almost every country. You will love its complexity and a lot more. If you are having difficulties in English. No beggie. I am here to help you to develop your English speaking skills.",
+    "video_id": "767124621",
+    "tags": [
+      "Cebu",
+      "Cordova Public College",
+      "Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Jewel_1769431829.jpg"
+  },
+  {
+    "name": "Jhonny(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2089%20Jhonny%20(2).JPG",
+    "description": "Hi! Iam Teacher Johnny a graduate with a degree of Bachelor in Secondary Education Major in Science from CTU- Main Campus. I am an optimistic person and a passionate teacher. Challenging yet fullfiling. I believe that learning English gives us better opportunities. It also helps us to express ourselves and communicate better with each other. I would love to impart my knowledge about English. So, I hope to see you in my class. See you!",
+    "video_id": "751038843",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Secondary Education-Major in Science"
+    ],
+    "local_image": "images/teachers/Jhonny(M)_1769431830.jpg"
+  },
+  {
+    "name": "Jill",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2034%20Jill%20(3).JPG",
+    "description": "Hi! My name is Jill. I am your passionate and committed teacher. Learning English is difficult but, with patience and perseverance, you will surely reach your destination. I would be very happy to be your English Teacher. I am looking forward to meeting you in my class.",
+    "video_id": "764827457",
+    "tags": [
+      "Cebu",
+      "University of Cebu Lapu Lapu Mandau",
+      "Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Jill_1769431830.jpg"
+  },
+  {
+    "name": "Jing",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc%201214%20Jing.JPG",
+    "description": "Hi! I am Teacher Jing Nice to meet you. Nice to meet you too. English is fun. English is good. So, what are you waiting for. Stand Up! Get Up! Take a walk! Bring your big smile and come with us. It is mine, it is yours, it is our chance, to connect, to be connected through what we call English.",
+    "video_id": "796203179",
+    "tags": [
+      "Cebu",
+      "Holy Name University",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Jing_1769431830.jpg"
+  },
+  {
+    "name": "Jochelle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2123%20Jochelle%20e6.JPG",
+    "description": "One of the most well-known philosophers once said You will learn something by doing it. Hi! I am your Teacher Jochelle a recent elementary education graduate with a focus on content instruction. I completed my studies at the San Francisco Campus of Cebu Technological University. Again, this is your teacher Jochelle saying, Let us Learn and have fun while studying English together! Enroll in NVOIM and learn with me! See you!",
+    "video_id": "811867580",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Education Major in General Content"
+    ],
+    "local_image": "images/teachers/Jochelle_1769431830.jpg"
+  },
+  {
+    "name": "Joshua(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1665%20Joshua%20(2).JPG",
+    "description": "Hi, I am Teacher Joshua. I graduated with a degree in Bachelor of Elementary Education Major in Special Education and Technological Livelihood Education. I do believe that the secret of life is enjoying the passage of time, and the everyday lesson you have learned from it. Here at NVOIM, we will guide you to bring out the best of you. This is for you to have a core in English Language and speak English fluently too. Together we will achieve that in a fun and enjoyable way for you to show your full potential in Speaking English confidently. We are going to make it exciting and meaningful to build a better you.",
+    "video_id": "774917454",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Elementary Education Major in Special Education"
+    ],
+    "local_image": "images/teachers/Joshua(M)_1769431830.jpg"
+  },
+  {
+    "name": "Joy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT859%20JOY.png",
+    "description": "Hi. I am joy. I love reading novels and it is one of the reasons why I learned English. I also like watching online and western series. Personally, learning English is essential nowadays; English is not easy to learn and cannot be learned overnight, continuous practice of what you have learned is a must. Reading together and having a conservation with someone while correcting their English lapses is one of the ways I use to help them learn. I will help you practice conversing in English and at the same time learn the right words to use during the conversation. With that being said, I am looking forward to having classes with you!",
+    "video_id": "804953265",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "Business Administration"
+    ],
+    "local_image": "images/teachers/Joy_1769431832.jpg"
+  },
+  {
+    "name": "Jucyl",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Jucyl.JPG",
+    "description": "Hello, I am Jucyl. I graduated from Cebu Technological University Main Campus. I took up a Bachelor of Technology and Livelihood Education major in Home Economics. I am patient, kind, and persistent. I believe learning English is important for communication since it is a universal language. So, come with me as we learn here at NVOIM. See you",
+    "video_id": "954614132",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Technology and Livelihood Education Major in Home Economicsd"
+    ],
+    "local_image": "images/teachers/Jucyl_1769431832.jpg"
+  },
+  {
+    "name": "Judy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt833%20Judy_2026.jpg",
+    "description": "Hi! I am Teacher Judy. I took Bachelor of Science in Information Systems. I love reading books and meeting people. I like learning about Korean culture, too. I like seeing my students learn something from me. I have been teaching English to students with different levels for more than 6 years, so I would like to share my skills with you, too. Do you want to take your skills to the next level? Study with us at NVOIM! See you there!",
+    "video_id": "685677939",
+    "tags": [
+      "Manila",
+      "Informatics International College",
+      "Information Systems"
+    ],
+    "local_image": "images/teachers/Judy_1769431832.jpg"
+  },
+  {
+    "name": "Karren",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT768%20KARREN.png",
+    "description": "Hi! I am Teacher Karren. Teaching is one of the things I like doing. I am excited to guide you in learning the English language to improve your communication skills so you could communicate more confidently and effectively. I look forward to teaching you in the most fun and easiest way possible. I hope to see you all, in my class. Have a good day!",
+    "video_id": "849992996",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor of Arts major in English"
+    ],
+    "local_image": "images/teachers/Karren_1769431832.jpg"
+  },
+  {
+    "name": "Kate",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt887%20Kate_2026.jpg",
+    "description": "Hello there! I am Teacher Kate, and I graduated with a degree in Bachelor of Elementary Education. I have a teaching license with four years of teaching experience. I am passionate about continuing to teach and helping you learn more about the English language. In my free time, I enjoy watching movies and TV shows to gain more knowledge that I can share with my class. I also love to listen to music and sing. So, come and learn with me. Let us make English fun and easy! See you soon!",
+    "video_id": "935766656",
+    "tags": [
+      "Manila",
+      "National Teachers College",
+      "Bachelor of Elementary Education"
+    ],
+    "local_image": "images/teachers/Kate_1769431832.jpg"
+  },
+  {
+    "name": "Kathryn",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1837%20Kathryn.JPG",
+    "description": "Good day! I am teacher Kathryn. I graduated Bachelor of Elementary Education major in General Education from Cebu Normal University. I have experienced working as an ESL camp teacher (offline). I also tried working as a substitute teacher in a private school. I am patient enough. As a teacher, I am capable of dealing with other people and do the best I can in teaching. I will try my best to meet up your expectations and goal with me here at NVOIM.",
+    "video_id": "764826804",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Kathryn_1769431832.jpg"
+  },
+  {
+    "name": "Kattlia",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1532%20Kattlia%20(2).JPG",
+    "description": "Hi! My name is Kattlia. Teaching requires passion and patience. Along your goal to improve your English skills, I will accompany and help you throughout your journey as second language learners. It is essential to build a good relationship with students, so I want to assure you that you are in a conducive learning environment where you do not have to worry much. Rather, it gives you excitement to learn more. I am thrilled to see you. I will definitely wait for you! See you!",
+    "video_id": "799363217",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University - Main Campus",
+      "Bachelor of Secondary Education Major in Mathematics"
+    ],
+    "local_image": "images/teachers/Kattlia_1769431834.jpg"
+  },
+  {
+    "name": "Kaye",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt747%20Kaye_2026.jpg",
+    "description": "Hi! I am teacher Kaye. I know everyone wants to learn English in order to communicate and express your thoughts easily. What are you waiting for? Enroll here in NVOIM now! I will help you enhance your speaking skills. See you and have a great day!",
+    "video_id": "797284392",
+    "tags": [
+      "Manila",
+      "UNIVERSITY OF RIZAL SYSTEM",
+      "BACHELOR OF SECONDARY EDUCATION MAJOR IN T.L.E"
+    ],
+    "local_image": "images/teachers/Kaye_1769431834.jpg"
+  },
+  {
+    "name": "Kiah",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2104%20Kiah.JPG",
+    "description": "Hi! I am teacher Kiah. I graduated at Cebu Technological University Carmen Campus and took up Bachelor of Elementary Education major in Content Education. I am dedicated, kind and a friendly teacher. Teaching English is one of the things I enjoyed the most. It gives me the opportunity to share my knowledge and be able to know the culture of others. Itis not only about grammar or making better sentences but it is also about chances to speak up and to be heard by others. Come and learn with me. See you!",
+    "video_id": "761283886",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Kiah_1769431834.jpg"
+  },
+  {
+    "name": "Klien",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Klien.JPG",
+    "description": "When you acknowledge your potential, you are doing yourself a big favor of reaching your dreams. Hi! This is Teacher Klien! It is actually been more than 8 fascinating years that I have been teaching English here at NVOIM. I find joy in helping my students unlock their potential in Communication. English may seem complicated but we will help you get to prove that you have that excellent potential in communication. You will reach your dreams in no time so see you in my class!",
+    "video_id": "295974916",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor in Secndary Education"
+    ],
+    "local_image": "images/teachers/Klien_1769431834.jpg"
+  },
+  {
+    "name": "Kreeshia",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt746%20Kreeshia_2026.jpg",
+    "description": "Hi! My name is Kreeshia! I love reading, watching series, traveling especially on the beach, and communicating with other people. Teaching is really my passion because through this I can share my knowledge. And sharing my knowledge to my students is really satisfying for me. Seeing them learn and improve really makes me happy. When I was young, I was able to practice my teaching skills in my 3 younger brothers because in my free time, I tutor them in their lessons. So, if you want to learn a lot about English, come and join me in my class. I am so excited to teach and talk to you. Hope to see you soon my future students!",
+    "video_id": "795497192",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Kreeshia_1769431834.jpg"
+  },
+  {
+    "name": "Kris",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Kris%20%201.png",
+    "description": "Hi! I am teacher Kris! I earned a degree in Bachelor of Secondary Education Major in English. I was able to teach various students before and I am excited to teach here at NVOIM. I love reading English fiction novels as my way of elarning more of the language. English is really fun because it helps me connect with the world and understand different perspectives. As your teacher, I will also help you acheive that so you could also experience the beauty of communicating through the use of English lanaguage. I am very excited to see you in my class",
+    "video_id": "906285255",
+    "tags": [
+      "Manila",
+      "Mindoro State University",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Kris_1769431835.jpg"
+  },
+  {
+    "name": "Lara",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1651%20Lara%20(2).JPG",
+    "description": "A good teacher knows each student is special and can learn at their own pace. Hello there! I am Teacher Lara. I give high respect towards my student and I am passionate in my work. One of my goals is to help my students bring out the best in them. Here in NVOIM, we focus on our student needs, interests and dreams. I want to help you and inspire you to enjoy learning English. See you in my class!",
+    "video_id": "770554881",
+    "tags": [
+      "Cebu",
+      "University of Cebu- Lapulapu and Mandaue",
+      "Bachelor of Science Major in Accountancy"
+    ],
+    "local_image": "images/teachers/Lara_1769431835.jpg"
+  },
+  {
+    "name": "Leigh",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2093%20Leigh%20(3).JPG",
+    "description": "Hi! I am teacher Leigh. I finished my studies at Cebu Technological University-Tuburan Campus with a degree of Bachelor of Secondary Education major in Home Economics Technology. Teaching is my passion that is why I loved to be in this field. And I always believed that the more you teach the more that you will learn. Learning English has a long process to consider, and as a teacher I must also have the determination and patience to do it with my best. Let us learn together and see you.",
+    "video_id": "761328987",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University(Tuburan Campus)",
+      "Bachelor of Secondary Education Major in Technology and Livelihood Economics"
+    ],
+    "local_image": "images/teachers/Leigh_1769431836.jpg"
+  },
+  {
+    "name": "Lem",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2074%20Lem.JPG",
+    "description": "Hello, I am Teachers Lem! Teaching does not guarantee financial security. But for me, I enjoy teaching because it is a fulfilling challenge. I wanted to help those students who wanted to learn more about English. Here in NVOIM, we set teaching strategies that are helpful and appropriate according to their needs.  So let us study English together for better speaking practice. See you soon!",
+    "video_id": "797596128",
+    "tags": [
+      "Cebu",
+      "Bohol Island State University Candijay Campus",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Lem_1769431836.jpg"
+  },
+  {
+    "name": "Lency",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Lency%202.png",
+    "description": "Hello everyone! I am Lency, and I took a Bachelors degree in Secondary Education with a major in English. My hobbies are watching documentaries, listening to podcasts, and reading books. I have a deep passion for teaching, particularly because I love transmitting knowledge and nurturing others in the use of the English language. I find English both challenging and rewarding, especially when discovering new words. Ultimately, my goal is to help you gain confidence and mastery, guiding you from the basics to proficiency. I am driven by the desire to teach with passion. I look forward to learning and growing with you, and I’m excited about the experiences ahead. See you in my class!",
+    "video_id": "1097701246",
+    "tags": [
+      "Manila",
+      "University of Rizal System Cainta Campus",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Lency_1769431836.jpg"
+  },
+  {
+    "name": "Let",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt04%20Let_2026.jpg",
+    "description": "Hi there! I am Let. Nice to meet you all. It would be fun to talk about you and the things you like. I hope you enjoy every minute of our class and learn a lot. There is no harm in trying. So come on, practice English with me and be more confident in using the language. See you soon.",
+    "video_id": "795484096",
+    "tags": [
+      "Manila",
+      "Philippine Normal University",
+      "Psychology Major in Guidance and Counseling"
+    ],
+    "local_image": "images/teachers/Let_1769431836.jpg"
+  },
+  {
+    "name": "Levy(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1903%20Levy%20(2).JPG",
+    "description": "The beautiful thing about learning is that no one can take it away from you. Good day everyone! I am Levy, a graduate of Bachelor in Elementary Education major in General Education. I am a kind of person that is eager to teach students who are very committed to learn. I am also funny, patient, lovable and smiling when it comes to teaching. Teaching students need preparation and concentration and so I will do my best to teach you the way what a responsible teacher needs to do and I will make sure to give you an enjoyable learning experience here in NVOIM.",
+    "video_id": "796475443",
+    "tags": [
+      "Cebu",
+      "Cordova Public College",
+      "Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Levy(P)_1769431836.jpg"
+  },
+  {
+    "name": "Lian",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Lian%201.png",
+    "description": "Hello lovely students! Im Lian. I am a teacher by profession. I enjoy educating and sharing knowledge with others. I like reading fiction and motivational literature and composing stories and poetry. I also enjoy listening to Pop songs. For me, learning English is very important because it helps us communicate more easily with people all over the world. With that, I will help you improve your English skills through a collaborative approach, practicing the basics from writing to reading English. I will do my best to make learning English fun and easy for you. I am looking forward to seeing you in my class!",
+    "video_id": "1044177873",
+    "tags": [
+      "Manila",
+      "Rizal Technological University",
+      "Bachelor in Secondary Education Major in Science"
+    ],
+    "local_image": "images/teachers/Lian_1769431837.jpg"
+  },
+  {
+    "name": "Lin",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1764%20Lin%20(2).JPG",
+    "description": "Hi, I am Teacher Lin! I took up Bachelor of Science in Elementary Education, Major in General Content at the University of Cebu Lapu-Lapu and Mandaue. I decided to do online teaching because my passion is teaching and meeting new people. I want to impart my knowledge about the English language because I believe that it is interesting and fun to learn. I want to help other people easily learn English and of course, be able to build rapport. I am excited to meet you at NVOIM and I am very much willing to help you. Let us have fun and learn together!",
+    "video_id": "829641190",
+    "tags": [
+      "Cebu",
+      "University of Cebu Lapu Lapu Mandaue",
+      "Bachelor of Elementary Education major in General Education"
+    ],
+    "local_image": "images/teachers/Lin_1769431837.jpg"
+  },
+  {
+    "name": "Linn",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2042%20Linn%20(2).JPG",
+    "description": "Hi! This is Teacher Linn. I am a graduate of 4 year course, major in English. I love imparting knowledge to students cause it is my fashion to teach. Teaching English must be easy and in fun way. With the help of teachers, we will make your class worth it. Come and study with us here in NVOIM. See you! Bye!",
+    "video_id": "765565275",
+    "tags": [
+      "Cebu",
+      "Philippine State College of Aerounotics",
+      "Bachelor of Arts Major in English"
+    ],
+    "local_image": "images/teachers/Linn_1769431837.jpg"
+  },
+  {
+    "name": "Lola",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc%202145%20Lola%20(2).JPG",
+    "description": "Hi, I am Lola. I graduated with a Bachelor of Elementary Education from Cebu Technological University. I am a passionate, friendly, and enthusiastic teacher. I worked as a camp teacher for a month, where I handled Taiwanese, Chinese, and Vietnamese students. The primary goal of being an English as a Second Language (ESL) Teacher is to help the students expand their Academic Vocabulary.",
+    "video_id": "879643322",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University- Cebu City Mountanview Satellite Campus",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Lola_1769431838.jpg"
+  },
+  {
+    "name": "Lorraine",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1763%20Lorraine%20(2).JPG",
+    "description": "Hello there! I am Teacher Lorraine. I graduated from Cebu Technological University with a Bachelors degree of Elementary Education major in Special Education. I have been teaching the English language to foreign students. I believe in the saying that patience is a virtue and learning is fun if you will make it a habit. So wonderful students, book my lesson now and let us start enhancing your knowledge. Hurry and see you in my class.",
+    "video_id": "774918798",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Main Campus",
+      "Bachelor Elementary Education Major in Special Education"
+    ],
+    "local_image": "images/teachers/Lorraine_1769431838.jpg"
+  },
+  {
+    "name": "Lory",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2007%20Lory.JPG",
+    "description": "Hi! I am Teacher Lory. I am from Lapu-Lapu City. I graduated in Cebu Technological University-Main campus with a Bachelors Degree in Elementary Education major in Pre-school. I like kids and young at heart. I like watching movies and playing tennis. I like the saying by Phil Collins in which in learning you will teach and in teaching, you will learn. I am here in NVoim to help you expect that you will become a better English speaker. See you in one of my classes. Goodbye!",
+    "video_id": "774524910",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Main Campus",
+      "Bachelor in Elementary Education Major in Early Childhood Education and Technology and Livelihood Education"
+    ],
+    "local_image": "images/teachers/Lory_1769431838.jpg"
+  },
+  {
+    "name": "Love",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Love%201.png",
+    "description": "Hello everyone! My name is Love. I worked for an ESL company for more than a year. I like watching movies and TV series. I also like to travel sometimes. Because it is as fun as studying English. You can learn new things and it can help you boost your confidence. I will guide you and I am looking forward to seeing you in my class!",
+    "video_id": "820715666",
+    "tags": [
+      "Manila",
+      "ICCT COLLEGES",
+      "BS COMPUTER SCIENCES"
+    ],
+    "local_image": "images/teachers/Love_1769431839.jpg"
+  },
+  {
+    "name": "Lyca",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2114%20Lyca.JPG",
+    "description": "Hi, good day! I am Lyca. I am 23 years old. I graduated from Cebu Technological University with a degree of Bachelor in Elementary Education. I am patient, kind, and considerate. I am happy to work with learners of all levels. I am passionate about teaching and dedicated to helping you succeed. I will be here to help, support, and inspire you, no matter what stage you are at. Learning English will help you deal with people around the world. It helps us connect with each other. Learning English will enable us to progress in our lives. Begin your journey in learning English! VOIM English Corp is just here for you!",
+    "video_id": "879643056",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-San Francisco Campus",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Lyca_1769431840.jpg"
+  },
+  {
+    "name": "Lyra",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Lyra.jpg",
+    "description": "Hi, I am Teacher Lyra. I am a licensed educator with a Bachelor of Arts degree in English, majoring in English Language Studies as a discipline. Teaching has always been my passion, and I am aware that English plays an important role in our society as it builds a better future. This is the reason why I chose to be an ESL teacher. I am hoping to assist my students personal growth and career, and to be able to promote unity among other nationalities. I would love to help the learners by teaching English in a fun and interactive way.",
+    "video_id": "1123444721",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Tuburan Campus",
+      "Bachelor of Arts in English major in English Language Studies as a Discipline"
+    ],
+    "local_image": "images/teachers/Lyra_1769431840.jpg"
+  },
+  {
+    "name": "Lyza",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vyc1900%20Lyza%20(2).JPG",
+    "description": "A heart of a good teaching is the heart of a good teacher. Hello and welcome to NVOIM. Allow me to introduce myself. I am teacher Lyza. I am a graduate in Bachelor of Secondary Education major in English. I am a type of teacher who is friendly, kind, approachable, and cheerful. I will do my best to teach you with a heart and to help you shape your mind to be a knowledgeable one. Here in NVOIM you may experience a good and fun place for learning. I am hoping that you will become one of my students here in NVOIM. I cant wait to see you!",
+    "video_id": "799384429",
+    "tags": [
+      "Cebu",
+      "Cordova Public College",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/Lyza_1769431840.jpg"
+  },
+  {
+    "name": "Madel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Madel.JPEG",
+    "description": "Hi I am Madel. I have been teaching here at NVOIM for quite a long time now. Teaching is and will always be my passion. Your eagerness and willingness to learn play a vital role in keeping me motivated to teach the language in a most exciting and easiest way. It is said that, it is never an easy thing to learn and speak the global language, but as long as you are driven and willing, I do believe that you are one step closer to achieving your dream of becoming fluent and good at it. I am looking forward to seeing you, all. Have a good day.",
+    "video_id": "799698331",
+    "tags": [
+      "Manila",
+      "Rizal Technological University",
+      "Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Madel_1769431840.jpg"
+  },
+  {
+    "name": "Maggie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT823%20MAGGIE_2026-1.JPG",
+    "description": "Hello I am Maggie I took up Mass Communication Major in Advertising and I have been teaching Koreans for almost 10 years now. Teaching for me is not a job it s a passion so I let my students have fun while learning. Hoping to see you all in my class and let s learn the language in fun and easiest way possible. Have a good day.",
+    "video_id": "802904801",
+    "tags": [
+      "Manila",
+      "Trinity College of Quezon City",
+      "Mass Communication Major in Advertising"
+    ],
+    "local_image": "images/teachers/Maggie_1769431840.jpg"
+  },
+  {
+    "name": "Marge",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2120%20Marge%20(2).JPG",
+    "description": "Learning English is essential. It broadens our minds, develop emotional skills and improve the quality of life by providing job opportunities. In line with this, here in NVOIM teachers have the great passion in enhancing English skills and I am one of those by the way this is teacher Marge a graduate of Bachelor in secondary education and a licensed teacher with an experienced of teaching English as second language. So, I am excited to see you in my class.",
+    "video_id": "792813505",
+    "tags": [
+      "Cebu",
+      "Cebu Eastern University",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Marge_1769431841.jpg"
+  },
+  {
+    "name": "Maria",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1856%20Maria.JPG",
+    "description": "Hi! My name is Teacher Maria. I am a degree holder of Bachelor of Secondary Education. Actually, this is my first time to work as an online ESL teacher. I decided to do this job because I want to enhance my teaching skills. English as a secondary language will surely unite people by communicating and understanding the different races. Here in NVoim, we will teach you to communicate in a fun and easy way. I do really hope to see you in my class!",
+    "video_id": "795428137",
+    "tags": [
+      "Cebu",
+      "Mandaue City College",
+      "Bachelor of Secondary Education Major in Mathematics"
+    ],
+    "local_image": "images/teachers/Maria_1769431842.jpg"
+  },
+  {
+    "name": "Marianne",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/hiworks_20220823_5231.png",
+    "description": "Hi everyone! I am teacher Marianne and welcome to NVOIM! I studied Bachelor in Elementary Education Major in Science and currently finishing my 2nd degree taking up Bachelor of Arts in English. I have been teaching for almost 15 years and I must say that I truly enjoy helping my students learn how to speak English fluently. So enroll now and lets get started! See you in my class!",
+    "video_id": "800779745",
+    "tags": [
+      "Manila",
+      "Western Mindano State University",
+      "Bachelor in Elementary Education Major in Science"
+    ],
+    "local_image": "images/teachers/Marianne_1769431842.jpg"
+  },
+  {
+    "name": "Maricel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2018%20Maricel%20e9%20(2).JPG",
+    "description": "Hello~ I am teacher Maricel. I am a kind, patient, and loving teacher. Teaching is not just a job that gives the learners the knowledge they need, it is a profession where we inspire people to reach their dreams. I will help you to learn the English language in the best of my abilities. I am looking forward to seeing you in my class.",
+    "video_id": "774918227",
+    "tags": [
+      "Cebu",
+      "Indiana Aerospace University",
+      "Bachelor Elementary Education Major in General Education"
+    ],
+    "local_image": "images/teachers/Maricel_1769431842.jpg"
+  },
+  {
+    "name": "Marife",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/marife.jpg",
+    "description": "Hi! I am teacher Marife. I completed my studies at Mandaue City College in Cebu, Philippines, with a Bachelor of Secondary Education major in Mathematics. I have a lot of experience in teaching students from kids to adults. English is a universal language that most people used. Learning English is the key to your growth and success. Come and let us enjoy learning English together. See you!",
+    "video_id": "1090357203",
+    "tags": [
+      "Cebu",
+      "Mandaue City College",
+      "Bachelor of Secondary Education major in Mathematics"
+    ],
+    "local_image": "images/teachers/Marife_1769431842.jpg"
+  },
+  {
+    "name": "Max",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2100%20Max%20(2).JPG",
+    "description": "Hi, good day! I am teacher Ellen a graduate from Cebu Technological University with the degree of Bachelor of Science in Hospitality Management. I am patient, optimistic, approachable teacher. I love children. My goal is to help students to improve and progress in English language. English is not just about grammars, but is about connecting other people and make the students more eager to learn. Learn with me and let us make English a fun and easy language. See you!",
+    "video_id": "805349243",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Science in Hospitality Management"
+    ],
+    "local_image": "images/teachers/Max_1769431842.jpg"
+  },
+  {
+    "name": "May",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT881%20MAY_2026-1.JPG",
+    "description": "Hello, I am May. I took up a Bachelors in Elementary Education. I am a teacher by profession. I love reading educational books. English is fun to learn. I love to help you improve your communication skills and make English easy to learn. See you in my class!",
+    "video_id": "906284027",
+    "tags": [
+      "Manila",
+      "Collegio De Montalban",
+      "Bachelor in Elementary Education Major in Content Course"
+    ],
+    "local_image": "images/teachers/May_1769431844.jpg"
+  },
+  {
+    "name": "Mharee",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt783%20Mharee_2026.jpg",
+    "description": "Hello I am teacher Mharee I graduated with a degree of Bachelor of Technical Teachers Education Major in English. I ve been teaching English online for many years now and I taught Koreans. Teaching is my heart. As an English teacher I always inspire my students to study more about English because it is important so that wherever they go they can speak English confidently. I will be very glad and very thankful to see you in my class and we will study English in more exciting and fun way. Lets study together. See you in my class.",
+    "video_id": "800709428",
+    "tags": [
+      "Manila",
+      "MARIKINA POLYTECHNIC COLLEGE",
+      "BACHELOR OF TECHNICAL TEACHER MAJOR IN ENGLISH"
+    ],
+    "local_image": "images/teachers/Mharee_1769431844.jpg"
+  },
+  {
+    "name": "Mira",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2036%20Mira%20(2).JPG",
+    "description": "Hi! I am Teacher Mira! I love to help my learners achieve and reach their goals in life and to be part of their journey. So, if you want to learn more, I would be glad to have you in my class. See you!!!",
+    "video_id": "796860838",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Education Major in General Content Education"
+    ],
+    "local_image": "images/teachers/Mira_1769431844.jpg"
+  },
+  {
+    "name": "MJ(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/MJ.jpg",
+    "description": "Hi! I am MJ. I specialized in teaching English at the secondary level and have spent nearly five years working as an ESL teacher, primarily with Asian students of all ages. In my spare time, I enjoy traveling and exploring the beauty of nature, as well as watching movies and documentaries from diverse cultures around the globe. I firmly believe that there is always room for growth and that mastering a universal language like English is increasingly essential. I am excited to help you learn English engagingly and enjoyably. Looking forward to seeing you in class",
+    "video_id": "1058867533",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Consolacion Campus",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/MJ(P)_1769431844.jpg"
+  },
+  {
+    "name": "Nars",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2107%20Nars.JPG",
+    "description": "Hello everyone! I am teacher Nars and welcome to my class. I graduated from Cebu Technological University-Carmen Campus with the degree of Bachelor in Technology and Livelihood Education major in Home Economics. The limit of your language mean the limits of your world. Do not be afraid to try, be afraid not to try. So what are you waiting for? Come and let us learn English together",
+    "video_id": "805351820",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Secondary Education Major in Technology and Livelihood Education - Home Economics"
+    ],
+    "local_image": "images/teachers/Nars_1769431844.jpg"
+  },
+  {
+    "name": "Neil(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT852%20NEIL-2026.jpg",
+    "description": "Hello! My name is Neil. I love to teach students all about English. English is all about fun and excitement. I am looking forward to seeing you in my class. So, let us have fun together. See you!",
+    "video_id": "1147589426",
+    "tags": [
+      "Manila",
+      "Centro Escolar University",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Neil(M)_1769431844.jpg"
+  },
+  {
+    "name": "Nemmy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1783%20Nemmy%20(2).JPG",
+    "description": "Never stop learning because life never stops teaching. Hello! I am teacher Nemmy. I studied at Cebu Technological University and took up Bachelor of Elementary Education major in Content Education. Teaching English to students is one of my passions. Thats why I pursued this opportunity. It would be my pleasure and honor to help you in enhancing your communication skills . I will do my very best to give you the service you would like to have. It is going to be a fun and interactive class. I am looking forward to have you in my class. Once again, this is teacher Nemmy at your service!",
+    "video_id": "764826204",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Nemmy_1769431845.jpg"
+  },
+  {
+    "name": "Nica",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt748%20Nica_2026.jpg",
+    "description": "Hi! I am Teacher Nica. I Graduated with the degree of Bachelor of Secondary Education major in Technology in Livelihood Education. I like English because it is the most spoken language in the world and it is the easiest way to connect with people. English is not only useful, it is fun and it gives you a lot of satisfaction as well. I believe that having knowledge about it could give you a lot of opportunities in the future.",
+    "video_id": "799701437",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor of Secondary Education Major in T.L.E."
+    ],
+    "local_image": "images/teachers/Nica_1769431845.jpg"
+  },
+  {
+    "name": "Pamela",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1376%20Pamela%20e6%20(2).JPG",
+    "description": "Hello! I am Teacher Pamela, a graduate of Bachelor of Science in Nursing from Southwestern University. I am a determined, dedicated, and passionate teacher. So I want my student to learn as well as enjoy my class. Surely, teacher Pamela will make your class fun and easy. I hope to see you in my class.^^",
+    "video_id": "782780885",
+    "tags": [
+      "Cebu",
+      "Southwestern University",
+      "Bachelor of Science in Nursing"
+    ],
+    "local_image": "images/teachers/Pamela_1769431846.jpg"
+  },
+  {
+    "name": "Queenie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT937%20QUEENIE.png",
+    "description": "Hi there! I am is Queenie and I took up a bachelor degree major in Computer Science. In my free time, you can usually find me reading a book or binge watching a series. I am here to help you improve your English skills. I believe learning English lets you see, hear, and enjoy more of what the world has to offer, and I have made it my mission to guide you in every step of this journey. I cannot wait to see you in my class!",
+    "video_id": "1131527301",
+    "tags": [
+      "Manila",
+      "Mapua University",
+      "Bachelor of Science in Computer Science"
+    ],
+    "local_image": "images/teachers/Queenie_1769431846.jpg"
+  },
+  {
+    "name": "Rai",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Rai.jpg",
+    "description": "Hello there! I am Teacher Rai. I studied at Negros Orientak universuty with a degree in Computer Scence. I have experienced working both online and offline as an ESL Teacher. I am looking forward to getting to know you and creating a memorable and positive learning Experience. So let us have some fun learning together here at NVOIM.",
+    "video_id": "1085945397",
+    "tags": [
+      "Cebu",
+      "Negros Oriental State University",
+      "Bachelor of Science in Computer Sciencee"
+    ],
+    "local_image": "images/teachers/Rai_1769431846.jpg"
+  },
+  {
+    "name": "Rama",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1915%20Rama%20(2).JPG",
+    "description": "Hello everyone, I am Teacher Rama, an energetic and understanding teacher. I graduated from the premier university of Cebu City, Cebu Technological University, I took up the degree Bachelor of Secondary Education, and I believe that NVOIM provides classes where you can learn and have fun at the same time. So what are you waiting for, come and be part of us. Enroll now. Once again, this is Teacher Rama See you in my class!",
+    "video_id": "774924275",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University - Main Campus",
+      "Bachelor in Secondary Education-Major in Science"
+    ],
+    "local_image": "images/teachers/Rama_1769431847.jpg"
+  },
+  {
+    "name": "Raysell",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1226%20Raysell%20e2.JPG",
+    "description": "Hi, everyone. I am Raysell. I graduated from Cebu Normal University. I have taught in the elementary grade for one year and preschool students for three years. Teaching is a multi-tasking job. However, it is fun and interesting. If you would like to learn English, you can study here in NVOIM. Learning English here is fun and easy. I am looking forward to meeting all of you as well as knowing every student in my class. See you here in NVOIM.",
+    "video_id": "795431569",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Elementary Education Major in Filipino"
+    ],
+    "local_image": "images/teachers/Raysell_1769431847.jpg"
+  },
+  {
+    "name": "Reina",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2103%20Reina.JPG",
+    "description": "Hi! I am teacher Reyna. I graduated from Cebu Technological University - Carmen Campus with the degree of Bachelor of Technology and Livelihood Education major in Home Economics. I am a patient teacher who wish to influence the lives of my students through experience. I am here to help you develop your skills in speaking the English language. Guaranteed, that I will be of great assistance. Come and join me in my class and let us make it fun and interactive. See you!",
+    "video_id": "761284889",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Secondary Education Major in Technology and Livelihood Education - Home Economics"
+    ],
+    "local_image": "images/teachers/Reina_1769431847.jpg"
+  },
+  {
+    "name": "Res",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Res%201.JPG",
+    "description": "Hi! Teacher Res here. I have been teaching English to a variety of students like Japanese, Chinese and Vietnamese. In fact i went to Vietnam to teach the English language. Teaching is my passion. I love teaching kids. I am a very flexible person and I can teach my students from the heart. ♥ so if you want to learn English in a fun and interactive way, it would be my pleasure to teach you. ^^^ So study with me at NVOIM!",
+    "video_id": "295977103",
+    "tags": [
+      "Cebu",
+      "University of San Carlos",
+      "A.B. ENGLISH"
+    ],
+    "local_image": "images/teachers/Res_1769431848.jpg"
+  },
+  {
+    "name": "Reya",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Reya.JPG",
+    "description": "Hello! I am Reya. I am committed to fostering a dynamic and inclusive classroom where every student feels appreciated. I am patient, creative, and skilled at connecting with learners. This enables me to customize my teaching approach to suit your unique needs in learning. Join NVOIM, and let us make your English learning journey not only effective but also enjoyable. See you in my class.",
+    "video_id": "993868795",
+    "tags": [
+      "Cebu",
+      "Colegio de San Antonio de Padua",
+      "Bachelor of Secondary Education Major in Special Education"
+    ],
+    "local_image": "images/teachers/Reya_1769431848.jpg"
+  },
+  {
+    "name": "Rhea",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/R.jpg",
+    "description": "Hi! I am Teacher Rhea. I consider myself as flexible, friendly, well-organized, and highly motivated. My previous experience has taught me valuable lessons about patience, time management, and responsibility. I am excited about the opportunity to share my knowledge and passion for English with all of you! See you in class.",
+    "video_id": "1058868562",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Danao campus",
+      "Bachelor of Elementary Education Major in General content"
+    ],
+    "local_image": "images/teachers/Rhea_1769431848.jpg"
+  },
+  {
+    "name": "Rill(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Rill.JPG",
+    "description": "Hi! I am Rill. I possess a variety of skills that are applicable when I am conducting classes. I have gained a lot of experience as I used to teach diverse students. I believe that learning the universal language unlocks doors to the world of opportunities and communication with people. I am excited to have you in my class. See you!",
+    "video_id": "1008317286",
+    "tags": [
+      "Cebu",
+      "University of the Visayas Main Campus",
+      "Bachelor of Secondary Education major in Mathematics"
+    ],
+    "local_image": "images/teachers/Rill(P)_1769431848.jpg"
+  },
+  {
+    "name": "Ritchel",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1896%20Ritchel%20(2).JPG",
+    "description": "When you see your students become more successful than you are, then you can say that you are an effective teacher. Hi everyone! I am Ritchel. I graduated with the Bachelors Degree of Secondary Education, Major in English. Even though I have not worked in the field of education before, there is still a part of me that wants to impart my knowledge to others through teaching. They said that learning English is difficult but here in NVOIM, we will make it easy and fun just for you. So ,I am looking forward to seeing you in my class soon.",
+    "video_id": "769325487",
+    "tags": [
+      "Cebu",
+      "University of Visayas",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Ritchel_1769431849.jpg"
+  },
+  {
+    "name": "Rizza",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Rizza%2010.png",
+    "description": "Hello students! My name is Rizza. I hold a Bachelors degree in Secondary Education, majoring in English, and I am currently pursuing my Masters degree in Teaching. Ive been in this industry for 4 years. I am excited to share my knowledge with you. In my free time, I enjoy reading self-help and storybooks, which inspire my imagination and motivation. For me, learning English is a powerful tool that connects people worldwide. It also enhances our global competitiveness. I am here to help you improve your English skills through engaging and informative lessons, relatable conversations, and exciting activities. I look forward to seeing you in my class! Bye!",
+    "video_id": "1077150969",
+    "tags": [
+      "Manila",
+      "Pamantasan ng Lungsod ng Pasig",
+      "Bachelor of Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Rizza_1769431849.jpg"
+  },
+  {
+    "name": "Rochelle",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/ROchelle.png",
+    "description": "Hello there! I am Teacher Rochelle. I am a musically inclined person who enjoys singing. I also love reading books and watching documentaries. I earned a Bachelor of Science Degree in Sociology as well as units in Education. I have been teaching English for quite a while now. I get along with a wide range of students. Looking forward to seeing in one of my classes. Have a nice day!",
+    "video_id": "696352163",
+    "tags": [
+      "Manila",
+      "POLYTECHNIC UNIVERSITY OF THE PHILIPPINES",
+      "BS SOCIOLOGY"
+    ],
+    "local_image": "images/teachers/Rochelle_1769431849.jpg"
+  },
+  {
+    "name": "Rona",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT910%20RONA.jpg",
+    "description": "Hello there! I am Ronalyn Magsino and you can call me teacher Rona. I took up Bachelor of Science in Industrial Education major in Industrial Arts and I am now a Licensed Professional Teacher. Teaching is my passion so I volunteered as a Sunday School teacher in our church. During my spare time, I read books and watch movies and series on Netflix. I believe that learning english should be an enjoyable journey. Im passionate in helping you improve your language skills in a fun and engaging way. Whether youre looking to boost your conversation skills, refine your grammar, or prepare for exams, Im here to help you in every step of the way and I cant wait to embark on this journey together. So, see you here at NVOIM!",
+    "video_id": "1044177584",
+    "tags": [
+      "Manila",
+      "Batangas State University",
+      "Bachelor in Secondary Education Major in Industrial Arts"
+    ],
+    "local_image": "images/teachers/Rona_1769431849.jpg"
+  },
+  {
+    "name": "Rosean",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc%201710%20Rosean%20(2).JPG",
+    "description": "Annyeong everyone, Im teacher Rosean of NVOIM Corp. taking up the course Bachelor of Science in Hotel and Restaurant Management from Cebu, Philippines. Are you having a hard time speaking and understanding the English language? Or are you interested in learning the English language? If Yes, then Ill be glad to teach you everything that you need to learn to help you understand and at the same time enjoy our class in different ways of learning the English language. It may be difficult for you to understand everything but Im going to make sure that you will learn a lot and have fun in our class so come join us now here in NVOIM Corp.",
+    "video_id": "780931771",
+    "tags": [
+      "Cebu",
+      "ACLC College Mandaue",
+      "Bachelor of Science in Hotel and Restaurant Management"
+    ],
+    "local_image": "images/teachers/Rosean_1769431849.jpg"
+  },
+  {
+    "name": "Roselyn",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT181%20ROSELYN_2026-1.JPG",
+    "description": "Hi, I am Roselyn Your friendly and devoted teacher. Teaching has always been my passion. From the very first moment, I start to build trust with my students by helping them learn to speak English so that they can communicate confidently in a manageable way. Hope to see you in my class!:)",
+    "video_id": "795484921",
+    "tags": [
+      "Manila",
+      "Leyte Normal University",
+      "Bachelor of Secondary Education Major in PEHM"
+    ],
+    "local_image": "images/teachers/Roselyn_1769431849.jpg"
+  },
+  {
+    "name": "Sam",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2003%20Sam%20(2).JPG",
+    "description": "Hi! My name is Sam. I love learning new things and I enjoy learning different cultures and meeting new people. In fact, making friends is one of my best skills. I will always make sure that my students will feel comfortable in my class. I am also here to develop your English skills both reading and oral guaranteed that I will be your great assistance. I will make our classes as lively as possible, and we can even be friends. What are you waiting for? Enroll now here in NVOIM. See you in my class!",
+    "video_id": "770969923",
+    "tags": [
+      "Cebu",
+      "Rizwoods Colleges",
+      "Bachelor of Technical Education Major in Food Service Management"
+    ],
+    "local_image": "images/teachers/Sam_1769431850.jpg"
+  },
+  {
+    "name": "Sandino(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/sandino.jpg",
+    "description": "Hello students! I am teacher Sandino! I took up AB Mass Communication back in college. I have experience in teaching English to students of different levels. I am an artist and I love performing. I enjoy singing and composing music. English is a universal language, and you will go far in life if you know how to speak English. I will help you improve your English skills and use different teaching strategies in class. We will have fun in my class, and I am looking forward to seeing you!",
+    "video_id": "1111144215",
+    "tags": [
+      "Manila",
+      "Far Eastern Univeristy",
+      "AB Mass Communication"
+    ],
+    "local_image": "images/teachers/Sandino(M)_1769431850.jpg"
+  },
+  {
+    "name": "Savannah",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2101%20Savannah%20(2).JPG",
+    "description": "Hi, I am teacher Savannah. I graduated from Cebu Normal University last June 2022. I took up the degree of Bachelor of Arts major in Filipino. I am passionate, kind, and a work harder type of person. I love to teach in a fun and interactive way. Currently, I am a volunteer at a Non-Government Organization (NGO) based in Germany, so that I can develop myself more and have more confidence. Here at NVoim we develop students to become more competitive. So, come and learn with me. See you!",
+    "video_id": "761286342",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Arts in Filipino"
+    ],
+    "local_image": "images/teachers/Savannah_1769431851.jpg"
+  },
+  {
+    "name": "Sha",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2043%20Sha%20(2).JPG",
+    "description": "Hi! I am Teacher Sha. Do you want to study English in fun and easy way? Good choice! Because here in NVOIM, we provide a fun and interactive way for children and adults to learn English at the convenience of their homes. It is our mission to develop a competitive and competent English speaking people. So, what are you waiting for? Come and join us here in NVOIM.",
+    "video_id": "632531378",
+    "tags": [
+      "Cebu",
+      "University of Cebu - Banilad Campus",
+      "Bachelor of Secondary Education- Major in English"
+    ],
+    "local_image": "images/teachers/Sha_1769431851.jpg"
+  },
+  {
+    "name": "Shane",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Shane%201.png",
+    "description": "Hello students! My name is Shane. I took up bachelors degree in secondary education. I love reading, watching English movies, and also teaching; that is why I took that as my profession. Learning English is important as it is the universal language used by everyone, making communication easier and providing students with access to a vast array of translated books, journals, and articles. I will be cheerful, genuine, and sincere in teaching my students. I will also encourage you to express your ideas and thoughts and help you be confident in speaking English. I am excited to be a part of your English journey. See yah",
+    "video_id": "974893551",
+    "tags": [
+      "Manila",
+      "Rizal Technological University",
+      "Bachelor in Secondary Education Major in Science"
+    ],
+    "local_image": "images/teachers/Shane_1769431851.jpg"
+  },
+  {
+    "name": "Sheden",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Sheden.jpg",
+    "description": "My name is Sheden! I graduated from Mandaue City College with a degree in Education, majoring in general content. I am an enthusiastic teacher and passionate about helping students build their confidence and skills in language. As a teacher, I aim to create engaging lessons that cater to different learning styles and students levels of understanding. Learning English should be meaningful and enjoyable. Let us learn together and be part of the growing family.",
+    "video_id": "1085944537",
+    "tags": [
+      "Cebu",
+      "Mandaue City College",
+      "Bachelor of Elementary Education major in Content Education"
+    ],
+    "local_image": "images/teachers/Sheden_1769431851.jpg"
+  },
+  {
+    "name": "Shell",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/IMG_20221205_143810_260.jpg",
+    "description": "Hello I am teacher Shell I took up Bachelor of Secondary Education Major in English. My hobbies are painting and drawing. I also like teaching my students how to speak and write using the English language. So come and study with us because NVOIM English is a learning program that gives you fun and effective ways in learning English. Rest assured that you will become confident and competent in speaking the English language, so see you in my class.",
+    "video_id": "795499583",
+    "tags": [
+      "Manila",
+      "Polytechnic University of the Philippines",
+      "Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Shell_1769431852.jpg"
+  },
+  {
+    "name": "Shenyl",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1922%20Shenyl%20e3.JPG",
+    "description": "Hi.I am Teacher Shenyl! I graduated at St. Peters College of Ormoc with a Degree of Bachelor of Science in Secondary Education Major in Gen. Science. I have experienced teaching Koreans and other nationalities. It is more fun in teaching English because you can share and mold others. Being an online teacher requires certain skills on how to manage your time and handle your class. Teaching English is difficult but it gives me the opportunity to share my knowledge and be able to know the culture of others. Learning English is very interesting. I do believe that everyone can learn and speak English with fun!",
+    "video_id": "797596541",
+    "tags": [
+      "Cebu",
+      "St. Peters College of Ormoc",
+      "Bachelor of Science in Secondary Education Major in General Science"
+    ],
+    "local_image": "images/teachers/Shenyl_1769431852.jpg"
+  },
+  {
+    "name": "Shy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Shy.jpg",
+    "description": "Hello! My name is Teacher Shy. I studied a Bachelor of Secondary Education, major in English at Trinidad Municipal College. One of my strengths is being patient and always looking for the positive side. I am also a friendly person who can adapt quickly. I believe in the saying, Knowledge is power For me, learning English is not just about language-it is about building confidence and opening opportunities. I am excited to help my students learn, improve, and enjoy their English journey.",
+    "video_id": "1123445391",
+    "tags": [
+      "Cebu",
+      "Trinidad Municipal College",
+      "등록된 정보 없음"
+    ],
+    "local_image": "images/teachers/Shy_1769431852.jpg"
+  },
+  {
+    "name": "Spring(P)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Spring.jpg",
+    "description": "Learning is a treasure that will follow its owner everywhere. Hello! My name is Spring. I graduated from Trinidad Municipal College with a degree in Bachelor of Secondary Education, major in English. I am patient, creative, and passionate about helping students gain confidence in using English. I believe learning English opens the door to new opportunities and meaningful connections.",
+    "video_id": "1123474798",
+    "tags": [
+      "Cebu",
+      "Trinidad Municipal College",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/Spring(P)_1769431853.jpg"
+  },
+  {
+    "name": "Stella",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1775%20Stella.JPG",
+    "description": "Hi, My name is teacher Stella and Im 23 years old. Im a graduate of Bachelor of Arts in English Language. I enjoy teaching because its always been my passion to share my knowledge to young minds. Teaching may be challenging, but knowing that I am able to help my students to achieve success is a great achievement for me as a teacher. NVOIM English insures nothing but an effective and fun leaning strategies. Come and join us in NVOIM!",
+    "video_id": "776817431",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Arts in English Language"
+    ],
+    "local_image": "images/teachers/Stella_1769431853.jpg"
+  },
+  {
+    "name": "Stephen(M)",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Stephen.jpg",
+    "description": "Hi! My name is Teacher Stephen, I graduated at Larmen De Guia Memorial College with the degree of BSED-English. I have been teaching working as private school teacher for six years. I have this passion for helping students develop their English communication skills with confidence.",
+    "video_id": "1123444508",
+    "tags": [
+      "Cebu",
+      "Larmen De Guia Memorial College",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/Stephen(M)_1769431853.jpg"
+  },
+  {
+    "name": "Summer",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Summer.JPG",
+    "description": "Learning a language is not easy but I am here to help you to become knowledgeable in English. Hi! My name is Summer. I completed my degree in Elementary Education at Benedicto College. I have a talent for singing, dancing, and acting. I can make my teaching fun and exciting. I have experience in teaching English. I believe if you are committed to learning a language you will have a better future. Join me here at NVOIM and let us create memories together.",
+    "video_id": "966259125",
+    "tags": [
+      "Cebu",
+      "Benedicto College",
+      "Bachelor of Elementary Education Major in Content Education"
+    ],
+    "local_image": "images/teachers/Summer_1769431854.jpg"
+  },
+  {
+    "name": "Sunshine",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2096%20Sunshine.JPG",
+    "description": "Hello! I am Teacher Sunshine a graduate from Cebu Technological University with the degree of Bachelor of Technical Vocational in Teachers Education Major in Drafting Technology. I humbly claim to be an artistic, creative, and well-organized person. Teaching for me is a noble profession and it is my passion to teach my students with all my heart. Here at NVoim we make learning fun and engaging. Learning English as a second language will help you build strong connection with different people around the world. Letus join hands together and be part of our growing family. I hope to see you in my class.",
+    "video_id": "761296214",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor of Technical Vocational in Teachers Education Major in Drafting Technology"
+    ],
+    "local_image": "images/teachers/Sunshine_1769431854.jpg"
+  },
+  {
+    "name": "Suzy",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vt927%20Suzy_2026.jpg",
+    "description": "Hi there! I am Teacher Suzy. I took up a Bachelor of Secondary Education, Major in English. I enjoy reading books and writing poems. These hobbies help me stay creative and make learning more fun. Teaching is something I truly love. It gives me a sense of purpose and allows me to explore new things while helping others grow. I feel proud every time I see students learn and improve. My goal is to make learning fun and engaging, and to help you become more confident in using English, especially in speaking and writing. I am really excited to meet you all and grow together through this amazing learning journey. See you soon!",
+    "video_id": "1097700919",
+    "tags": [
+      "Manila",
+      "University of Rizal System Cainta Campus",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Suzy_1769431854.jpg"
+  },
+  {
+    "name": "Syrine",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1925%20Syrine%20(2).JPG",
+    "description": "Hello there! I am Teacher Syrine! I took up Bachelor of Secondary Education at the University of Cebu. I am fun of reading books during my free time and I also enjoy playing soccer baseball too. I chose the field of teaching because I believe that when you teach you do not only teach the concepts you also get the chance to transform their lives and seeing your students doing well is something that money cannot buy.",
+    "video_id": "799392994",
+    "tags": [
+      "Cebu",
+      "University of Cebu",
+      "Bachelor of Secondary Education Major in Filipino"
+    ],
+    "local_image": "images/teachers/Syrine_1769431854.jpg"
+  },
+  {
+    "name": "Thea",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Thea%20%201.png",
+    "description": "Hello, dear students! I am Thea, and I took a Bachelors degree in Secondary Education majoring in English. My hobbies are singing, reading, and watching movies. I also enjoy crocheting. I have a deep passion for teaching because it allows me to connect with others, share my knowledge, and inspire a love of learning. It is incredibly rewarding to witness students growth and understanding, and to play a role in shaping their future. Im passionate about helping students build confidence and reach fluency in English, guiding them from the basics to advanced levels. I teach with a heart, and I am excited to learn and grow alongside you. Im looking forward to having class with you! See you!",
+    "video_id": "1097700460",
+    "tags": [
+      "Manila",
+      "University of Rizal System",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Thea_1769431854.jpg"
+  },
+  {
+    "name": "Tophie",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc2063%20Tophie.JPG",
+    "description": "Hi! I am teacher Tophie. I was a former call center agent and experienced teaching in an ESL institution. I taught different nationalities both offline and online class. These experiences made me better in teaching English as a second language. I cannot wait to meeting you in class!",
+    "video_id": "690380440",
+    "tags": [
+      "Cebu",
+      "Cebu Technoligical University",
+      "Elementary Education major in General Education"
+    ],
+    "local_image": "images/teachers/Tophie_1769431855.jpg"
+  },
+  {
+    "name": "Trish",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/VT930%20TRISH_2026-1.JPG",
+    "description": "A pleasant day to all of you! I am Trish, I took up Bachelor of Science in Secondary Education, Major in English, at National University. As an educator, I aim to bring light to my students and nurture them through teaching. At the same time, I enjoy reading self-help books and classic literature, as this helps improve my vocabulary and perception in life. To me, English is a powerful tool that helps people communicate, despite the language barriers that may hinder universal understanding. To help my students improve their skills, I will create a safe learning environment where they feel confident to express themselves. I plan to integrate interactive activities and a personalized plan to cater to their learning styles. I am excited to teach and meet my dear students! I look forward to being part of your educational journey. See you!",
+    "video_id": "1103979761",
+    "tags": [
+      "Manila",
+      "National University",
+      "Bachelor in Secondary Education Major in English"
+    ],
+    "local_image": "images/teachers/Trish_1769431855.jpg"
+  },
+  {
+    "name": "Vee",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1093%20Vee%20(3).JPG",
+    "description": "Hi my name is Vee. I finished my degree at Cebu Normal University majored in Biology. I ve been working as an ESL teacher for quite some time now. I ve been dealing with different kinds of people in the business and I always look forward meeting new in the future. I am passionate, considerate, patient and cheerful teacher and I am eager to assist you in learning the language. Learning English can be challenging but it can create many opportunities! Here at NVOIM we cater easy, fun and interactive way of learning. So, don t be afraid to learn English, come and join us and be part of our NVOIM family!",
+    "video_id": "769329961",
+    "tags": [
+      "Cebu",
+      "Cebu Normal University",
+      "Bachelor of Science Major in Biology"
+    ],
+    "local_image": "images/teachers/Vee_1769431855.jpg"
+  },
+  {
+    "name": "Venus",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/TM%20Venus.jpg",
+    "description": "Do you want fun, easy, and interactive learning? Hi there! My name is Venus. I have finished my degree in education at the University of Southeastern University, Davao City, I majored in Home Economics. Teaching has been my passion ever since and so I have continued this career for more than 17 years now. Learning English is not as easy as 1, 2, and 3. It takes a lot of passion and focus for you to achieve your goal. So if you want to learn English, come and join us and I will be there every step of the way to help and guide you. See you in class!",
+    "video_id": "295976483",
+    "tags": [
+      "Cebu",
+      "University of Southern Philippines",
+      "Bachelor of Secondary Education Major in Technology and Home Economics"
+    ],
+    "local_image": "images/teachers/Venus_1769431856.jpg"
+  },
+  {
+    "name": "Vira",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Vira(2).jpg",
+    "description": "Hello! Good day! Iam teacher Vira, I graduated of Cebu Technological University with a Bachelor of Secondary Education major in English. As a teacher, my strength lies in building students confidence towards the English Language. I make innovative approaches exposing students to engaging in any fun activities. Focusing more on comprehension rather than perfection. Let us make your English learning journey unforgettable here at NVOIM.",
+    "video_id": "1032996719",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University-Consolacion Campus",
+      "Bachelor of Secondary Education major in English"
+    ],
+    "local_image": "images/teachers/Vira_1769431856.jpg"
+  },
+  {
+    "name": "Yam",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/vtc1177%20Yam.JPG",
+    "description": "Hello! I am Teacher Yam. I am a graduate of Bachelor of Secondary Education Major in Technology Livelihood Education. To teach is really my dream and to work here in NVoim is a dream come true to me. For me, teaching is not just a profession but also a passion.",
+    "video_id": "796861260",
+    "tags": [
+      "Cebu",
+      "Cebu State College of Science and Technology",
+      "Bachelor of Secondary Education Major in Livelihood Education"
+    ],
+    "local_image": "images/teachers/Yam_1769431856.jpg"
+  },
+  {
+    "name": "Yen",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Yen(2).jpg",
+    "description": "Good day! I am Teacher Yen. I am 33 years old. I studied Bachelor of Elementary Education major in General Education in University of Cebu Lapu-Lapu and Mandaue. I have been teaching for 8 years for both offline and online class with different nationalities. One of the greatest strength is enthusiasm. I believe that people who are enthusiastic about their work one much more effective. I approach all tasks with enthusiasm, and I have found that this helps me exceed targets. And I thought about learning English, tell me and I forget, teach me and I remember, involve me and I learn. And here in NVOIM, you will surely be involved. See you in my class!",
+    "video_id": "1032997835",
+    "tags": [
+      "Cebu",
+      "University of Cebu Lapu-lapu and Mandaue",
+      "Bachelor of Elementary Education Major in General content"
+    ],
+    "local_image": "images/teachers/Yen_1769431856.jpg"
+  },
+  {
+    "name": "Yuri",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Yuri%201.png",
+    "description": "Hello! I am Yuri. I graduated with the degree of Bachelor of Arts major in Political Science. Curiosity made me wonder that is why I engaged myself in Political Science and that is when my English journey began. I believe nothing is impossible with learning and practicing that started with curiosity. I love English because it is the language that guides me anywhere. And now I want to extend my knowledge to others who need it. Here at NVOIM, we will be your guide in achieving fluency in English. It will be an exciting journey to be with people who are eager to learn. Come on let us get curious about English together.",
+    "video_id": "799386101",
+    "tags": [
+      "Manila",
+      "Rizal System-Tanay Main Campus",
+      "Arts major in Political Science"
+    ],
+    "local_image": "images/teachers/Yuri_1769431857.jpg"
+  },
+  {
+    "name": "Zey",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Zey.JPG",
+    "description": "Hi! I am teacher Zey. I know that learning English is not easy as it requires time and effort to improve but in my class, I will help you to slowly adapt and learn the language at your own pace. I can assure you that we can easily get along since I have diverse experience in meeting foreign people. Let us achieve together your goal of learning English. see you online",
+    "video_id": "1008322760",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University",
+      "Bachelor Of Science in Industrial Engineering"
+    ],
+    "local_image": "images/teachers/Zey_1769431857.jpg"
+  },
+  {
+    "name": "Zia",
+    "img_src": "http://www.nvoimsub.com/images/TeacherImg/Zia.JPG",
+    "description": "Hello! I am Teacher Zia! I am passionate about teaching and helping students succeed in life. I strive hard to create fun and engaging classes to make learning English enjoyable. I am excited to help you improve your vocabulary and speaking skills. I am excited to meeting you in class",
+    "video_id": "1008323119",
+    "tags": [
+      "Cebu",
+      "Cebu Technological University Pinamungajan Campus",
+      "Bachelor in Technology and Livelihood Education Major in Home Economics"
+    ],
+    "local_image": "images/teachers/Zia_1769431857.jpg"
+  }
+];
 
             // 3. Render Items  with Pagination
             function renderPage(page) {
