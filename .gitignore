@@ -1,0 +1,39 @@
+# Python files
+*.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Debug files
+debug_*.png
+debug_*.py
+debug_*.txt
+
+# Backup files
+*-backup-*.html
+*-v1-stable.html
+*-sidebar.html
+*-spa.html
+
+# Manual and temporary files
+manual.txt
+
+# Crawler scripts (not needed for website)
+nvoim_crawler.py
+teacher_crawler.py
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
