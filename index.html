@@ -1532,6 +1532,18 @@
                     
                     <!-- Pagination Container -->
                     <div id="pagination-container"></div>
+                    
+                    <!-- Video Modal -->
+                    <div id="video-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
+                        <div class="relative w-full max-w-4xl">
+                            <button onclick="window.closeVideoModal()" class="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl font-bold">
+                                ×
+                            </button>
+                            <div class="relative bg-black rounded-lg overflow-hidden" style="padding-bottom: 56.25%;">
+                                <iframe id="vimeo-player" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `;
 
@@ -3544,7 +3556,7 @@
                                      onerror="this.src='images/placeholder_user.png'">
                                 ${t.video_id ? `
                                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                                    <button class="bg-white/20 backdrop-blur-md border border-white/50 text-white rounded-full p-3 hover:scale-110 transition">
+                                    <button onclick="window.openVideoModal('${t.video_id}')" class="bg-white/20 backdrop-blur-md border border-white/50 text-white rounded-full p-3 hover:scale-110 transition">
                                         <i data-lucide="play" class="w-8 h-8 fill-current"></i>
                                     </button>
                                 </div>
@@ -3642,6 +3654,44 @@
       } else {
         grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">등록된 강사가 없습니다.</div>`;
       }
+
+      // Video Modal Functions
+      window.openVideoModal = function (videoId) {
+        const modal = container.querySelector('#video-modal');
+        const iframe = container.querySelector('#vimeo-player');
+        if (modal && iframe) {
+          iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&autopause=0`;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.closeVideoModal = function () {
+        const modal = container.querySelector('#video-modal');
+        const iframe = container.querySelector('#vimeo-player');
+        if (modal && iframe) {
+          iframe.src = '';
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+      };
+
+      // Close modal on background click
+      const videoModal = container.querySelector('#video-modal');
+      if (videoModal) {
+        videoModal.addEventListener('click', function (e) {
+          if (e.target === videoModal) {
+            window.closeVideoModal();
+          }
+        });
+      }
+
+      // Close modal on ESC key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          window.closeVideoModal();
+        }
+      });
 
 
     }
