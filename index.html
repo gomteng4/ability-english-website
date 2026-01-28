@@ -4625,6 +4625,37 @@
     init();
 
   </script>
+  <!-- Floating Contact Buttons -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 animate-slide-up-fade">
+    <!-- KakaoTalk Button -->
+    <a href="https://open.kakao.com/o/s0OojYfg" target="_blank"
+      class="w-12 h-12 md:w-14 md:h-14 bg-[#FEE500] rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition duration-300 group ring-2 ring-white hover:ring-indigo-100">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+        class="w-6 h-6 md:w-8 md:h-8 text-[#371D1E]">
+        <path
+          d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.555 1.706 4.8 4.25 5.965-.184.678-.669 2.457-.767 2.825-.125.464-.029.66.242.433.364-.306 3.974-2.709 5.526-3.791.688.093 1.397.143 2.124.143 4.97 0 9-3.185 9-7.115S16.97 3 12 3z" />
+      </svg>
+      <span
+        class="absolute right-full mr-3 bg-slate-900/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg transform translate-x-2 group-hover:translate-x-0 transition-transform">
+        카톡 상담하기
+      </span>
+    </a>
+
+    <!-- Phone Button -->
+    <a href="tel:010-6892-7741"
+      class="w-12 h-12 md:w-14 md:h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition duration-300 group ring-2 ring-white hover:ring-green-100">
+      <i data-lucide="phone" class="w-6 h-6 md:w-7 md:h-7 text-white fill-white group-hover:rotate-12 transition"></i>
+      <span
+        class="absolute right-full mr-3 bg-slate-900/90 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg transform translate-x-2 group-hover:translate-x-0 transition-transform">
+        010-6892-7741
+      </span>
+    </a>
+  </div>
+
+  <script>
+    // Ensure Lucid icons are re-rendered for the floating button
+    if (window.lucide) window.lucide.createIcons();
+  </script>
 </body>
 
 </html>
