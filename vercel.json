@@ -1,0 +1,6 @@
+{
+    "buildCommand": "echo 'Using static HTML files - no build needed'",
+    "outputDirectory": ".",
+    "cleanUrls": true,
+    "trailingSlash": false
+}
